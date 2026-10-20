@@ -1,5 +1,58 @@
 # Performance
 
+## Scanner compaction exploration
+
+Niles Salter's [AVX-512 tokenizer talk](https://youtu.be/E6dWIwPLx3s) motivates
+classifying bytes into masks and compacting selected positions into output.
+Our x86 scanner already processes 64-byte blocks using AVX2 masks. On Atlas,
+we tested replacing its eight byte-mask table expansions with four AVX-512
+`vpcompressd` operations, keeping the existing boundary rules and capacity
+fallback. One variant compressed directly into memory; another compressed
+into a register and used a masked store of exactly the selected positions.
+
+The Qwen3.5-4B FineWeb profile attributed 7.39% of sampled native encoding
+cycles to the scanner, 47.47% to piece lookup/cache handling and 35.31% to
+BPE. These are cycle samples for this workload, not consumer wall-time shares.
+Even eliminating the scanner would cap this profile's speedup at about 1.08×.
+
+Four balanced whole-process blocks per workload, 100 passes per process,
+measured the following median milliseconds per pass on the same EPYC 9124:
+
+| Complete encoding | AVX2 baseline | Compress to memory | Compress to register |
+| --- | ---: | ---: | ---: |
+| 256 decisions | 0.661 | 1.063 | 0.659 |
+| 1,024 FineWeb-Edu documents | 21.071 | 27.430 | 21.240 |
+| 1,024 Pleias documents | 10.516 | 12.840 | 10.510 |
+
+Register compaction improved boundary-only measurements by about 1–2%, but
+complete encoding remained around parity: paired geometric-mean speedups
+were 1.000×, 0.995× and 1.004× respectively. Direct-memory compaction was
+22–61% slower for complete encoding. Both prototypes were removed; production
+assembly and the consumer dependency stay unchanged. The measured next target
+is piece lookup/cache handling and BPE, rather than wider boundary emission.
+
+All 144 process-final token/boundary digests matched their workload baselines.
+The direct-memory prototype also passed 13 Rust tests, 45 native callers and
+the six-target assembly audit; the register variant received corpus checks
+only. Neither result establishes general AVX-512 performance or a consumer
+speedup. [Complete receipt and samples](../benchmarks/results/scanner-compaction-epyc9124.json).
+
+The bounded Rust probe separates complete encoding from boundary generation:
+
+```sh
+nix-shell --run 'cargo build --release --example native_scan_probe'
+nix-shell -p perf util-linux --run 'perf record -e cycles:u -F 1999 -- taskset -c 8 target/release/examples/native_scan_probe /path/to/tokenizer.json /path/to/corpus.bin encode 400'
+```
+
+Its corpus format is repeated little-endian `u32` byte lengths followed by the
+document bytes: at most 4,096 documents and 16 MiB total. Use `pieces` instead
+of `encode` to measure boundary generation. Each pass creates fresh scratch
+with a 4 MiB memo budget and the default piece cache; an optional final `0`
+argument disables the memo. Tokenizer loading and the length-prefixed output digest
+are outside timing; scratch allocation and destruction are inside. Output
+vectors are reused across passes. The probe does not include Python, batch
+workers, rendering, packing or model execution.
+
 ## Workloads and reproduction
 
 The current consumer is Qwen3.5-4B decision scoring and text preprocessing in

@@ -157,3 +157,32 @@ rebuilt source-distribution wheels each passed 44 focused tests. The consumer
 passed 138 CPU tests with 19 GPU skips. The
 [consumer report](https://github.com/matterstate/typed-decisions/blob/aaf5f879cdfe6554d5a75b679ed0f02e1eecadf3/reports/tokenizer_batch_buffer.md)
 describes the integration and measurement scope.
+
+## Consumer Qwen rendering (2026-10-20)
+
+The consumer now renders the pinned Qwen3.5 template directly for its two
+plain-text system/user messages. An exact source hash and built-in message
+types gate this path; other templates and shapes retain the Jinja sandbox.
+This is a consumer rendering improvement, with the native tokenizer unchanged.
+
+Against consumer `aaf5f87`, candidate `4421339` uses four ABBA/BAAB blocks,
+three fresh-tokenizer samples per process and affinity 8–15:
+
+| 256 questions | Jinja | Direct text | Speedup |
+| --- | ---: | ---: | ---: |
+| Messages and rendering | 16.495 ms | 0.988 ms | **16.70×** |
+| Complete prompt preparation | 20.067 ms | 4.111 ms | **4.88×** |
+
+Times are means of block medians; speedups are geometric means of paired
+ratios. Preparation improves 4.833–4.926× across blocks. Rendered strings and
+prepared token hashes match throughout. A separate audit matches 24,576
+prompts byte-for-byte against the complete Jinja template across three formats
+and both option orders. Warm Python allocation peaks fall from 0.661 to
+0.325 MB for rendering and 0.933 to 0.618 MB for complete preparation.
+
+The [receipt](../benchmarks/results/consumer-chat-render-epyc9124.json) retains
+all 16 processes, 96 timed observations, source/output hashes, profiles and
+the audit. The consumer's full CPU suite passed 154 tests with 19 GPU skips;
+17 renderer-focused tests also passed. See the
+[consumer report](https://github.com/matterstate/typed-decisions/blob/442133903cf51e2c97c94bd1075ddf1adc9cc2f7/reports/chat_template_performance.md).
+No model inference or GPU training throughput is established by this study.

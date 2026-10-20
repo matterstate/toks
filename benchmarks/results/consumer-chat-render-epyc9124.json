@@ -1,0 +1,2164 @@
+{
+  "schema": 1,
+  "baseline_consumer": "aaf5f879cdfe6554d5a75b679ed0f02e1eecadf3",
+  "protocol": "four ABBA/BAAB whole-process blocks, three fresh-tokenizer samples per process, affinity 8-15; same installed tokenizer binary; previous outputs released and GC collected outside timing; complete output hashes checked after timing",
+  "golden": {
+    "render": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd",
+    "decisions": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+  },
+  "summary": {
+    "render": {
+      "blocks": [
+        {
+          "baseline_ns": 16441702.0,
+          "candidate_ns": 981547.0,
+          "speedup": 16.750804597232737
+        },
+        {
+          "baseline_ns": 16477026.0,
+          "candidate_ns": 994761.5,
+          "speedup": 16.563795442425143
+        },
+        {
+          "baseline_ns": 16512655.5,
+          "candidate_ns": 978186.0,
+          "speedup": 16.880895351190876
+        },
+        {
+          "baseline_ns": 16546711.0,
+          "candidate_ns": 995877.0,
+          "speedup": 16.61521553364522
+        }
+      ],
+      "baseline_ms": 16.494523625,
+      "candidate_ms": 0.987592875,
+      "speedup": 16.702221811451732
+    },
+    "decisions": {
+      "blocks": [
+        {
+          "baseline_ns": 20018947.0,
+          "candidate_ns": 4117645.5,
+          "speedup": 4.861746111946743
+        },
+        {
+          "baseline_ns": 20021217.0,
+          "candidate_ns": 4142515.0,
+          "speedup": 4.833106699673991
+        },
+        {
+          "baseline_ns": 20096766.0,
+          "candidate_ns": 4080016.0,
+          "speedup": 4.925658624868138
+        },
+        {
+          "baseline_ns": 20130586.0,
+          "candidate_ns": 4103206.0,
+          "speedup": 4.906062722661256
+        }
+      ],
+      "baseline_ms": 20.066879,
+      "candidate_ms": 4.110845625,
+      "speedup": 4.881508120558843
+    }
+  },
+  "records": [
+    {
+      "block": 0,
+      "position": 0,
+      "side": "baseline",
+      "load_before": [
+        1.73974609375,
+        1.2890625,
+        1.31689453125
+      ],
+      "load_after": [
+        1.73974609375,
+        1.2890625,
+        1.31689453125
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "4126c2c964bf807c016a033d3a8dc01abf883120563c7f2e657ff499253ad281",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-0-0-baseline.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 16732290,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 20022562,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 16466222,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 20070122,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 16703530,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 20015332,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 0,
+      "position": 1,
+      "side": "candidate",
+      "load_before": [
+        1.73974609375,
+        1.2890625,
+        1.31689453125
+      ],
+      "load_after": [
+        1.8408203125,
+        1.31787109375,
+        1.326171875
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-0-1-candidate.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 1023282,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 4133665,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 981012,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 4114646,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 973711,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 4113306,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 0,
+      "position": 2,
+      "side": "candidate",
+      "load_before": [
+        1.8408203125,
+        1.31787109375,
+        1.326171875
+      ],
+      "load_after": [
+        1.85400390625,
+        1.32958984375,
+        1.330078125
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-0-2-candidate.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 1022442,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 4135285,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 978642,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 4097236,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 982082,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 4120645,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 0,
+      "position": 3,
+      "side": "baseline",
+      "load_before": [
+        1.85400390625,
+        1.32958984375,
+        1.330078125
+      ],
+      "load_after": [
+        1.85400390625,
+        1.32958984375,
+        1.330078125
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "4126c2c964bf807c016a033d3a8dc01abf883120563c7f2e657ff499253ad281",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-0-3-baseline.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 16417182,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 19930842,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 16303253,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 19820923,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 16353032,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 20042781,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 1,
+      "position": 0,
+      "side": "candidate",
+      "load_before": [
+        1.85400390625,
+        1.32958984375,
+        1.330078125
+      ],
+      "load_after": [
+        1.78515625,
+        1.32373046875,
+        1.328125
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-1-0-candidate.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 1005111,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 4132495,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 969872,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 4118136,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 965002,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 4167665,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 1,
+      "position": 1,
+      "side": "baseline",
+      "load_before": [
+        1.78515625,
+        1.32373046875,
+        1.328125
+      ],
+      "load_after": [
+        1.72216796875,
+        1.31787109375,
+        1.326171875
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "4126c2c964bf807c016a033d3a8dc01abf883120563c7f2e657ff499253ad281",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-1-1-baseline.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 16567820,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 20451238,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 16344072,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 19917533,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 16272824,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 20176330,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 1,
+      "position": 2,
+      "side": "baseline",
+      "load_before": [
+        1.72216796875,
+        1.31787109375,
+        1.326171875
+      ],
+      "load_after": [
+        1.74462890625,
+        1.32958984375,
+        1.330078125
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "4126c2c964bf807c016a033d3a8dc01abf883120563c7f2e657ff499253ad281",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-1-2-baseline.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 16760559,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 20124901,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 16386232,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 19899653,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 16692710,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 19875043,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 1,
+      "position": 3,
+      "side": "candidate",
+      "load_before": [
+        1.74462890625,
+        1.32958984375,
+        1.330078125
+      ],
+      "load_after": [
+        1.74462890625,
+        1.32958984375,
+        1.330078125
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-1-3-candidate.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 1018952,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 4148625,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 984412,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 4136405,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 1010782,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 4149816,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 2,
+      "position": 0,
+      "side": "baseline",
+      "load_before": [
+        1.74462890625,
+        1.32958984375,
+        1.330078125
+      ],
+      "load_after": [
+        1.6845703125,
+        1.32373046875,
+        1.328125
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "4126c2c964bf807c016a033d3a8dc01abf883120563c7f2e657ff499253ad281",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-2-0-baseline.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 16573660,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 19973472,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 16296393,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 19887043,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 16352293,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 21831047,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 2,
+      "position": 1,
+      "side": "candidate",
+      "load_before": [
+        1.6845703125,
+        1.32373046875,
+        1.328125
+      ],
+      "load_after": [
+        1.62939453125,
+        1.31787109375,
+        1.326171875
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-2-1-candidate.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 1022572,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 4203484,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 976511,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 4076176,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 960252,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 4051456,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 2,
+      "position": 2,
+      "side": "candidate",
+      "load_before": [
+        1.62939453125,
+        1.31787109375,
+        1.326171875
+      ],
+      "load_after": [
+        1.62939453125,
+        1.31787109375,
+        1.326171875
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-2-2-candidate.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 1005862,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 5208326,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 975881,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 4076606,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 979861,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 4083426,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 2,
+      "position": 3,
+      "side": "baseline",
+      "load_before": [
+        1.62939453125,
+        1.31787109375,
+        1.326171875
+      ],
+      "load_after": [
+        1.6591796875,
+        1.32958984375,
+        1.330078125
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "4126c2c964bf807c016a033d3a8dc01abf883120563c7f2e657ff499253ad281",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-2-3-baseline.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 16614690,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 20118541,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 16451651,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 20074991,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 16853498,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 20467097,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 3,
+      "position": 0,
+      "side": "candidate",
+      "load_before": [
+        1.6591796875,
+        1.32958984375,
+        1.330078125
+      ],
+      "load_after": [
+        1.8466796875,
+        1.3740234375,
+        1.3447265625
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-3-0-candidate.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 1013722,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 4105626,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 1002171,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 4149955,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 989722,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 4100786,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 3,
+      "position": 1,
+      "side": "baseline",
+      "load_before": [
+        1.8466796875,
+        1.3740234375,
+        1.3447265625
+      ],
+      "load_after": [
+        1.8466796875,
+        1.3740234375,
+        1.3447265625
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "4126c2c964bf807c016a033d3a8dc01abf883120563c7f2e657ff499253ad281",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-3-1-baseline.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 17486973,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 22366592,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 17184796,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 19887243,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 16452712,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 20138361,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 3,
+      "position": 2,
+      "side": "baseline",
+      "load_before": [
+        1.8466796875,
+        1.3740234375,
+        1.3447265625
+      ],
+      "load_after": [
+        1.859375,
+        1.384765625,
+        1.3486328125
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "4126c2c964bf807c016a033d3a8dc01abf883120563c7f2e657ff499253ad281",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-3-2-baseline.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 16615151,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 20122811,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 16478271,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 20189950,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 16449931,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 20091991,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    },
+    {
+      "block": 3,
+      "position": 3,
+      "side": "candidate",
+      "load_before": [
+        1.859375,
+        1.384765625,
+        1.3486328125
+      ],
+      "load_after": [
+        1.87109375,
+        1.39501953125,
+        1.3525390625
+      ],
+      "result": {
+        "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+        "sources": {
+          "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+          "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+          "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+        },
+        "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+        "affinity": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+        "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+        "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+        "model_files": {
+          "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+          "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+          "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+        },
+        "args": {
+          "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+          "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+          "output": "/home/ethoma/projects/toks/build/readout/chat-render-aaf5f87/paired-3-3-candidate.json",
+          "samples": 3,
+          "profile": false,
+          "decisions_only": true,
+          "text_root": null
+        },
+        "rows": [
+          {
+            "sample": 0,
+            "workload": "render",
+            "elapsed_ns": 1002032,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 0,
+            "workload": "decisions",
+            "elapsed_ns": 4178325,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 1,
+            "workload": "render",
+            "elapsed_ns": 986722,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 1,
+            "workload": "decisions",
+            "elapsed_ns": 4089955,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          },
+          {
+            "sample": 2,
+            "workload": "render",
+            "elapsed_ns": 970792,
+            "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+          },
+          {
+            "sample": 2,
+            "workload": "decisions",
+            "elapsed_ns": 4092316,
+            "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+          }
+        ]
+      }
+    }
+  ],
+  "diagnostics": {
+    "baseline": {
+      "render": {
+        "peak_bytes": 660740,
+        "functions": [
+          {
+            "function": "('<template>', 4, 'root')",
+            "calls": 1280,
+            "self_seconds": 0.005158179000000001,
+            "cumulative_seconds": 0.040760568000000004
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.isinstance>')",
+            "calls": 25344,
+            "self_seconds": 0.004385344,
+            "cumulative_seconds": 0.008594252
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/runtime.py', 262, 'call')",
+            "calls": 2048,
+            "self_seconds": 0.0032911980000000004,
+            "cumulative_seconds": 0.009803113
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 115, 'is_internal_attribute')",
+            "calls": 1792,
+            "self_seconds": 0.002696424,
+            "cumulative_seconds": 0.007071608
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/utils.py', 753, '__getattribute__')",
+            "calls": 12032,
+            "self_seconds": 0.002663837,
+            "cumulative_seconds": 0.002663837
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 314, 'getattr')",
+            "calls": 4352,
+            "self_seconds": 0.0021394070000000003,
+            "cumulative_seconds": 0.019600412
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.getattr>')",
+            "calls": 8448,
+            "self_seconds": 0.002136998,
+            "cumulative_seconds": 0.0025900940000000003
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 388, 'call')",
+            "calls": 2048,
+            "self_seconds": 0.0018165960000000002,
+            "cumulative_seconds": 0.012688950000000001
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/runtime.py', 694, '__call__')",
+            "calls": 1024,
+            "self_seconds": 0.001640317,
+            "cumulative_seconds": 0.004043903000000001
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.hasattr>')",
+            "calls": 9728,
+            "self_seconds": 0.001297914,
+            "cumulative_seconds": 0.001297914
+          },
+          {
+            "function": "('~', 0, \"<method 'join' of 'str' objects>\")",
+            "calls": 1536,
+            "self_seconds": 0.0012530570000000001,
+            "cumulative_seconds": 0.042054586000000005
+          },
+          {
+            "function": "('~', 0, '<built-in method _abc._abc_instancecheck>')",
+            "calls": 5376,
+            "self_seconds": 0.001238203,
+            "cumulative_seconds": 0.001756277
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/runtime.py', 93, 'new_context')",
+            "calls": 256,
+            "self_seconds": 0.0010974140000000001,
+            "cumulative_seconds": 0.0032450900000000004
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 410, 'is_safe_attribute')",
+            "calls": 1792,
+            "self_seconds": 0.001078362,
+            "cumulative_seconds": 0.014510275000000001
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 152, 'modifies_known_mutable')",
+            "calls": 1792,
+            "self_seconds": 0.0009737890000000001,
+            "cumulative_seconds": 0.005368656
+          },
+          {
+            "function": "('/home/ethoma/projects/toks/build/consumer-jinja-baseline/decisions/engine.py', 45, 'prompt_messages')",
+            "calls": 256,
+            "self_seconds": 0.000930231,
+            "cumulative_seconds": 0.0016950950000000002
+          },
+          {
+            "function": "('<frozen abc>', 117, '__instancecheck__')",
+            "calls": 5376,
+            "self_seconds": 0.000865362,
+            "cumulative_seconds": 0.0026216390000000003
+          },
+          {
+            "function": "('~', 0, \"<method 'pop' of 'dict' objects>\")",
+            "calls": 4864,
+            "self_seconds": 0.000771134,
+            "cumulative_seconds": 0.000771134
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/utils.py', 90, 'from_obj')",
+            "calls": 4096,
+            "self_seconds": 0.0007588950000000001,
+            "cumulative_seconds": 0.0012095200000000002
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 248, 'is_safe_attribute')",
+            "calls": 1792,
+            "self_seconds": 0.0007496930000000001,
+            "cumulative_seconds": 0.008063257
+          },
+          {
+            "function": "('<template>', 109, 'macro')",
+            "calls": 1024,
+            "self_seconds": 0.0007281970000000001,
+            "cumulative_seconds": 0.0012589480000000002
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/runtime.py', 561, '__next__')",
+            "calls": 1536,
+            "self_seconds": 0.0006726070000000001,
+            "cumulative_seconds": 0.0008839540000000001
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 257, 'is_safe_callable')",
+            "calls": 2048,
+            "self_seconds": 0.000611904,
+            "cumulative_seconds": 0.001069241
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 344, 'wrap_str_format')",
+            "calls": 1792,
+            "self_seconds": 0.000549827,
+            "cumulative_seconds": 0.000817973
+          },
+          {
+            "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/collections/__init__.py', 1016, '__getitem__')",
+            "calls": 1792,
+            "self_seconds": 0.000543614,
+            "cumulative_seconds": 0.000543614
+          },
+          {
+            "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/collections/__init__.py', 1030, '__iter__')",
+            "calls": 512,
+            "self_seconds": 0.0005319820000000001,
+            "cumulative_seconds": 0.000594801
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.len>')",
+            "calls": 4864,
+            "self_seconds": 0.000521586,
+            "cumulative_seconds": 0.000521586
+          },
+          {
+            "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+            "calls": 3840,
+            "self_seconds": 0.000512765,
+            "cumulative_seconds": 0.000512765
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/runtime.py', 780, '_invoke')",
+            "calls": 1024,
+            "self_seconds": 0.000435965,
+            "cumulative_seconds": 0.0016949130000000001
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/filters.py', 1046, 'do_trim')",
+            "calls": 1024,
+            "self_seconds": 0.00041018900000000004,
+            "cumulative_seconds": 0.00082081
+          }
+        ]
+      },
+      "decisions": {
+        "peak_bytes": 932735,
+        "functions": [
+          {
+            "function": "('<template>', 4, 'root')",
+            "calls": 1280,
+            "self_seconds": 0.00528435,
+            "cumulative_seconds": 0.041359702000000005
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.isinstance>')",
+            "calls": 25344,
+            "self_seconds": 0.004430675,
+            "cumulative_seconds": 0.008615446
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/runtime.py', 262, 'call')",
+            "calls": 2048,
+            "self_seconds": 0.00330597,
+            "cumulative_seconds": 0.009877663
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 115, 'is_internal_attribute')",
+            "calls": 1792,
+            "self_seconds": 0.0027094130000000004,
+            "cumulative_seconds": 0.007091171
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/utils.py', 753, '__getattribute__')",
+            "calls": 12032,
+            "self_seconds": 0.0026457570000000003,
+            "cumulative_seconds": 0.0026457570000000003
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 314, 'getattr')",
+            "calls": 4352,
+            "self_seconds": 0.0023988100000000004,
+            "cumulative_seconds": 0.019961396000000003
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.getattr>')",
+            "calls": 8448,
+            "self_seconds": 0.0021669750000000002,
+            "cumulative_seconds": 0.0026318630000000003
+          },
+          {
+            "function": "('~', 0, \"<method 'encode' of 'toks.Tokenizer' objects>\")",
+            "calls": 1024,
+            "self_seconds": 0.0018990900000000002,
+            "cumulative_seconds": 0.0018990900000000002
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 388, 'call')",
+            "calls": 2048,
+            "self_seconds": 0.001820514,
+            "cumulative_seconds": 0.012775542
+          },
+          {
+            "function": "('/home/ethoma/projects/toks/build/consumer-jinja-baseline/decisions/engine.py', 193, 'question_prompt')",
+            "calls": 256,
+            "self_seconds": 0.0017984650000000002,
+            "cumulative_seconds": 0.051851914000000006
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/runtime.py', 694, '__call__')",
+            "calls": 1024,
+            "self_seconds": 0.0016673450000000002,
+            "cumulative_seconds": 0.004077528
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.hasattr>')",
+            "calls": 9728,
+            "self_seconds": 0.0013007820000000001,
+            "cumulative_seconds": 0.0013007820000000001
+          },
+          {
+            "function": "('~', 0, '<built-in method _abc._abc_instancecheck>')",
+            "calls": 5376,
+            "self_seconds": 0.0012305150000000002,
+            "cumulative_seconds": 0.001748158
+          },
+          {
+            "function": "('~', 0, \"<method 'join' of 'str' objects>\")",
+            "calls": 1536,
+            "self_seconds": 0.001227,
+            "cumulative_seconds": 0.042620744
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/runtime.py', 93, 'new_context')",
+            "calls": 256,
+            "self_seconds": 0.001122091,
+            "cumulative_seconds": 0.0033074880000000004
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 410, 'is_safe_attribute')",
+            "calls": 1792,
+            "self_seconds": 0.001104539,
+            "cumulative_seconds": 0.014552457000000001
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 152, 'modifies_known_mutable')",
+            "calls": 1792,
+            "self_seconds": 0.0009746300000000001,
+            "cumulative_seconds": 0.0053752010000000005
+          },
+          {
+            "function": "('/home/ethoma/projects/toks/build/consumer-jinja-baseline/decisions/engine.py', 45, 'prompt_messages')",
+            "calls": 256,
+            "self_seconds": 0.000969654,
+            "cumulative_seconds": 0.001740779
+          },
+          {
+            "function": "('<frozen abc>', 117, '__instancecheck__')",
+            "calls": 5376,
+            "self_seconds": 0.000862916,
+            "cumulative_seconds": 0.002611074
+          },
+          {
+            "function": "('~', 0, \"<method 'pop' of 'dict' objects>\")",
+            "calls": 4864,
+            "self_seconds": 0.000773356,
+            "cumulative_seconds": 0.000773356
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/utils.py', 90, 'from_obj')",
+            "calls": 4096,
+            "self_seconds": 0.0007707040000000001,
+            "cumulative_seconds": 0.001220951
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 248, 'is_safe_attribute')",
+            "calls": 1792,
+            "self_seconds": 0.0007399720000000001,
+            "cumulative_seconds": 0.008072717
+          },
+          {
+            "function": "('<template>', 109, 'macro')",
+            "calls": 1024,
+            "self_seconds": 0.000710262,
+            "cumulative_seconds": 0.0012564170000000001
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/runtime.py', 561, '__next__')",
+            "calls": 1536,
+            "self_seconds": 0.000681698,
+            "cumulative_seconds": 0.0008895660000000001
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.len>')",
+            "calls": 6400,
+            "self_seconds": 0.000669739,
+            "cumulative_seconds": 0.000669739
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 257, 'is_safe_callable')",
+            "calls": 2048,
+            "self_seconds": 0.000614987,
+            "cumulative_seconds": 0.001077365
+          },
+          {
+            "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/jinja2/sandbox.py', 344, 'wrap_str_format')",
+            "calls": 1792,
+            "self_seconds": 0.000567316,
+            "cumulative_seconds": 0.0008406440000000001
+          },
+          {
+            "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/collections/__init__.py', 1016, '__getitem__')",
+            "calls": 1792,
+            "self_seconds": 0.000556492,
+            "cumulative_seconds": 0.000556492
+          },
+          {
+            "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/collections/__init__.py', 1030, '__iter__')",
+            "calls": 512,
+            "self_seconds": 0.0005387090000000001,
+            "cumulative_seconds": 0.0006012890000000001
+          },
+          {
+            "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+            "calls": 3840,
+            "self_seconds": 0.000514874,
+            "cumulative_seconds": 0.000514874
+          }
+        ]
+      }
+    },
+    "candidate": {
+      "render": {
+        "peak_bytes": 324871,
+        "functions": [
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 45, 'prompt_messages')",
+            "calls": 256,
+            "self_seconds": 0.000727765,
+            "cumulative_seconds": 0.00132879
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 88, 'render_qwen35_text')",
+            "calls": 256,
+            "self_seconds": 0.0006584760000000001,
+            "cumulative_seconds": 0.0009083440000000001
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 55, '<lambda>')",
+            "calls": 1,
+            "self_seconds": 0.00020573800000000001,
+            "cumulative_seconds": 0.0029499950000000004
+          },
+          {
+            "function": "('~', 0, \"<method 'join' of 'str' objects>\")",
+            "calls": 256,
+            "self_seconds": 0.00018307000000000002,
+            "cumulative_seconds": 0.000305718
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 68, 'render')",
+            "calls": 256,
+            "self_seconds": 0.00016330700000000001,
+            "cumulative_seconds": 0.001394627
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 73, '<genexpr>')",
+            "calls": 768,
+            "self_seconds": 0.000160977,
+            "cumulative_seconds": 0.00022108700000000002
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 41, 'option_label')",
+            "calls": 768,
+            "self_seconds": 0.000145208,
+            "cumulative_seconds": 0.000145208
+          },
+          {
+            "function": "('~', 0, \"<method 'get' of 'dict' objects>\")",
+            "calls": 1024,
+            "self_seconds": 0.000135279,
+            "cumulative_seconds": 0.000135279
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 56, '<genexpr>')",
+            "calls": 1024,
+            "self_seconds": 0.000122648,
+            "cumulative_seconds": 0.000122648
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.all>')",
+            "calls": 256,
+            "self_seconds": 0.000101889,
+            "cumulative_seconds": 0.00032297600000000005
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.len>')",
+            "calls": 1280,
+            "self_seconds": 9.9159e-05,
+            "cumulative_seconds": 9.9159e-05
+          },
+          {
+            "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+            "calls": 768,
+            "self_seconds": 9.324000000000001e-05,
+            "cumulative_seconds": 9.324000000000001e-05
+          },
+          {
+            "function": "('~', 0, \"<method 'strip' of 'str' objects>\")",
+            "calls": 512,
+            "self_seconds": 6.0899e-05,
+            "cumulative_seconds": 6.0899e-05
+          },
+          {
+            "function": "('~', 0, \"<method 'endswith' of 'str' objects>\")",
+            "calls": 512,
+            "self_seconds": 6.0110000000000006e-05,
+            "cumulative_seconds": 6.0110000000000006e-05
+          },
+          {
+            "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+            "calls": 256,
+            "self_seconds": 3.223e-05,
+            "cumulative_seconds": 3.223e-05
+          },
+          {
+            "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+            "calls": 1,
+            "self_seconds": 1.537e-05,
+            "cumulative_seconds": 1.537e-05
+          }
+        ]
+      },
+      "decisions": {
+        "peak_bytes": 618447,
+        "functions": [
+          {
+            "function": "('~', 0, \"<method 'encode' of 'toks.Tokenizer' objects>\")",
+            "calls": 1024,
+            "self_seconds": 0.00169398,
+            "cumulative_seconds": 0.00169398
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 193, 'question_prompt')",
+            "calls": 256,
+            "self_seconds": 0.001640394,
+            "cumulative_seconds": 0.006227189
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 45, 'prompt_messages')",
+            "calls": 256,
+            "self_seconds": 0.0007608210000000001,
+            "cumulative_seconds": 0.001377827
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 88, 'render_qwen35_text')",
+            "calls": 256,
+            "self_seconds": 0.0006598250000000001,
+            "cumulative_seconds": 0.000902302
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.len>')",
+            "calls": 2816,
+            "self_seconds": 0.000222945,
+            "cumulative_seconds": 0.000222945
+          },
+          {
+            "function": "('~', 0, \"<method 'join' of 'str' objects>\")",
+            "calls": 256,
+            "self_seconds": 0.000188738,
+            "cumulative_seconds": 0.000320387
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 68, 'render')",
+            "calls": 256,
+            "self_seconds": 0.000170748,
+            "cumulative_seconds": 0.00140503
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 73, '<genexpr>')",
+            "calls": 768,
+            "self_seconds": 0.00016470000000000002,
+            "cumulative_seconds": 0.00022849
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 188, 'prepare')",
+            "calls": 256,
+            "self_seconds": 0.000159979,
+            "cumulative_seconds": 0.006428406
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 41, 'option_label')",
+            "calls": 768,
+            "self_seconds": 0.000148259,
+            "cumulative_seconds": 0.000148259
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 56, '<genexpr>')",
+            "calls": 1024,
+            "self_seconds": 0.000131649,
+            "cumulative_seconds": 0.000131649
+          },
+          {
+            "function": "('~', 0, \"<method 'get' of 'dict' objects>\")",
+            "calls": 1024,
+            "self_seconds": 0.00012462,
+            "cumulative_seconds": 0.00012462
+          },
+          {
+            "function": "('~', 0, '<built-in method builtins.all>')",
+            "calls": 256,
+            "self_seconds": 0.00010349,
+            "cumulative_seconds": 0.00033198
+          },
+          {
+            "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+            "calls": 768,
+            "self_seconds": 9.636e-05,
+            "cumulative_seconds": 9.636e-05
+          },
+          {
+            "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 64, '<lambda>')",
+            "calls": 1,
+            "self_seconds": 6.7549e-05,
+            "cumulative_seconds": 0.006495955
+          },
+          {
+            "function": "('~', 0, \"<method 'strip' of 'str' objects>\")",
+            "calls": 512,
+            "self_seconds": 6.574800000000001e-05,
+            "cumulative_seconds": 6.574800000000001e-05
+          },
+          {
+            "function": "('~', 0, \"<method 'endswith' of 'str' objects>\")",
+            "calls": 512,
+            "self_seconds": 6.379e-05,
+            "cumulative_seconds": 6.379e-05
+          },
+          {
+            "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+            "calls": 256,
+            "self_seconds": 3.236e-05,
+            "cumulative_seconds": 3.236e-05
+          },
+          {
+            "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+            "calls": 1,
+            "self_seconds": 1.4890000000000001e-05,
+            "cumulative_seconds": 1.4890000000000001e-05
+          }
+        ]
+      }
+    }
+  },
+  "consumer_candidate": "442133903cf51e2c97c94bd1075ddf1adc9cc2f7",
+  "audit": {
+    "source": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+    "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+    "cases": 4096,
+    "renders": 24576,
+    "formats": [
+      "ours",
+      "tev1",
+      "eikos"
+    ],
+    "option_orders": [
+      "original",
+      "reversed"
+    ],
+    "output_sha256": "5cce741474965f504dc3579266565b25c300b9c706b12e1b436a340deae302e0",
+    "template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+  },
+  "validation": {
+    "cpu": {
+      "passed": 154,
+      "skipped": 19
+    },
+    "final_renderer_focused": {
+      "passed": 17,
+      "skipped": 0
+    }
+  },
+  "profile_script_sha256": "cf00d3e876a684585c975eced9f092e653dafa7cf8253016e73edd71b27c20b4"
+}

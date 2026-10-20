@@ -186,3 +186,37 @@ the audit. The consumer's full CPU suite passed 154 tests with 19 GPU skips;
 17 renderer-focused tests also passed. See the
 [consumer report](https://github.com/matterstate/typed-decisions/blob/442133903cf51e2c97c94bd1075ddf1adc9cc2f7/reports/chat_template_performance.md).
 No model inference or GPU training throughput is established by this study.
+
+## Consumer buffer reservation follow-up (2026-10-20)
+
+The consumer now initially reserves one token slot per four characters,
+rounded up, with the existing exact-size retry if needed. Compared with
+`4421339`'s one-slot-per-character reservation, candidate `cf6908c` reduces
+initial capacity by 75% on the measured original JSONL prefixes. Both fit
+without retries. This is a size estimate; correctness remains independent of
+the character/token ratio.
+
+Two ABBA/BAAB whole-process blocks, three fresh-tokenizer samples per process,
+and affinity 8–15 retain throughput while reducing traced allocation peaks:
+
+| 1,024 documents | Previous reservation | Smaller reservation |
+| --- | ---: | ---: |
+| FineWeb preprocessing | 33.734 ms | 33.361 ms |
+| Pleias preprocessing | 18.373 ms | 18.248 ms |
+| FineWeb Python/NumPy peak | 36.79 MB | **22.99 MB** |
+| Pleias Python/NumPy peak | 11.29 MB | **7.16 MB** |
+
+Times are means of paired block medians. Differences of about 1% establish
+retained throughput. Peak traced allocations fall 37.5% and 36.6%, restoring
+the earlier serial path's levels. These are separate warm allocation profiles,
+including unused NumPy capacity and excluding Rust allocations, not resident
+memory measurements. Token and packed-array hashes match in every sample.
+
+The [receipt](../benchmarks/results/consumer-buffer-memory-epyc9124.json)
+retains all eight paired processes, 96 timed observations, source/output
+hashes and warm profiles. The final combined consumer at `9d5c28a` passed
+157 CPU tests with 19 GPU skips and 22 final renderer/buffer-focused tests.
+Its source fingerprinting also preserves generic Jinja behavior for unusual
+source strings and rejects template subclass spoofing. The pinned-Qwen render
+audit again matches all 24,576 prompts byte-for-byte. See the
+[consumer report](https://github.com/matterstate/typed-decisions/blob/9d5c28a333ba786d47661776bec8934618fbd6c6/reports/tokenizer_buffer_memory.md).

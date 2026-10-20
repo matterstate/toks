@@ -1,0 +1,2745 @@
+{
+  "schema": 1,
+  "baseline_consumer": "442133903cf51e2c97c94bd1075ddf1adc9cc2f7",
+  "tokenizer": "ba97f0baf40ae4e8f2982e81633e2ebb2c07a240",
+  "studies": {
+    "original": {
+      "protocol": "2 ABBA/BAAB whole-process blocks; 3 fresh-tokenizer samples per process; affinity 8-15; same Nix-built binary; all observations retained; complete output digest checks outside timing",
+      "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+      "golden": {
+        "render": {
+          "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+        },
+        "decisions": {
+          "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+        },
+        "fineweb_edu": {
+          "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+          "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+          "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+          "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+        },
+        "pleias_synth": {
+          "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+          "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+          "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+          "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+        }
+      },
+      "summary": {
+        "render": {
+          "blocks": [
+            {
+              "baseline_ns": 1022692.0,
+              "candidate_ns": 1013756.5,
+              "speedup": 1.0088142468137071
+            },
+            {
+              "baseline_ns": 1038377.5,
+              "candidate_ns": 1004348.0,
+              "speedup": 1.033882180280142
+            }
+          ],
+          "speedup": 1.0212713023449864,
+          "baseline_ms": 1.03053475,
+          "candidate_ms": 1.00905225
+        },
+        "decisions": {
+          "blocks": [
+            {
+              "baseline_ns": 4165836.0,
+              "candidate_ns": 4309397.5,
+              "speedup": 0.9666864103392644
+            },
+            {
+              "baseline_ns": 4320635.5,
+              "candidate_ns": 4199233.5,
+              "speedup": 1.0289105142640913
+            }
+          ],
+          "speedup": 0.9973132966095865,
+          "baseline_ms": 4.24323575,
+          "candidate_ms": 4.2543155
+        },
+        "fineweb_edu": {
+          "blocks": [
+            {
+              "baseline_ns": 33683419.5,
+              "candidate_ns": 33437108.0,
+              "speedup": 1.007366411592773
+            },
+            {
+              "baseline_ns": 33785158.0,
+              "candidate_ns": 33284076.5,
+              "speedup": 1.0150546913927445
+            }
+          ],
+          "speedup": 1.0112032446737493,
+          "baseline_ms": 33.73428875,
+          "candidate_ms": 33.36059225
+        },
+        "pleias_synth": {
+          "blocks": [
+            {
+              "baseline_ns": 18360958.5,
+              "candidate_ns": 18293764.0,
+              "speedup": 1.0036730822590694
+            },
+            {
+              "baseline_ns": 18385370.5,
+              "candidate_ns": 18202150.5,
+              "speedup": 1.0100658435935908
+            }
+          ],
+          "speedup": 1.0068643893415767,
+          "baseline_ms": 18.3731645,
+          "candidate_ms": 18.24795725
+        }
+      },
+      "records": [
+        {
+          "block": 0,
+          "position": 0,
+          "side": "baseline",
+          "load_before": [
+            2.15234375,
+            1.66650390625,
+            1.4580078125
+          ],
+          "load_after": [
+            2.10009765625,
+            1.68212890625,
+            1.4658203125
+          ],
+          "result": {
+            "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+            "sources": {
+              "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+              "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+              "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+            },
+            "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+            "affinity": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+            "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+            "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+            "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+            "model_files": {
+              "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+              "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+              "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+              "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+            },
+            "args": {
+              "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+              "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+              "output": "/home/ethoma/projects/toks/build/readout/buffer-memory-4421339/original/paired-0-0-baseline.json",
+              "samples": 3,
+              "profile": false,
+              "decisions_only": false,
+              "text_root": "/home/ethoma/data/text"
+            },
+            "rows": [
+              {
+                "sample": 0,
+                "workload": "render",
+                "elapsed_ns": 1054611,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 0,
+                "workload": "decisions",
+                "elapsed_ns": 4132735,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 0,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33972881,
+                "diagnostic_batch_encode_ns": 21311751,
+                "diagnostic_list_conversion_ns": 22115597,
+                "diagnostic_pack_ns": 3941328,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 0,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18189259,
+                "diagnostic_batch_encode_ns": 12346675,
+                "diagnostic_list_conversion_ns": 7234798,
+                "diagnostic_pack_ns": 1881395,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 1,
+                "workload": "render",
+                "elapsed_ns": 1038621,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 1,
+                "workload": "decisions",
+                "elapsed_ns": 4275092,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 1,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 34906776,
+                "diagnostic_batch_encode_ns": 21472860,
+                "diagnostic_list_conversion_ns": 22659029,
+                "diagnostic_pack_ns": 3444797,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 1,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18275039,
+                "diagnostic_batch_encode_ns": 12604311,
+                "diagnostic_list_conversion_ns": 7411085,
+                "diagnostic_pack_ns": 1848746,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 2,
+                "workload": "render",
+                "elapsed_ns": 1027352,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 2,
+                "workload": "decisions",
+                "elapsed_ns": 4157805,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 2,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33569872,
+                "diagnostic_batch_encode_ns": 21581089,
+                "diagnostic_list_conversion_ns": 22338985,
+                "diagnostic_pack_ns": 3758062,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 2,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18273500,
+                "diagnostic_batch_encode_ns": 12243859,
+                "diagnostic_list_conversion_ns": 7360667,
+                "diagnostic_pack_ns": 1858857,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              }
+            ]
+          }
+        },
+        {
+          "block": 0,
+          "position": 1,
+          "side": "candidate",
+          "load_before": [
+            2.10009765625,
+            1.68212890625,
+            1.4658203125
+          ],
+          "load_after": [
+            1.85595703125,
+            1.64794921875,
+            1.45703125
+          ],
+          "result": {
+            "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+            "sources": {
+              "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+              "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+              "stages/text_plan.py": "0b5e8a526792487ff59682bef2b71ac4652361aae0d07c831023b3404185406a"
+            },
+            "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+            "affinity": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+            "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+            "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+            "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+            "model_files": {
+              "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+              "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+              "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+              "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+            },
+            "args": {
+              "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+              "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+              "output": "/home/ethoma/projects/toks/build/readout/buffer-memory-4421339/original/paired-0-1-candidate.json",
+              "samples": 3,
+              "profile": false,
+              "decisions_only": false,
+              "text_root": "/home/ethoma/data/text"
+            },
+            "rows": [
+              {
+                "sample": 0,
+                "workload": "render",
+                "elapsed_ns": 994662,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 0,
+                "workload": "decisions",
+                "elapsed_ns": 4280013,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 0,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33950928,
+                "diagnostic_batch_encode_ns": 21062570,
+                "diagnostic_list_conversion_ns": 22220269,
+                "diagnostic_pack_ns": 3774992,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 0,
+                "workload": "pleias_synth",
+                "elapsed_ns": 19120176,
+                "diagnostic_batch_encode_ns": 12368698,
+                "diagnostic_list_conversion_ns": 7247630,
+                "diagnostic_pack_ns": 1837077,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 1,
+                "workload": "render",
+                "elapsed_ns": 1031372,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 1,
+                "workload": "decisions",
+                "elapsed_ns": 4338782,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 1,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33615986,
+                "diagnostic_batch_encode_ns": 21129210,
+                "diagnostic_list_conversion_ns": 22298669,
+                "diagnostic_pack_ns": 3726503,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 1,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18448389,
+                "diagnostic_batch_encode_ns": 12389407,
+                "diagnostic_list_conversion_ns": 7220331,
+                "diagnostic_pack_ns": 2303349,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 2,
+                "workload": "render",
+                "elapsed_ns": 998842,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 2,
+                "workload": "decisions",
+                "elapsed_ns": 4379072,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 2,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 35383747,
+                "diagnostic_batch_encode_ns": 21440776,
+                "diagnostic_list_conversion_ns": 22364849,
+                "diagnostic_pack_ns": 3688764,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 2,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18283654,
+                "diagnostic_batch_encode_ns": 12536136,
+                "diagnostic_list_conversion_ns": 7205231,
+                "diagnostic_pack_ns": 1689280,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              }
+            ]
+          }
+        },
+        {
+          "block": 0,
+          "position": 2,
+          "side": "candidate",
+          "load_before": [
+            1.85595703125,
+            1.64794921875,
+            1.45703125
+          ],
+          "load_after": [
+            1.74609375,
+            1.63232421875,
+            1.455078125
+          ],
+          "result": {
+            "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+            "sources": {
+              "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+              "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+              "stages/text_plan.py": "0b5e8a526792487ff59682bef2b71ac4652361aae0d07c831023b3404185406a"
+            },
+            "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+            "affinity": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+            "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+            "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+            "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+            "model_files": {
+              "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+              "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+              "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+              "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+            },
+            "args": {
+              "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+              "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+              "output": "/home/ethoma/projects/toks/build/readout/buffer-memory-4421339/original/paired-0-2-candidate.json",
+              "samples": 3,
+              "profile": false,
+              "decisions_only": false,
+              "text_root": "/home/ethoma/data/text"
+            },
+            "rows": [
+              {
+                "sample": 0,
+                "workload": "render",
+                "elapsed_ns": 1086270,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 0,
+                "workload": "decisions",
+                "elapsed_ns": 4433111,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 0,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33156579,
+                "diagnostic_batch_encode_ns": 22291842,
+                "diagnostic_list_conversion_ns": 22250443,
+                "diagnostic_pack_ns": 3532267,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 0,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18303874,
+                "diagnostic_batch_encode_ns": 12442179,
+                "diagnostic_list_conversion_ns": 7175202,
+                "diagnostic_pack_ns": 1674811,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 1,
+                "workload": "render",
+                "elapsed_ns": 1023921,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 1,
+                "workload": "decisions",
+                "elapsed_ns": 4141586,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 1,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33258230,
+                "diagnostic_batch_encode_ns": 20950418,
+                "diagnostic_list_conversion_ns": 22438152,
+                "diagnostic_pack_ns": 3721374,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 1,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18142769,
+                "diagnostic_batch_encode_ns": 12419040,
+                "diagnostic_list_conversion_ns": 7205312,
+                "diagnostic_pack_ns": 1797098,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 2,
+                "workload": "render",
+                "elapsed_ns": 1003592,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 2,
+                "workload": "decisions",
+                "elapsed_ns": 4191056,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 2,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33041105,
+                "diagnostic_batch_encode_ns": 21625217,
+                "diagnostic_list_conversion_ns": 22234066,
+                "diagnostic_pack_ns": 3464949,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 2,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18143049,
+                "diagnostic_batch_encode_ns": 12373222,
+                "diagnostic_list_conversion_ns": 7247042,
+                "diagnostic_pack_ns": 1749729,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              }
+            ]
+          }
+        },
+        {
+          "block": 0,
+          "position": 3,
+          "side": "baseline",
+          "load_before": [
+            1.74609375,
+            1.63232421875,
+            1.455078125
+          ],
+          "load_after": [
+            1.73486328125,
+            1.63427734375,
+            1.45849609375
+          ],
+          "result": {
+            "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+            "sources": {
+              "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+              "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+              "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+            },
+            "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+            "affinity": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+            "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+            "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+            "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+            "model_files": {
+              "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+              "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+              "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+              "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+            },
+            "args": {
+              "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+              "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+              "output": "/home/ethoma/projects/toks/build/readout/buffer-memory-4421339/original/paired-0-3-baseline.json",
+              "samples": 3,
+              "profile": false,
+              "decisions_only": false,
+              "text_root": "/home/ethoma/data/text"
+            },
+            "rows": [
+              {
+                "sample": 0,
+                "workload": "render",
+                "elapsed_ns": 1007742,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 0,
+                "workload": "decisions",
+                "elapsed_ns": 4145897,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 0,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33259174,
+                "diagnostic_batch_encode_ns": 20788473,
+                "diagnostic_list_conversion_ns": 22130160,
+                "diagnostic_pack_ns": 3808803,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 0,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18570313,
+                "diagnostic_batch_encode_ns": 12661017,
+                "diagnostic_list_conversion_ns": 7214353,
+                "diagnostic_pack_ns": 1825308,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 1,
+                "workload": "render",
+                "elapsed_ns": 1018032,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 1,
+                "workload": "decisions",
+                "elapsed_ns": 4234056,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 1,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33796967,
+                "diagnostic_batch_encode_ns": 20734966,
+                "diagnostic_list_conversion_ns": 22186840,
+                "diagnostic_pack_ns": 3509509,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 1,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18605824,
+                "diagnostic_batch_encode_ns": 12657248,
+                "diagnostic_list_conversion_ns": 7237513,
+                "diagnostic_pack_ns": 1876287,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 2,
+                "workload": "render",
+                "elapsed_ns": 1003842,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 2,
+                "workload": "decisions",
+                "elapsed_ns": 4173867,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 2,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33249429,
+                "diagnostic_batch_encode_ns": 21040812,
+                "diagnostic_list_conversion_ns": 22336289,
+                "diagnostic_pack_ns": 3756345,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 2,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18446878,
+                "diagnostic_batch_encode_ns": 12437293,
+                "diagnostic_list_conversion_ns": 7151705,
+                "diagnostic_pack_ns": 1808079,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              }
+            ]
+          }
+        },
+        {
+          "block": 1,
+          "position": 0,
+          "side": "candidate",
+          "load_before": [
+            1.73486328125,
+            1.63427734375,
+            1.45849609375
+          ],
+          "load_after": [
+            1.92333984375,
+            1.6796875,
+            1.47509765625
+          ],
+          "result": {
+            "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+            "sources": {
+              "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+              "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+              "stages/text_plan.py": "0b5e8a526792487ff59682bef2b71ac4652361aae0d07c831023b3404185406a"
+            },
+            "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+            "affinity": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+            "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+            "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+            "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+            "model_files": {
+              "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+              "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+              "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+              "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+            },
+            "args": {
+              "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+              "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+              "output": "/home/ethoma/projects/toks/build/readout/buffer-memory-4421339/original/paired-1-0-candidate.json",
+              "samples": 3,
+              "profile": false,
+              "decisions_only": false,
+              "text_root": "/home/ethoma/data/text"
+            },
+            "rows": [
+              {
+                "sample": 0,
+                "workload": "render",
+                "elapsed_ns": 995973,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 0,
+                "workload": "decisions",
+                "elapsed_ns": 4179897,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 0,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 32925877,
+                "diagnostic_batch_encode_ns": 21107303,
+                "diagnostic_list_conversion_ns": 22261123,
+                "diagnostic_pack_ns": 3646157,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 0,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18224073,
+                "diagnostic_batch_encode_ns": 12347265,
+                "diagnostic_list_conversion_ns": 7586328,
+                "diagnostic_pack_ns": 1766669,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 1,
+                "workload": "render",
+                "elapsed_ns": 999472,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 1,
+                "workload": "decisions",
+                "elapsed_ns": 4202767,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 1,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33177004,
+                "diagnostic_batch_encode_ns": 21670814,
+                "diagnostic_list_conversion_ns": 22237734,
+                "diagnostic_pack_ns": 3714975,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 1,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18113016,
+                "diagnostic_batch_encode_ns": 12431504,
+                "diagnostic_list_conversion_ns": 7192196,
+                "diagnostic_pack_ns": 1661241,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 2,
+                "workload": "render",
+                "elapsed_ns": 1027003,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 2,
+                "workload": "decisions",
+                "elapsed_ns": 4206427,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 2,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33657568,
+                "diagnostic_batch_encode_ns": 20767371,
+                "diagnostic_list_conversion_ns": 22313084,
+                "diagnostic_pack_ns": 3683457,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 2,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18194186,
+                "diagnostic_batch_encode_ns": 12645102,
+                "diagnostic_list_conversion_ns": 7254005,
+                "diagnostic_pack_ns": 1808009,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              }
+            ]
+          }
+        },
+        {
+          "block": 1,
+          "position": 1,
+          "side": "baseline",
+          "load_before": [
+            1.92333984375,
+            1.6796875,
+            1.47509765625
+          ],
+          "load_after": [
+            2.08203125,
+            1.728515625,
+            1.49462890625
+          ],
+          "result": {
+            "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+            "sources": {
+              "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+              "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+              "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+            },
+            "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+            "affinity": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+            "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+            "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+            "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+            "model_files": {
+              "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+              "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+              "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+              "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+            },
+            "args": {
+              "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+              "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+              "output": "/home/ethoma/projects/toks/build/readout/buffer-memory-4421339/original/paired-1-1-baseline.json",
+              "samples": 3,
+              "profile": false,
+              "decisions_only": false,
+              "text_root": "/home/ethoma/data/text"
+            },
+            "rows": [
+              {
+                "sample": 0,
+                "workload": "render",
+                "elapsed_ns": 1083791,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 0,
+                "workload": "decisions",
+                "elapsed_ns": 4452833,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 0,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 34104053,
+                "diagnostic_batch_encode_ns": 21442701,
+                "diagnostic_list_conversion_ns": 23981177,
+                "diagnostic_pack_ns": 3957822,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 0,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18735888,
+                "diagnostic_batch_encode_ns": 12296619,
+                "diagnostic_list_conversion_ns": 7209496,
+                "diagnostic_pack_ns": 1853078,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 1,
+                "workload": "render",
+                "elapsed_ns": 1008743,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 1,
+                "workload": "decisions",
+                "elapsed_ns": 4188438,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 1,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33823290,
+                "diagnostic_batch_encode_ns": 22802968,
+                "diagnostic_list_conversion_ns": 22259458,
+                "diagnostic_pack_ns": 3766205,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 1,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18376655,
+                "diagnostic_batch_encode_ns": 12138802,
+                "diagnostic_list_conversion_ns": 7190787,
+                "diagnostic_pack_ns": 1806729,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 2,
+                "workload": "render",
+                "elapsed_ns": 998293,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 2,
+                "workload": "decisions",
+                "elapsed_ns": 4167209,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 2,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 34224655,
+                "diagnostic_batch_encode_ns": 21275677,
+                "diagnostic_list_conversion_ns": 22293249,
+                "diagnostic_pack_ns": 3544879,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 2,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18394086,
+                "diagnostic_batch_encode_ns": 12297189,
+                "diagnostic_list_conversion_ns": 7256306,
+                "diagnostic_pack_ns": 1862838,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              }
+            ]
+          }
+        },
+        {
+          "block": 1,
+          "position": 2,
+          "side": "baseline",
+          "load_before": [
+            2.08203125,
+            1.728515625,
+            1.49462890625
+          ],
+          "load_after": [
+            2.06982421875,
+            1.74267578125,
+            1.5029296875
+          ],
+          "result": {
+            "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+            "sources": {
+              "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+              "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+              "stages/text_plan.py": "e586778cb1a84e8c5482867abb791e58c0ec0116f33dde7f8e4aef6b94ff059a"
+            },
+            "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+            "affinity": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+            "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+            "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+            "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+            "model_files": {
+              "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+              "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+              "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+              "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+            },
+            "args": {
+              "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+              "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+              "output": "/home/ethoma/projects/toks/build/readout/buffer-memory-4421339/original/paired-1-2-baseline.json",
+              "samples": 3,
+              "profile": false,
+              "decisions_only": false,
+              "text_root": "/home/ethoma/data/text"
+            },
+            "rows": [
+              {
+                "sample": 0,
+                "workload": "render",
+                "elapsed_ns": 1073352,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 0,
+                "workload": "decisions",
+                "elapsed_ns": 4149189,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 0,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33747026,
+                "diagnostic_batch_encode_ns": 21149709,
+                "diagnostic_list_conversion_ns": 22470717,
+                "diagnostic_pack_ns": 3793076,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 0,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18310408,
+                "diagnostic_batch_encode_ns": 12182912,
+                "diagnostic_list_conversion_ns": 7183768,
+                "diagnostic_pack_ns": 1818509,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 1,
+                "workload": "render",
+                "elapsed_ns": 1003673,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 1,
+                "workload": "decisions",
+                "elapsed_ns": 5340869,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 1,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33558401,
+                "diagnostic_batch_encode_ns": 21601723,
+                "diagnostic_list_conversion_ns": 23258805,
+                "diagnostic_pack_ns": 3554470,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 1,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18672374,
+                "diagnostic_batch_encode_ns": 12349130,
+                "diagnostic_list_conversion_ns": 7196228,
+                "diagnostic_pack_ns": 1703831,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 2,
+                "workload": "render",
+                "elapsed_ns": 1068012,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 2,
+                "workload": "decisions",
+                "elapsed_ns": 4608702,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 2,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33435635,
+                "diagnostic_batch_encode_ns": 21789791,
+                "diagnostic_list_conversion_ns": 22351452,
+                "diagnostic_pack_ns": 3703637,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 2,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18281951,
+                "diagnostic_batch_encode_ns": 12156205,
+                "diagnostic_list_conversion_ns": 9020847,
+                "diagnostic_pack_ns": 1685741,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              }
+            ]
+          }
+        },
+        {
+          "block": 1,
+          "position": 3,
+          "side": "candidate",
+          "load_before": [
+            2.06982421875,
+            1.74267578125,
+            1.5029296875
+          ],
+          "load_after": [
+            1.9736328125,
+            1.73876953125,
+            1.505859375
+          ],
+          "result": {
+            "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+            "sources": {
+              "decisions/engine.py": "ef6f3f3ab0d5360af299fb2f8c73d7835183559f0cc80dc6d55f6a9872fc606f",
+              "decisions/tokenizer.py": "41b2c8a309745b9a991bfa43fcc80972d124c3614ca2e0f4f8e71666f8f51aac",
+              "stages/text_plan.py": "0b5e8a526792487ff59682bef2b71ac4652361aae0d07c831023b3404185406a"
+            },
+            "protocol": "fresh tokenizer per timed sample; previous outputs released and GC collected before timing; loading, diagnostics and hashing outside full timings; profiles are separate warm diagnostics",
+            "affinity": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+            "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+            "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+            "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93",
+            "model_files": {
+              "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+              "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+              "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+              "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
+            },
+            "args": {
+              "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
+              "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+              "output": "/home/ethoma/projects/toks/build/readout/buffer-memory-4421339/original/paired-1-3-candidate.json",
+              "samples": 3,
+              "profile": false,
+              "decisions_only": false,
+              "text_root": "/home/ethoma/data/text"
+            },
+            "rows": [
+              {
+                "sample": 0,
+                "workload": "render",
+                "elapsed_ns": 1004013,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 0,
+                "workload": "decisions",
+                "elapsed_ns": 4154350,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 0,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33062963,
+                "diagnostic_batch_encode_ns": 20678701,
+                "diagnostic_list_conversion_ns": 22307084,
+                "diagnostic_pack_ns": 3746747,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 0,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18104595,
+                "diagnostic_batch_encode_ns": 12278553,
+                "diagnostic_list_conversion_ns": 7172349,
+                "diagnostic_pack_ns": 1767601,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 1,
+                "workload": "render",
+                "elapsed_ns": 1019943,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 1,
+                "workload": "decisions",
+                "elapsed_ns": 4195700,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 1,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33391149,
+                "diagnostic_batch_encode_ns": 20933518,
+                "diagnostic_list_conversion_ns": 22283605,
+                "diagnostic_pack_ns": 3552021,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 1,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18210115,
+                "diagnostic_batch_encode_ns": 12199016,
+                "diagnostic_list_conversion_ns": 7234809,
+                "diagnostic_pack_ns": 1685742,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              },
+              {
+                "sample": 2,
+                "workload": "render",
+                "elapsed_ns": 1004683,
+                "sha256": "7474ede50c66637d4de1318b38007b6fec22a978798c0b6270b31692685641dd"
+              },
+              {
+                "sample": 2,
+                "workload": "decisions",
+                "elapsed_ns": 4219230,
+                "sha256": "4007e2d58d307040e7cbcfbf896b588ecf87581f4d03284b69d9f782b473a1de"
+              },
+              {
+                "sample": 2,
+                "workload": "fineweb_edu",
+                "elapsed_ns": 33620808,
+                "diagnostic_batch_encode_ns": 22130580,
+                "diagnostic_list_conversion_ns": 22313086,
+                "diagnostic_pack_ns": 3595110,
+                "tokens": 1090466,
+                "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+                "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
+                "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
+                "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
+                "pack_sha256": "be2f88c8403da7d362b4c464a33e431e2504e4ab5ba1f4265b9b90debd44566d"
+              },
+              {
+                "sample": 2,
+                "workload": "pleias_synth",
+                "elapsed_ns": 18226055,
+                "diagnostic_batch_encode_ns": 12553040,
+                "diagnostic_list_conversion_ns": 7273558,
+                "diagnostic_pack_ns": 1691732,
+                "tokens": 336377,
+                "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+                "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
+                "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
+                "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
+                "pack_sha256": "00e62fc05d11a15dd38348e4645fb59c788b3d12607cd7a417112ba44ccda474"
+              }
+            ]
+          }
+        }
+      ],
+      "diagnostics": {
+        "baseline": {
+          "render": {
+            "peak_bytes": 324871,
+            "functions": [
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/engine.py', 45, 'prompt_messages')",
+                "calls": 256,
+                "self_seconds": 0.00071761,
+                "cumulative_seconds": 0.0012989100000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/tokenizer.py', 88, 'render_qwen35_text')",
+                "calls": 256,
+                "self_seconds": 0.000648274,
+                "cumulative_seconds": 0.0008793980000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 55, '<lambda>')",
+                "calls": 1,
+                "self_seconds": 0.000203326,
+                "cumulative_seconds": 0.002888112
+              },
+              {
+                "function": "('~', 0, \"<method 'join' of 'str' objects>\")",
+                "calls": 256,
+                "self_seconds": 0.000186688,
+                "cumulative_seconds": 0.00030596700000000003
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/tokenizer.py', 73, '<genexpr>')",
+                "calls": 768,
+                "self_seconds": 0.00016268600000000002,
+                "cumulative_seconds": 0.00022311300000000002
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/tokenizer.py', 68, 'render')",
+                "calls": 256,
+                "self_seconds": 0.00015892800000000002,
+                "cumulative_seconds": 0.0013648870000000002
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/engine.py', 41, 'option_label')",
+                "calls": 768,
+                "self_seconds": 0.000129077,
+                "cumulative_seconds": 0.000129077
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/engine.py', 56, '<genexpr>')",
+                "calls": 1024,
+                "self_seconds": 0.00011927900000000001,
+                "cumulative_seconds": 0.00011927900000000001
+              },
+              {
+                "function": "('~', 0, \"<method 'get' of 'dict' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.000117157,
+                "cumulative_seconds": 0.000117157
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.all>')",
+                "calls": 256,
+                "self_seconds": 0.000103448,
+                "cumulative_seconds": 0.000326561
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.len>')",
+                "calls": 1280,
+                "self_seconds": 9.6348e-05,
+                "cumulative_seconds": 9.6348e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+                "calls": 768,
+                "self_seconds": 9.0977e-05,
+                "cumulative_seconds": 9.0977e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'endswith' of 'str' objects>\")",
+                "calls": 512,
+                "self_seconds": 6.0427e-05,
+                "cumulative_seconds": 6.0427e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'strip' of 'str' objects>\")",
+                "calls": 512,
+                "self_seconds": 6.0278e-05,
+                "cumulative_seconds": 6.0278e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+                "calls": 256,
+                "self_seconds": 3.3609e-05,
+                "cumulative_seconds": 3.3609e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+                "calls": 1,
+                "self_seconds": 1.5579e-05,
+                "cumulative_seconds": 1.5579e-05
+              }
+            ]
+          },
+          "decisions": {
+            "peak_bytes": 618447,
+            "functions": [
+              {
+                "function": "('~', 0, \"<method 'encode' of 'toks.Tokenizer' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.0017186450000000002,
+                "cumulative_seconds": 0.0017186450000000002
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/engine.py', 193, 'question_prompt')",
+                "calls": 256,
+                "self_seconds": 0.0016472650000000002,
+                "cumulative_seconds": 0.006219573000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/engine.py', 45, 'prompt_messages')",
+                "calls": 256,
+                "self_seconds": 0.0007778520000000001,
+                "cumulative_seconds": 0.0013826040000000002
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/tokenizer.py', 88, 'render_qwen35_text')",
+                "calls": 256,
+                "self_seconds": 0.0006266020000000001,
+                "cumulative_seconds": 0.00085488
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.len>')",
+                "calls": 2816,
+                "self_seconds": 0.00022302700000000002,
+                "cumulative_seconds": 0.00022302700000000002
+              },
+              {
+                "function": "('~', 0, \"<method 'join' of 'str' objects>\")",
+                "calls": 256,
+                "self_seconds": 0.000188657,
+                "cumulative_seconds": 0.000323885
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/engine.py', 188, 'prepare')",
+                "calls": 256,
+                "self_seconds": 0.00017289800000000002,
+                "cumulative_seconds": 0.006434251
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/tokenizer.py', 68, 'render')",
+                "calls": 256,
+                "self_seconds": 0.00017188700000000002,
+                "cumulative_seconds": 0.0013614410000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/tokenizer.py', 73, '<genexpr>')",
+                "calls": 768,
+                "self_seconds": 0.00016847500000000002,
+                "cumulative_seconds": 0.00022932400000000002
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/engine.py', 41, 'option_label')",
+                "calls": 768,
+                "self_seconds": 0.00013745,
+                "cumulative_seconds": 0.00013745
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/decisions/engine.py', 56, '<genexpr>')",
+                "calls": 1024,
+                "self_seconds": 0.00013522800000000001,
+                "cumulative_seconds": 0.00013522800000000001
+              },
+              {
+                "function": "('~', 0, \"<method 'get' of 'dict' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.00011754,
+                "cumulative_seconds": 0.00011754
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.all>')",
+                "calls": 256,
+                "self_seconds": 0.00010535000000000001,
+                "cumulative_seconds": 0.00033467400000000003
+              },
+              {
+                "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+                "calls": 768,
+                "self_seconds": 9.126800000000001e-05,
+                "cumulative_seconds": 9.126800000000001e-05
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 64, '<lambda>')",
+                "calls": 1,
+                "self_seconds": 6.822000000000001e-05,
+                "cumulative_seconds": 0.006502471
+              },
+              {
+                "function": "('~', 0, \"<method 'endswith' of 'str' objects>\")",
+                "calls": 512,
+                "self_seconds": 6.0849000000000006e-05,
+                "cumulative_seconds": 6.0849000000000006e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'strip' of 'str' objects>\")",
+                "calls": 512,
+                "self_seconds": 5.878800000000001e-05,
+                "cumulative_seconds": 5.878800000000001e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+                "calls": 256,
+                "self_seconds": 3.247e-05,
+                "cumulative_seconds": 3.247e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+                "calls": 1,
+                "self_seconds": 1.698e-05,
+                "cumulative_seconds": 1.698e-05
+              }
+            ]
+          },
+          "fineweb_edu": {
+            "peak_bytes": 36788315,
+            "functions": [
+              {
+                "function": "('~', 0, \"<method 'encode_batch_into' of 'toks.Tokenizer' objects>\")",
+                "calls": 1,
+                "self_seconds": 0.008029367,
+                "cumulative_seconds": 0.008029367
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/decoder.py', 351, 'raw_decode')",
+                "calls": 1024,
+                "self_seconds": 0.0062871210000000005,
+                "cumulative_seconds": 0.0062871210000000005
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/stages/text_plan.py', 103, 'read_documents')",
+                "calls": 1,
+                "self_seconds": 0.0051234240000000006,
+                "cumulative_seconds": 0.025642602
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/stages/text_plan.py', 133, 'pack')",
+                "calls": 2,
+                "self_seconds": 0.0031569970000000004,
+                "cumulative_seconds": 0.004346317000000001
+              },
+              {
+                "function": "('~', 0, '<built-in method _codecs.utf_8_decode>')",
+                "calls": 615,
+                "self_seconds": 0.0018529210000000002,
+                "cumulative_seconds": 0.0018529210000000002
+              },
+              {
+                "function": "('~', 0, \"<method 'copy' of 'numpy.ndarray' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.001076354,
+                "cumulative_seconds": 0.001076354
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/decoder.py', 340, 'decode')",
+                "calls": 1024,
+                "self_seconds": 0.000964077,
+                "cumulative_seconds": 0.008188413
+              },
+              {
+                "function": "('~', 0, \"<method 'match' of 're.Pattern' objects>\")",
+                "calls": 2048,
+                "self_seconds": 0.0006193080000000001,
+                "cumulative_seconds": 0.0006193080000000001
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/__init__.py', 304, 'loads')",
+                "calls": 1024,
+                "self_seconds": 0.000582086,
+                "cumulative_seconds": 0.008985437
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.len>')",
+                "calls": 6148,
+                "self_seconds": 0.000533631,
+                "cumulative_seconds": 0.000533631
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 122, 'preprocess')",
+                "calls": 1,
+                "self_seconds": 0.000264496,
+                "cumulative_seconds": 0.030253415000000002
+              },
+              {
+                "function": "('~', 0, \"<method 'end' of 're.Match' objects>\")",
+                "calls": 2048,
+                "self_seconds": 0.00022686800000000002,
+                "cumulative_seconds": 0.00022686800000000002
+              },
+              {
+                "function": "('<frozen codecs>', 322, 'decode')",
+                "calls": 615,
+                "self_seconds": 0.00020126800000000003,
+                "cumulative_seconds": 0.002054189
+              },
+              {
+                "function": "('~', 0, '<built-in method numpy.zeros>')",
+                "calls": 2,
+                "self_seconds": 0.000197717,
+                "cumulative_seconds": 0.000197717
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/numeric.py', 323, 'full')",
+                "calls": 2,
+                "self_seconds": 0.00019568700000000003,
+                "cumulative_seconds": 0.000200337
+              },
+              {
+                "function": "('~', 0, \"<method 'astype' of 'numpy.ndarray' objects>\")",
+                "calls": 2,
+                "self_seconds": 0.000158127,
+                "cumulative_seconds": 0.000158127
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.sum>')",
+                "calls": 3,
+                "self_seconds": 0.000136147,
+                "cumulative_seconds": 0.00034502400000000004
+              },
+              {
+                "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.000133969,
+                "cumulative_seconds": 0.000133969
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/stages/text_plan.py', 136, '<genexpr>')",
+                "calls": 1026,
+                "self_seconds": 0.000123898,
+                "cumulative_seconds": 0.00020887700000000003
+              },
+              {
+                "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.00011624700000000001,
+                "cumulative_seconds": 0.00011624700000000001
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.isinstance>')",
+                "calls": 1024,
+                "self_seconds": 8.0969e-05,
+                "cumulative_seconds": 8.0969e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method _io.open>')",
+                "calls": 1,
+                "self_seconds": 6.2649e-05,
+                "cumulative_seconds": 6.7989e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'reduce' of 'numpy.ufunc' objects>\")",
+                "calls": 2,
+                "self_seconds": 4.007e-05,
+                "cumulative_seconds": 4.007e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+                "calls": 1,
+                "self_seconds": 2.9890000000000004e-05,
+                "cumulative_seconds": 2.9890000000000004e-05
+              },
+              {
+                "function": "('~', 0, \"<method '__exit__' of '_io._IOBase' objects>\")",
+                "calls": 1,
+                "self_seconds": 2.195e-05,
+                "cumulative_seconds": 2.195e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method numpy.empty>')",
+                "calls": 3,
+                "self_seconds": 2.0249000000000002e-05,
+                "cumulative_seconds": 2.0249000000000002e-05
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/getlimits.py', 399, '__init__')",
+                "calls": 2,
+                "self_seconds": 1.7569e-05,
+                "cumulative_seconds": 1.7569e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'reshape' of 'numpy.ndarray' objects>\")",
+                "calls": 4,
+                "self_seconds": 6.89e-06,
+                "cumulative_seconds": 6.89e-06
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/pathlib/_local.py', 529, 'open')",
+                "calls": 1,
+                "self_seconds": 6.409000000000001e-06,
+                "cumulative_seconds": 7.4938e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'max' of 'numpy.ndarray' objects>\")",
+                "calls": 2,
+                "self_seconds": 4.270000000000001e-06,
+                "cumulative_seconds": 4.809e-05
+              }
+            ]
+          },
+          "pleias_synth": {
+            "peak_bytes": 11293973,
+            "functions": [
+              {
+                "function": "('~', 0, \"<method 'encode_batch_into' of 'toks.Tokenizer' objects>\")",
+                "calls": 1,
+                "self_seconds": 0.003281065,
+                "cumulative_seconds": 0.003281065
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/decoder.py', 351, 'raw_decode')",
+                "calls": 1024,
+                "self_seconds": 0.0028117560000000003,
+                "cumulative_seconds": 0.0028117560000000003
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/stages/text_plan.py', 103, 'read_documents')",
+                "calls": 1,
+                "self_seconds": 0.002605474,
+                "cumulative_seconds": 0.012882796
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/stages/text_plan.py', 133, 'pack')",
+                "calls": 2,
+                "self_seconds": 0.0016023370000000001,
+                "cumulative_seconds": 0.002299251
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/decoder.py', 340, 'decode')",
+                "calls": 1024,
+                "self_seconds": 0.000912743,
+                "cumulative_seconds": 0.0046010470000000005
+              },
+              {
+                "function": "('~', 0, \"<method 'copy' of 'numpy.ndarray' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.0006276630000000001,
+                "cumulative_seconds": 0.0006276630000000001
+              },
+              {
+                "function": "('~', 0, '<built-in method _codecs.utf_8_decode>')",
+                "calls": 217,
+                "self_seconds": 0.000586651,
+                "cumulative_seconds": 0.000586651
+              },
+              {
+                "function": "('~', 0, \"<method 'match' of 're.Pattern' objects>\")",
+                "calls": 2048,
+                "self_seconds": 0.000566475,
+                "cumulative_seconds": 0.000566475
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/__init__.py', 304, 'loads')",
+                "calls": 1024,
+                "self_seconds": 0.0005660200000000001,
+                "cumulative_seconds": 0.005371004
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.len>')",
+                "calls": 6148,
+                "self_seconds": 0.000481119,
+                "cumulative_seconds": 0.000481119
+              },
+              {
+                "function": "('~', 0, \"<method 'end' of 're.Match' objects>\")",
+                "calls": 2048,
+                "self_seconds": 0.000225774,
+                "cumulative_seconds": 0.000225774
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 122, 'preprocess')",
+                "calls": 1,
+                "self_seconds": 0.000137748,
+                "cumulative_seconds": 0.015319795
+              },
+              {
+                "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.00012729900000000002,
+                "cumulative_seconds": 0.00012729900000000002
+              },
+              {
+                "function": "('/home/ethoma/projects/toks/build/consumer-buffer-memory/stages/text_plan.py', 136, '<genexpr>')",
+                "calls": 1026,
+                "self_seconds": 0.00012180800000000001,
+                "cumulative_seconds": 0.000191127
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.sum>')",
+                "calls": 3,
+                "self_seconds": 0.000116936,
+                "cumulative_seconds": 0.000308063
+              },
+              {
+                "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.000111187,
+                "cumulative_seconds": 0.000111187
+              },
+              {
+                "function": "('<frozen codecs>', 322, 'decode')",
+                "calls": 217,
+                "self_seconds": 7.973600000000001e-05,
+                "cumulative_seconds": 0.0006663870000000001
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.isinstance>')",
+                "calls": 1024,
+                "self_seconds": 7.663800000000001e-05,
+                "cumulative_seconds": 7.663800000000001e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method _io.open>')",
+                "calls": 1,
+                "self_seconds": 5.9949000000000005e-05,
+                "cumulative_seconds": 6.5079e-05
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/numeric.py', 323, 'full')",
+                "calls": 2,
+                "self_seconds": 5.2749000000000006e-05,
+                "cumulative_seconds": 5.5939e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'astype' of 'numpy.ndarray' objects>\")",
+                "calls": 2,
+                "self_seconds": 4.6500000000000005e-05,
+                "cumulative_seconds": 4.6500000000000005e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method numpy.zeros>')",
+                "calls": 2,
+                "self_seconds": 4.631e-05,
+                "cumulative_seconds": 4.631e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+                "calls": 1,
+                "self_seconds": 2.3970000000000003e-05,
+                "cumulative_seconds": 2.3970000000000003e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'reduce' of 'numpy.ufunc' objects>\")",
+                "calls": 2,
+                "self_seconds": 1.679e-05,
+                "cumulative_seconds": 1.679e-05
+              },
+              {
+                "function": "('~', 0, \"<method '__exit__' of '_io._IOBase' objects>\")",
+                "calls": 1,
+                "self_seconds": 1.373e-05,
+                "cumulative_seconds": 1.373e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method numpy.empty>')",
+                "calls": 3,
+                "self_seconds": 1.29e-05,
+                "cumulative_seconds": 1.29e-05
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/getlimits.py', 399, '__init__')",
+                "calls": 2,
+                "self_seconds": 9.069e-06,
+                "cumulative_seconds": 9.069e-06
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/pathlib/_local.py', 529, 'open')",
+                "calls": 1,
+                "self_seconds": 5.56e-06,
+                "cumulative_seconds": 7.1079e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'reshape' of 'numpy.ndarray' objects>\")",
+                "calls": 4,
+                "self_seconds": 4.26e-06,
+                "cumulative_seconds": 4.26e-06
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/_methods.py', 39, '_amax')",
+                "calls": 2,
+                "self_seconds": 3.49e-06,
+                "cumulative_seconds": 2.0280000000000002e-05
+              }
+            ]
+          }
+        },
+        "candidate": {
+          "render": {
+            "peak_bytes": 324871,
+            "functions": [
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 45, 'prompt_messages')",
+                "calls": 256,
+                "self_seconds": 0.0007143750000000001,
+                "cumulative_seconds": 0.001286747
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 88, 'render_qwen35_text')",
+                "calls": 256,
+                "self_seconds": 0.000640088,
+                "cumulative_seconds": 0.0008673540000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 55, '<lambda>')",
+                "calls": 1,
+                "self_seconds": 0.000202787,
+                "cumulative_seconds": 0.0028578730000000004
+              },
+              {
+                "function": "('~', 0, \"<method 'join' of 'str' objects>\")",
+                "calls": 256,
+                "self_seconds": 0.00017777800000000002,
+                "cumulative_seconds": 0.00029688500000000004
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 73, '<genexpr>')",
+                "calls": 768,
+                "self_seconds": 0.00016244000000000002,
+                "cumulative_seconds": 0.000222059
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 68, 'render')",
+                "calls": 256,
+                "self_seconds": 0.000159357,
+                "cumulative_seconds": 0.001347459
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 41, 'option_label')",
+                "calls": 768,
+                "self_seconds": 0.00012901,
+                "cumulative_seconds": 0.00012901
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 56, '<genexpr>')",
+                "calls": 1024,
+                "self_seconds": 0.00011910700000000001,
+                "cumulative_seconds": 0.00011910700000000001
+              },
+              {
+                "function": "('~', 0, \"<method 'get' of 'dict' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.000116818,
+                "cumulative_seconds": 0.000116818
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.all>')",
+                "calls": 256,
+                "self_seconds": 9.8689e-05,
+                "cumulative_seconds": 0.00032074800000000004
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.len>')",
+                "calls": 1280,
+                "self_seconds": 9.7719e-05,
+                "cumulative_seconds": 9.7719e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+                "calls": 768,
+                "self_seconds": 8.9417e-05,
+                "cumulative_seconds": 8.9417e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'endswith' of 'str' objects>\")",
+                "calls": 512,
+                "self_seconds": 5.9619000000000006e-05,
+                "cumulative_seconds": 5.9619000000000006e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'strip' of 'str' objects>\")",
+                "calls": 512,
+                "self_seconds": 5.8619e-05,
+                "cumulative_seconds": 5.8619e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+                "calls": 256,
+                "self_seconds": 3.205e-05,
+                "cumulative_seconds": 3.205e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+                "calls": 1,
+                "self_seconds": 1.6109e-05,
+                "cumulative_seconds": 1.6109e-05
+              }
+            ]
+          },
+          "decisions": {
+            "peak_bytes": 618447,
+            "functions": [
+              {
+                "function": "('~', 0, \"<method 'encode' of 'toks.Tokenizer' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.001720432,
+                "cumulative_seconds": 0.001720432
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 193, 'question_prompt')",
+                "calls": 256,
+                "self_seconds": 0.0016652370000000002,
+                "cumulative_seconds": 0.006254954
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 45, 'prompt_messages')",
+                "calls": 256,
+                "self_seconds": 0.0007737800000000001,
+                "cumulative_seconds": 0.0013871130000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 88, 'render_qwen35_text')",
+                "calls": 256,
+                "self_seconds": 0.000626544,
+                "cumulative_seconds": 0.000860362
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.len>')",
+                "calls": 2816,
+                "self_seconds": 0.000234293,
+                "cumulative_seconds": 0.000234293
+              },
+              {
+                "function": "('~', 0, \"<method 'join' of 'str' objects>\")",
+                "calls": 256,
+                "self_seconds": 0.00018751,
+                "cumulative_seconds": 0.000323009
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 68, 'render')",
+                "calls": 256,
+                "self_seconds": 0.000170989,
+                "cumulative_seconds": 0.0013691130000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/tokenizer.py', 73, '<genexpr>')",
+                "calls": 768,
+                "self_seconds": 0.000166366,
+                "cumulative_seconds": 0.00022717600000000002
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 188, 'prepare')",
+                "calls": 256,
+                "self_seconds": 0.000162119,
+                "cumulative_seconds": 0.0064603410000000005
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 41, 'option_label')",
+                "calls": 768,
+                "self_seconds": 0.000138889,
+                "cumulative_seconds": 0.000138889
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/decisions/engine.py', 56, '<genexpr>')",
+                "calls": 1024,
+                "self_seconds": 0.000135499,
+                "cumulative_seconds": 0.000135499
+              },
+              {
+                "function": "('~', 0, \"<method 'get' of 'dict' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.00011976900000000001,
+                "cumulative_seconds": 0.00011976900000000001
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.all>')",
+                "calls": 256,
+                "self_seconds": 0.000110586,
+                "cumulative_seconds": 0.000337762
+              },
+              {
+                "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+                "calls": 768,
+                "self_seconds": 9.294900000000001e-05,
+                "cumulative_seconds": 9.294900000000001e-05
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 64, '<lambda>')",
+                "calls": 1,
+                "self_seconds": 6.526000000000001e-05,
+                "cumulative_seconds": 0.006525601000000001
+              },
+              {
+                "function": "('~', 0, \"<method 'strip' of 'str' objects>\")",
+                "calls": 512,
+                "self_seconds": 6.1909e-05,
+                "cumulative_seconds": 6.1909e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'endswith' of 'str' objects>\")",
+                "calls": 512,
+                "self_seconds": 6.081e-05,
+                "cumulative_seconds": 6.081e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+                "calls": 256,
+                "self_seconds": 3.266e-05,
+                "cumulative_seconds": 3.266e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+                "calls": 1,
+                "self_seconds": 1.707e-05,
+                "cumulative_seconds": 1.707e-05
+              }
+            ]
+          },
+          "fineweb_edu": {
+            "peak_bytes": 22992651,
+            "functions": [
+              {
+                "function": "('~', 0, \"<method 'encode_batch_into' of 'toks.Tokenizer' objects>\")",
+                "calls": 1,
+                "self_seconds": 0.008311173,
+                "cumulative_seconds": 0.008311173
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/decoder.py', 351, 'raw_decode')",
+                "calls": 1024,
+                "self_seconds": 0.006143887000000001,
+                "cumulative_seconds": 0.006143887000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/stages/text_plan.py', 104, 'read_documents')",
+                "calls": 1,
+                "self_seconds": 0.005075998,
+                "cumulative_seconds": 0.025582366000000002
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/stages/text_plan.py', 136, 'pack')",
+                "calls": 2,
+                "self_seconds": 0.0030004610000000003,
+                "cumulative_seconds": 0.004052502
+              },
+              {
+                "function": "('~', 0, '<built-in method _codecs.utf_8_decode>')",
+                "calls": 615,
+                "self_seconds": 0.0018620660000000001,
+                "cumulative_seconds": 0.0018620660000000001
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/decoder.py', 340, 'decode')",
+                "calls": 1024,
+                "self_seconds": 0.0009471740000000001,
+                "cumulative_seconds": 0.008015946000000001
+              },
+              {
+                "function": "('~', 0, \"<method 'copy' of 'numpy.ndarray' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.000946587,
+                "cumulative_seconds": 0.000946587
+              },
+              {
+                "function": "('~', 0, \"<method 'match' of 're.Pattern' objects>\")",
+                "calls": 2048,
+                "self_seconds": 0.000612551,
+                "cumulative_seconds": 0.000612551
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/__init__.py', 304, 'loads')",
+                "calls": 1024,
+                "self_seconds": 0.000580518,
+                "cumulative_seconds": 0.008810031000000001
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.len>')",
+                "calls": 6148,
+                "self_seconds": 0.0005022000000000001,
+                "cumulative_seconds": 0.0005022000000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 122, 'preprocess')",
+                "calls": 1,
+                "self_seconds": 0.000237435,
+                "cumulative_seconds": 0.029872303000000003
+              },
+              {
+                "function": "('~', 0, \"<method 'end' of 're.Match' objects>\")",
+                "calls": 2048,
+                "self_seconds": 0.00022713500000000003,
+                "cumulative_seconds": 0.00022713500000000003
+              },
+              {
+                "function": "('<frozen codecs>', 322, 'decode')",
+                "calls": 615,
+                "self_seconds": 0.000203906,
+                "cumulative_seconds": 0.002065972
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/numeric.py', 323, 'full')",
+                "calls": 2,
+                "self_seconds": 0.00020098700000000002,
+                "cumulative_seconds": 0.000205447
+              },
+              {
+                "function": "('~', 0, \"<method 'astype' of 'numpy.ndarray' objects>\")",
+                "calls": 2,
+                "self_seconds": 0.00015810700000000002,
+                "cumulative_seconds": 0.00015810700000000002
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.sum>')",
+                "calls": 3,
+                "self_seconds": 0.00013942700000000002,
+                "cumulative_seconds": 0.000334824
+              },
+              {
+                "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.000134299,
+                "cumulative_seconds": 0.000134299
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/stages/text_plan.py', 139, '<genexpr>')",
+                "calls": 1026,
+                "self_seconds": 0.000119439,
+                "cumulative_seconds": 0.000195397
+              },
+              {
+                "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.000115019,
+                "cumulative_seconds": 0.000115019
+              },
+              {
+                "function": "('~', 0, '<built-in method numpy.zeros>')",
+                "calls": 2,
+                "self_seconds": 8.4419e-05,
+                "cumulative_seconds": 8.4419e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.isinstance>')",
+                "calls": 1024,
+                "self_seconds": 7.9268e-05,
+                "cumulative_seconds": 7.9268e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method _io.open>')",
+                "calls": 1,
+                "self_seconds": 6.1649e-05,
+                "cumulative_seconds": 6.6649e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'reduce' of 'numpy.ufunc' objects>\")",
+                "calls": 2,
+                "self_seconds": 3.953e-05,
+                "cumulative_seconds": 3.953e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+                "calls": 1,
+                "self_seconds": 2.629e-05,
+                "cumulative_seconds": 2.629e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method numpy.empty>')",
+                "calls": 3,
+                "self_seconds": 2.3910000000000003e-05,
+                "cumulative_seconds": 2.3910000000000003e-05
+              },
+              {
+                "function": "('~', 0, \"<method '__exit__' of '_io._IOBase' objects>\")",
+                "calls": 1,
+                "self_seconds": 2.035e-05,
+                "cumulative_seconds": 2.035e-05
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/getlimits.py', 399, '__init__')",
+                "calls": 2,
+                "self_seconds": 1.5879e-05,
+                "cumulative_seconds": 1.5879e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'reshape' of 'numpy.ndarray' objects>\")",
+                "calls": 4,
+                "self_seconds": 6.149000000000001e-06,
+                "cumulative_seconds": 6.149000000000001e-06
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/pathlib/_local.py', 529, 'open')",
+                "calls": 1,
+                "self_seconds": 6.02e-06,
+                "cumulative_seconds": 7.320900000000001e-05
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/_methods.py', 39, '_amax')",
+                "calls": 2,
+                "self_seconds": 4.05e-06,
+                "cumulative_seconds": 4.358e-05
+              }
+            ]
+          },
+          "pleias_synth": {
+            "peak_bytes": 7157991,
+            "functions": [
+              {
+                "function": "('~', 0, \"<method 'encode_batch_into' of 'toks.Tokenizer' objects>\")",
+                "calls": 1,
+                "self_seconds": 0.003976634000000001,
+                "cumulative_seconds": 0.003976634000000001
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/decoder.py', 351, 'raw_decode')",
+                "calls": 1024,
+                "self_seconds": 0.002759071,
+                "cumulative_seconds": 0.002759071
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/stages/text_plan.py', 104, 'read_documents')",
+                "calls": 1,
+                "self_seconds": 0.002637607,
+                "cumulative_seconds": 0.013559215000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/stages/text_plan.py', 136, 'pack')",
+                "calls": 2,
+                "self_seconds": 0.0015449650000000001,
+                "cumulative_seconds": 0.002257153
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/decoder.py', 340, 'decode')",
+                "calls": 1024,
+                "self_seconds": 0.000920536,
+                "cumulative_seconds": 0.004527256
+              },
+              {
+                "function": "('~', 0, \"<method 'copy' of 'numpy.ndarray' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.0006354500000000001,
+                "cumulative_seconds": 0.0006354500000000001
+              },
+              {
+                "function": "('~', 0, '<built-in method _codecs.utf_8_decode>')",
+                "calls": 217,
+                "self_seconds": 0.000608014,
+                "cumulative_seconds": 0.000608014
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/json/__init__.py', 304, 'loads')",
+                "calls": 1024,
+                "self_seconds": 0.000565672,
+                "cumulative_seconds": 0.0052942150000000006
+              },
+              {
+                "function": "('~', 0, \"<method 'match' of 're.Pattern' objects>\")",
+                "calls": 2048,
+                "self_seconds": 0.000547701,
+                "cumulative_seconds": 0.000547701
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.len>')",
+                "calls": 6148,
+                "self_seconds": 0.000490842,
+                "cumulative_seconds": 0.000490842
+              },
+              {
+                "function": "('~', 0, \"<method 'end' of 're.Match' objects>\")",
+                "calls": 2048,
+                "self_seconds": 0.000218559,
+                "cumulative_seconds": 0.000218559
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/scripts/profile_tokenization.py', 122, 'preprocess')",
+                "calls": 1,
+                "self_seconds": 0.000149287,
+                "cumulative_seconds": 0.015965655000000002
+              },
+              {
+                "function": "('~', 0, \"<method 'startswith' of 'str' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.00012564800000000001,
+                "cumulative_seconds": 0.00012564800000000001
+              },
+              {
+                "function": "('/home/ethoma/projects/typed-decisions-chat-render/stages/text_plan.py', 139, '<genexpr>')",
+                "calls": 1026,
+                "self_seconds": 0.000117109,
+                "cumulative_seconds": 0.00018645600000000002
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.sum>')",
+                "calls": 3,
+                "self_seconds": 0.00011670900000000001,
+                "cumulative_seconds": 0.00030316500000000004
+              },
+              {
+                "function": "('~', 0, \"<method 'append' of 'list' objects>\")",
+                "calls": 1024,
+                "self_seconds": 0.00011500900000000001,
+                "cumulative_seconds": 0.00011500900000000001
+              },
+              {
+                "function": "('<frozen codecs>', 322, 'decode')",
+                "calls": 217,
+                "self_seconds": 7.8739e-05,
+                "cumulative_seconds": 0.000686753
+              },
+              {
+                "function": "('~', 0, '<built-in method builtins.isinstance>')",
+                "calls": 1024,
+                "self_seconds": 7.5639e-05,
+                "cumulative_seconds": 7.5639e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method numpy.zeros>')",
+                "calls": 2,
+                "self_seconds": 5.622900000000001e-05,
+                "cumulative_seconds": 5.622900000000001e-05
+              },
+              {
+                "function": "('~', 0, '<built-in method _io.open>')",
+                "calls": 1,
+                "self_seconds": 5.6049000000000005e-05,
+                "cumulative_seconds": 6.0719000000000006e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'astype' of 'numpy.ndarray' objects>\")",
+                "calls": 2,
+                "self_seconds": 5.4519000000000004e-05,
+                "cumulative_seconds": 5.4519000000000004e-05
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/numeric.py', 323, 'full')",
+                "calls": 2,
+                "self_seconds": 4.4809000000000004e-05,
+                "cumulative_seconds": 4.8029000000000004e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'disable' of '_lsprof.Profiler' objects>\")",
+                "calls": 1,
+                "self_seconds": 2.5750000000000002e-05,
+                "cumulative_seconds": 2.5750000000000002e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'reduce' of 'numpy.ufunc' objects>\")",
+                "calls": 2,
+                "self_seconds": 1.629e-05,
+                "cumulative_seconds": 1.629e-05
+              },
+              {
+                "function": "('~', 0, \"<method '__exit__' of '_io._IOBase' objects>\")",
+                "calls": 1,
+                "self_seconds": 1.4690000000000002e-05,
+                "cumulative_seconds": 1.4690000000000002e-05
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/getlimits.py', 399, '__init__')",
+                "calls": 2,
+                "self_seconds": 8.880000000000001e-06,
+                "cumulative_seconds": 8.880000000000001e-06
+              },
+              {
+                "function": "('~', 0, '<built-in method numpy.empty>')",
+                "calls": 3,
+                "self_seconds": 8.32e-06,
+                "cumulative_seconds": 8.32e-06
+              },
+              {
+                "function": "('/nix/store/7jydrdpxlsqjdlrxxxy15i5vw4bad4rs-python3-3.13.15/lib/python3.13/pathlib/_local.py', 529, 'open')",
+                "calls": 1,
+                "self_seconds": 5.619000000000001e-06,
+                "cumulative_seconds": 6.6788e-05
+              },
+              {
+                "function": "('~', 0, \"<method 'reshape' of 'numpy.ndarray' objects>\")",
+                "calls": 4,
+                "self_seconds": 4.17e-06,
+                "cumulative_seconds": 4.17e-06
+              },
+              {
+                "function": "('/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/numpy/_core/_methods.py', 39, '_amax')",
+                "calls": 2,
+                "self_seconds": 2.889e-06,
+                "cumulative_seconds": 1.9179e-05
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "consumer_candidate": "cf6908c5051d3d2d80bf290146a1d472f9c18ed3",
+  "validation": {
+    "cpu": {
+      "passed": 155,
+      "skipped": 19
+    }
+  },
+  "allocation_estimate": {
+    "characters_per_token": 4,
+    "rounding": "ceil",
+    "retry": "exact required capacity, at most once",
+    "fineweb_characters": 4975774,
+    "pleias_characters": 1743642
+  },
+  "final_validation": {
+    "consumer_commit": "9d5c28a333ba786d47661776bec8934618fbd6c6",
+    "cpu": {
+      "passed": 157,
+      "skipped": 19
+    },
+    "final_renderer_buffer_focused": {
+      "passed": 22,
+      "skipped": 0
+    },
+    "sources": {
+      "decisions/tokenizer.py": "36730f259f51ca86ad8731e7df739e7d9f7c1af345974cfce123e581771105d6",
+      "stages/text_plan.py": "0b5e8a526792487ff59682bef2b71ac4652361aae0d07c831023b3404185406a",
+      "tests/test_chat_template.py": "330f81a0b4c4fff9005963385021cf251290d8baa4550e6f1ea6082e5fb5a056"
+    },
+    "audit": {
+      "source": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+      "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+      "cases": 4096,
+      "renders": 24576,
+      "formats": [
+        "ours",
+        "tev1",
+        "eikos"
+      ],
+      "option_orders": [
+        "original",
+        "reversed"
+      ],
+      "output_sha256": "5cce741474965f504dc3579266565b25c300b9c706b12e1b436a340deae302e0",
+      "template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    },
+    "note": "Final source fingerprint guards affect initialization only; the measured renderer and buffer paths are unchanged for the pinned built-in Qwen template source."
+  }
+}

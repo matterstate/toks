@@ -2160,5 +2160,39 @@
       "skipped": 0
     }
   },
-  "profile_script_sha256": "cf00d3e876a684585c975eced9f092e653dafa7cf8253016e73edd71b27c20b4"
+  "profile_script_sha256": "cf00d3e876a684585c975eced9f092e653dafa7cf8253016e73edd71b27c20b4",
+  "final_validation": {
+    "consumer_commit": "9d5c28a333ba786d47661776bec8934618fbd6c6",
+    "cpu": {
+      "passed": 157,
+      "skipped": 19
+    },
+    "final_renderer_buffer_focused": {
+      "passed": 22,
+      "skipped": 0
+    },
+    "sources": {
+      "decisions/tokenizer.py": "36730f259f51ca86ad8731e7df739e7d9f7c1af345974cfce123e581771105d6",
+      "stages/text_plan.py": "0b5e8a526792487ff59682bef2b71ac4652361aae0d07c831023b3404185406a",
+      "tests/test_chat_template.py": "330f81a0b4c4fff9005963385021cf251290d8baa4550e6f1ea6082e5fb5a056"
+    },
+    "audit": {
+      "source": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+      "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
+      "cases": 4096,
+      "renders": 24576,
+      "formats": [
+        "ours",
+        "tev1",
+        "eikos"
+      ],
+      "option_orders": [
+        "original",
+        "reversed"
+      ],
+      "output_sha256": "5cce741474965f504dc3579266565b25c300b9c706b12e1b436a340deae302e0",
+      "template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+    },
+    "note": "Final source fingerprint guards affect initialization only; the measured renderer and buffer paths are unchanged for the pinned built-in Qwen template source."
+  }
 }

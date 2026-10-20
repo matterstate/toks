@@ -37,7 +37,7 @@
 #
 # env: TOKS_LIST (the declared 11)  CORPORA (en code ml cjk)  CHUNKS (4096 0)  ROUNDS (3)  REPS (5)  B_COLD_REPS (1)
 #      CONFIGS (default m6)  M6_LIST (gpt2 gemma4)  GIT_SHA (remote.sh syncs without .git)  and common.sh's (corpus,
-#      tokenizers, PINCPU). The gigatoken binary: tools/bench/gigatoken.sh.
+#      tokenizers, PINCPU). The gigatoken binary: tools/README.md.
 set -e
 PIN="$1"
 . tools/bench/common.sh
@@ -54,7 +54,7 @@ CC=${CC:-clang}
 export UV_PYTHON_PREFERENCE=${UV_PYTHON_PREFERENCE:-only-managed}
 export UV_PYTHON_INSTALL_DIR=${UV_PYTHON_INSTALL_DIR:-$PWD/build/uv-python}
 export UV_CACHE_DIR=${UV_CACHE_DIR:-$PWD/build/uv-cache}
-[ -x "$GIGA_BIN" ] || { echo "gate.sh: $GIGA_BIN missing (tools/bench/gigatoken.sh builds it)" >&2; exit 1; }
+[ -x "$GIGA_BIN" ] || { echo "gate.sh: $GIGA_BIN missing (provide a prebuilt comparator; see tools/README.md)" >&2; exit 1; }
 mkvar() { printf 'print-%%:\n\t@echo $($*)\n' | make -s -f Makefile -f - "print-$1"; }
 
 make -j8 lib >/dev/null

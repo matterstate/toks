@@ -10,7 +10,7 @@
 # ("1 4 16 64"), BATCH_MIB ("16"), DOC_BYTES (4096), REPS (7), SWEEP_K (the largest k), SWEEP_GAPS ("0 5000": us
 # of idle before each timed sweep call: back to back, then sporadic), SWEEP_TEXTS ("fresh same": new text every
 # call, then the same text every call), MODES ("doc batch sweep"),
-# BENCH (an existing bench binary: skip the build), GIGA (tools/bench/gigatoken.sh's gigatoken-par: after each
+# BENCH (an existing bench binary: skip the build), GIGA (prebuilt gigatoken-par, see tools/README.md: after each
 # toks row of k >= 1, gigatoken's parallel api on the same cpus with RAYON_NUM_THREADS = k), REFS ("tiktoken hf":
 # after each batch row of k >= 1, tools/bench/par_ref.py's encode_batch of each on the same cpus with k threads, via
 # uv), SIB_OFF (x86: the SMT sibling's offset, e.g. 32 on tr9970x: their busy shares are recorded too).

@@ -4,7 +4,7 @@
 # every state but cold, the OTHER text as the gate's warm-up): the wall time of the whole run (its untimed passes
 # included: evidence of cost, not a speed cell), the entries its fresh state starts from (its vocabulary seed) and the
 # entries after warmo. tools/bench/gate_table.py --probe <log> writes the gate doc's m6 paragraph from it. From the
-# gate tree's root, on linux (date +%N), after tools/bench/gigatoken.sh:
+# gate tree's root, on linux (date +%N), with a prebuilt comparator (tools/README.md):
 #
 #   PINCPU=7 tools/bench/gate_probe.sh "taskset -c 7" > build/gate-probe.log 2>&1
 #
@@ -14,7 +14,7 @@ PIN="$1"
 . tools/bench/common.sh
 TOKS_LIST=${TOKS_LIST:-"gpt2 llama3 glm53 qwen38 o200k gemma4 nemotron3-4b llama4 minimaxm2 dsv4 kimik3"}
 GIGA_BIN=${GIGA_BIN:-build/giga-target/release/gigatoken-bench}
-[ -x "$GIGA_BIN" ] || { echo "gate_probe.sh: $GIGA_BIN missing (tools/bench/gigatoken.sh builds it)" >&2; exit 1; }
+[ -x "$GIGA_BIN" ] || { echo "gate_probe.sh: $GIGA_BIN missing (provide a prebuilt comparator; see tools/README.md)" >&2; exit 1; }
 F=$(files en)
 W=$(others en)
 echo "HOST ${TOKS_HOST_KEY:-$(uname -m)} $(uname -srm)"

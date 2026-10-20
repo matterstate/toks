@@ -12,7 +12,7 @@
 #   sh tests/par/gate_par.sh <libtoks.a> <tokenizer> <text> > build/gate-par-<host>.log     (from the repo root)
 #
 # env: CPUS (comma list, fast cores first)  SIB_OFF (x86: the smt sibling offset, 32 on tr9970x)  KS (1 2 4 8)  DOC_MIB
-#      (1 4 16 32)  BATCH_MIB (16)  DOC_BYTES (4096)  ROUNDS (3)  REPS (5)  GIGA (gigatoken-par, tools/bench/gigatoken.sh)
+#      (1 4 16 32)  BATCH_MIB (16)  DOC_BYTES (4096)  ROUNDS (3)  REPS (5)  GIGA (gigatoken-par, tools/README.md)
 #      GIT_SHA. linux only (taskset, /proc/stat).
 set -eu
 LIB=$1; TOK=$2; TXT=$3
@@ -24,7 +24,7 @@ ROUNDS=${ROUNDS:-3}
 REPS=${REPS:-5}
 GIGA=${GIGA:-build/giga-target/release/gigatoken-par}
 CPUS=${CPUS:-$(awk '/^processor/ {printf "%s%s", s, $3; s=","}' /proc/cpuinfo)}
-[ -x "$GIGA" ] || { echo "gate_par.sh: $GIGA missing (tools/bench/gigatoken.sh)" >&2; exit 1; }
+[ -x "$GIGA" ] || { echo "gate_par.sh: $GIGA missing (tools/README.md)" >&2; exit 1; }
 mkdir -p build
 INFO=""
 grep -q TOKS_PAR_HAS_INFO include/toks.h && INFO=-DTOKS_PAR_HAS_INFO

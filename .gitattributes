@@ -1,5 +1,5 @@
-# toks is a c + asm library. GitHub's language bar shows the library's own languages; everything else is
-# generated data or tooling and stays out of it: this is a C and asm project.
+# The production library is Rust with assembly kernels. Generated data and tooling
+# stay out of GitHub language statistics.
 
 # generated tables: collapsed in diffs and left out of GitHub's language stats
 src/gen/** linguist-generated=true
@@ -8,11 +8,12 @@ tests/**/*.inc linguist-generated=true linguist-language=C
 # release / bench receipts and raw logs: data
 docs/release/rc/** linguist-generated=true
 docs/bench/raw/** linguist-generated=true
-# the README's charts (tools/readme_charts.py)
+# Preserved upstream charts
 docs/img/*.svg linguist-generated=true
 
-# tooling around the library (bench / test scripts, research prototypes): not the library's language. python counts.
-*.rs linguist-detectable=false
+# Tooling and research prototypes are separate from the production library.
+tools/** linguist-detectable=false
+tests/** linguist-detectable=false
 *.sh linguist-detectable=false
 *.cmd linguist-detectable=false
 docs/research/** linguist-detectable=false
@@ -27,7 +28,6 @@ docs/research/** linguist-detectable=false
 tests/fuzz/regress/** -text
 tests/data/** -text
 
-# receipts and the release tooling stay in the repository and out of release tarballs (git archive)
+# Receipts stay in the repository and out of source archives (git archive).
 docs/bench/raw/** export-ignore
 docs/release/rc/** export-ignore
-tools/release/** export-ignore

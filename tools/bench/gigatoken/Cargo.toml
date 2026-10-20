@@ -1,4 +1,4 @@
-# tools/bench/gigatoken: the gigatoken comparator of tools/bench/e2e.sh (build: tools/bench/gigatoken.sh).
+# Optional external comparator; source and toolchain requirements are in tools/README.md.
 # The path dependency is a read-only copy of the pinned gigatoken commit under build/third-party/ (never a
 # dependency of the library or its tests).
 [package]

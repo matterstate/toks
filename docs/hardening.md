@@ -1,3 +1,6 @@
+> Historical C implementation record through `17ec6e9`. Its release, proof and
+> mutation runners are retired. Current Rust checks are in [validation](validation.md).
+
 hardening toks
 ==============
 

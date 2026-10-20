@@ -1,15 +1,15 @@
 #!/bin/sh
 # tools/bench/e2e_ab.sh: a paired comparison of two tiers of one build, abba per cell (A B B A, ROUNDS times),
 # so slow drifts in a shared host's load cancel. Uses tools/bench/e2e.c (best of REPS per state inside each run; its
-# pass after the other corpora, as tools/bench/e2e.sh).
+# pass after the other corpora, using the shared corpus definitions).
 #
 #   tools/bench/e2e_ab.sh <tierA> <tierB> [pin]       e.g. BUILD_DIR=build/x86-k35 tools/bench/e2e_ab.sh avx2 avx512 "taskset -c 20"
 #
 # env: BUILD_DIR, TOKS_LIST, CORPORA, CHUNKS, REPS (5), ROUNDS (2), TOKS_TOKENIZER_DIR (~/.cache/toks/tokenizers),
-#      TOKS_KIMI_DIR, TOKS_BENCH_TEXT (build/text): the cells are e2e.sh's (same corpora, same files)
+#      TOKS_KIMI_DIR, TOKS_BENCH_TEXT (build/text): the cells use common.sh (same corpora, same files)
 # prints per cell the pass and cold seconds of every run and B / A of the medians (> 1: B slower). Exactness is
-# e2e.sh's job; this script only times. tools/release/rc_host.sh's rent step re-measures with it every cell where a
-# separate asm run looked slower than the scalar run.
+# a separate gate; this script only times. Use tools/rust-port/bench.py for a
+# paired canary with mandatory output comparison (docs/validation.md).
 set -e
 A=$1
 B=$2

@@ -26,3 +26,5 @@ __pycache__/
 /python/THIRD_PARTY_NOTICES.md
 
 /target/
+
+/.ruff_cache/

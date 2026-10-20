@@ -45,7 +45,7 @@ ownership.
 - `src/core/*.h`, `src/platform/*.h`: layout declarations for assembly and ABI tests.
 - `src/gen/`: pinned table data and declarations used by test oracles.
 - `tests/`: correctness fixtures and C ABI callers linked to Rust.
-- `tools/`: test, oracle and benchmark callers.
+- `tools/`: test, oracle and benchmark callers; see the [tool guide](tools/README.md).
 - `docs/`: algorithms, API contracts, migration details and measurement receipts.
 
 ## Performance and exactness

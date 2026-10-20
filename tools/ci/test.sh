@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # tools/ci/test.sh [tier ...]: the CI exactness gate on this host (docs/ci.md). One `make -j all asmcheck` builds
 # what every tier shares, then `make -j test` once per tier, one tier after the other (default: native, i.e.
-# TOKS_TIER unset, the tier the cpu and the build pick; then scalar, the c twins): make runs a tier's test binaries
+# TOKS_TIER unset, the tier the cpu and the build pick; then scalar, the portable Rust path): make runs a tier's test binaries
 # side by side on every cpu, and the tiers do not overlap, so the other tier's load never reaches test_stall's
 # timing checks. Each tier's output is build/ci/<tier>.log, printed whole once it is done; then tools/ci/suites.py
 # over the logs (per-binary counts and SKIPs; a critical target skipped fails). The tokenizer files must be in
@@ -43,5 +43,5 @@ for t in "${tiers[@]}"; do
     echo "test.sh: make test ($t, TOKS_TIER=$([ "$t" = native ] && echo unset || echo "$t")):" \
          "$([ "$rc" = 0 ] && echo passed || echo "FAILED, exit $rc"), done at ${SECONDS} s"
 done
-python3 tools/ci/suites.py --rust "${logs[@]}" || status=1
+python3 tools/ci/suites.py "${logs[@]}" || status=1
 exit $status

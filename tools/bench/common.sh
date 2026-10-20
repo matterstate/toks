@@ -1,14 +1,16 @@
 #!/bin/sh
 # tools/bench/common.sh: what the bench scripts share, sourced (. tools/bench/common.sh) from the source root by
-# e2e.sh, gate.sh, e2e_ab.sh and e2e_commits.sh: the corpora (one list), the OTHER text of the pass and lang-x states,
+# gate.sh, e2e_ab.sh and e2e_commits.sh: the corpora (one list), the OTHER text of the pass and lang-x states,
 # the tokenizer paths, and the void rule's receipts (load, the pinned cpu's other threads, busy shares).
-# env: TOKS_BENCH_TEXT (build/text: the corpus files, tools/bench/corpus.sha256; the default is verified and seeded
-#      from ~/.cache/toks/bench-text by tools/release/rc_host.sh's corpus step)  TOKS_TOKENIZER_DIR
+# env: TOKS_BENCH_TEXT (build/text: pre-staged corpus files, tools/bench/corpus.sha256)  TOKS_TOKENIZER_DIR
 #      (~/.cache/toks/tokenizers)  TOKS_KIMI_DIR (~/.cache/toks/kimik3)  PINCPU (the pinned cpu, linux receipts)
 T=${TOKS_BENCH_TEXT:-build/text}
-[ -n "${TOKS_BENCH_TEXT:-}" ] || sh tools/release/rc_host.sh corpus >&2 || exit 1
 K=${TOKS_TOKENIZER_DIR:-$HOME/.cache/toks/tokenizers}
 if command -v sha256sum >/dev/null 2>&1; then SHA="sha256sum"; else SHA="shasum -a 256"; fi
+if [ -z "${TOKS_BENCH_TEXT:-}" ]; then
+    manifest="$PWD/tools/bench/corpus.sha256"
+    (cd "$T" && $SHA -c "$manifest") >&2 || exit 1
+fi
 tpath() { case $1 in kimik3) echo "${TOKS_KIMI_DIR:-$HOME/.cache/toks/kimik3}" ;; *) echo "$K/$1" ;; esac; }
 tsha() { if [ -d "$1" ]; then cat "$1/tiktoken.model" "$1/tokenizer_config.json" | $SHA | cut -c1-64; else $SHA "$1" | cut -c1-64; fi; }
 files() {
@@ -31,7 +33,7 @@ others() {   # the OTHER text of the pass and lang-x states: every corpus file o
 corpus_lines() {   # CORPUS receipts for corpora $*; a missing file stops the run (it once printed 0-byte void cells)
     for corp in "$@"; do
         for f in $(files "$corp"); do
-            [ -s "$f" ] || { echo "$f missing (tools/release/rc_host.sh corpus seeds build/text)" >&2; exit 1; }
+            [ -s "$f" ] || { echo "$f missing (stage corpus files under $T or set TOKS_BENCH_TEXT)" >&2; exit 1; }
         done
         # shellcheck disable=SC2046
         echo "CORPUS $corp $(cat $(files $corp) | $SHA | cut -c1-64) $(cat $(files $corp) | wc -c | tr -d ' ') bytes: $(files $corp)"

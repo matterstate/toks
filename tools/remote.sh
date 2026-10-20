@@ -11,7 +11,6 @@
 #
 #   tools/remote.sh <host> make -j20 test
 #   tools/remote.sh <host> 'make -j32 test && ./build/linux-x86_64/tests/test_k0'
-#   tools/remote.sh <host> 'TOKS_HOST_KEY=gb10a PINCPU=7 sh tools/bench/e2e.sh "taskset -c 7"'   (receipts name the key)
 set -eu
 [ $# -ge 2 ] || { echo "usage: tools/remote.sh <host> <command...>" >&2; exit 2; }
 host=$1; shift

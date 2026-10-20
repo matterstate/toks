@@ -117,3 +117,43 @@ retains all final samples, source hashes, prefix hashes and separate warm
 CPU/memory diagnostics. The consumer CPU suite passed 138 tests with 19 GPU
 skips, including three new buffer/split regressions. These measurements do not
 establish model inference or GPU training throughput.
+
+## Batched consumer buffers (2026-10-20)
+
+`encode_batch_into(texts, out)` combines the existing worker pool with a flat
+caller-owned integer buffer and document offsets. The consumer's text planner
+now uses it in place of serial `encode_into` calls. The tokenizer creates no
+Python integer per token; small or oversized batches retain the serial
+fallback. See the [Python API](../python/README.md) for capacity checks.
+
+The production Nix build at `ba97f0b` was measured against itself with consumer
+baseline `34da9d5` and candidate `aaf5f87`. Four ABBA/BAAB blocks, three fresh
+tokenizers per process and CPU affinity 8–15 give these original-source JSONL
+preprocessing times (1,024 documents each):
+
+| Source | Serial buffer | Batched buffer | Speedup |
+| --- | ---: | ---: | ---: |
+| FineWeb, 1,090,466 tokens | 48.810 ms | 33.664 ms | **1.450×** |
+| Pleias, 336,377 tokens | 22.572 ms | 18.402 ms | **1.227×** |
+
+Times are means of block medians; speedups are geometric means of paired
+ratios. Every block improves: FineWeb 1.423–1.462×, Pleias 1.212–1.236×.
+The two-block frozen-corpus check confirms 1.362× and 1.233× respectively.
+Complete token and packed-array hashes match in every sample. Rendering and
+decision preparation show no established improvement.
+
+The consumer reserves one integer slot per character and retries once at the
+exact required size on overflow. Warm traced Python/NumPy allocation peaks
+increase from 22.99 to 36.79 MB for FineWeb and 7.16 to 11.29 MB for Pleias.
+These include unused NumPy capacity and exclude native Rust allocations;
+they do not measure resident memory. This change trades transient allocation
+capacity for throughput. Model inference and GPU training were not measured.
+
+The [complete receipt](../benchmarks/results/consumer-batch-buffer-epyc9124.json)
+contains all 24 paired processes and 288 timed observations, input/output
+hashes, the Nix binary fingerprint and separate warm profiles. The production
+build passed 377 Python tests with 43 skips; standalone and independently
+rebuilt source-distribution wheels each passed 44 focused tests. The consumer
+passed 138 CPU tests with 19 GPU skips. The
+[consumer report](https://github.com/matterstate/typed-decisions/blob/aaf5f879cdfe6554d5a75b679ed0f02e1eecadf3/reports/tokenizer_batch_buffer.md)
+describes the integration and measurement scope.

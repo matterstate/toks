@@ -42,6 +42,12 @@ loader-fuzz failures under `tests/fuzz/regress/` are replayed by `test_load`
 against Rust. Retiring the old C campaigns does not imply Rust sanitizer or
 coverage-guided fuzzing coverage.
 
+`test_batch_buffer.py` checks flat output against the nine frozen tokenizer
+snapshots across added-token/template modes, plus serial/parallel batches,
+mutable inputs, sizing without writes, invalid buffers, overlap, unaligned
+output and concurrent callers. `test_batch.py` also checks its padded output
+against Hugging Face and verifies that inherited pools fall back after a fork.
+
 ## Performance canaries
 
 Compare a candidate against a known-working Rust build using the same compiler,

@@ -49,7 +49,8 @@ new tokenizer in the child to use its own worker pool.
 4-byte integers. It returns `len(texts) + 1` offsets, starting at zero; the last
 offset is the total ID count. IDs and batch padding match `encode_batch`. If the
 buffer is too small, it returns the required offsets and leaves the buffer
-unchanged: **always check `offsets[-1] <= len(out)` before using the output**.
+unchanged: **always check the required count against the output capacity before
+using the output** (`offsets[-1] <= len(out)` for a one-dimensional buffer).
 Resize and retry when necessary, or pass an empty buffer to query the size.
 Input/output overlap is rejected, and the unused tail is
 unchanged. Mutable inputs are snapshotted before releasing the GIL; output is
@@ -58,8 +59,8 @@ token. For an unpadded tokenizer, `sum(tok.encode_bound(len(text.encode())) for
 text in texts)` is a conservative capacity; configured batch padding may need
 more space. Empty batches return `[0]`.
 
-Every call below is checked against the reference named beside it by python/tests (through the built wheel), on
-every tokenizer.json under tests/data and in the tokenizer cache, and on the tiktoken models.
+Reference comparisons and frozen regression tests live in `python/tests` and
+run through the built package. See [validation](../docs/validation.md) for coverage.
 
 | call | gives | equals |
 |---|---|---|

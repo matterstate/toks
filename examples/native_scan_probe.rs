@@ -3,9 +3,9 @@ use toks::{EncodeFlags, ScratchOptions, Tier, Tokenizer};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = std::env::args().collect();
-    if !(5..=6).contains(&args.len()) {
+    if !(5..=7).contains(&args.len()) {
         return Err(
-            "usage: native_scan_probe TOKENIZER CORPUS encode|pieces PASSES [MEMO_MIB]".into(),
+            "usage: native_scan_probe TOKENIZER CORPUS encode|pieces PASSES [MEMO_MIB] [auto|scalar|avx2|avx512]".into(),
         );
     }
     let mut source = Vec::new();
@@ -26,6 +26,13 @@ fn main() -> Result<(), Box<dyn Error>> {
     if memo_mib > 128 {
         return Err("memo budget exceeds 128 MiB".into());
     }
+    let tier = match args.get(6).map_or("avx2", String::as_str) {
+        "auto" => Tier::Auto,
+        "scalar" => Tier::Scalar,
+        "avx2" => Tier::Avx2,
+        "avx512" => Tier::Avx512,
+        _ => return Err("invalid CPU tier".into()),
+    };
     let mut texts = Vec::new();
     let mut position = 0usize;
     while position < source.len() {
@@ -47,7 +54,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     if texts.is_empty() {
         return Err("corpus has no texts".into());
     }
-    let tokenizer = Tokenizer::from_file(&args[1], Tier::Avx2)?;
+    let tokenizer = Tokenizer::from_file(&args[1], tier)?;
     let mut outputs = vec![Vec::new(); texts.len()];
     let flags = EncodeFlags::NO_POSTPROCESS;
     let start = Instant::now();

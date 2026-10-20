@@ -1915,7 +1915,7 @@ unsafe extern "C" fn calibrate(mut p: *mut toks_par) {
                 }
             }
             t = now_ns();
-            while now_ns().wrapping_sub(t) < 2000000 as uint64_t {
+            while now_ns().wrapping_sub(t) < PAR_SPIN_HI as uint64_t {
                 relax();
             }
         }

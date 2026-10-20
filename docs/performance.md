@@ -53,6 +53,69 @@ are outside timing; scratch allocation and destruction are inside. Output
 vectors are reused across passes. The probe does not include Python, batch
 workers, rendering, packing or model execution.
 
+## Lookup, BPE and batch startup
+
+The follow-up FineWeb profile sampled 48.35% of native cycles in piece
+lookup/cache handling and 35.43% in BPE. Kernel experiments did not establish
+a consumer gain: a cheaper key comparison measured around parity in four
+consumer blocks; prefetching improved native text encoding but slowed decision
+encoding. Smaller caches and eight-worker pools also failed the adoption
+check. Those changes were removed; their observations remain in the
+[follow-up receipt](../benchmarks/results/lookup-followup-epyc9124.json).
+
+The retained change reduces pool initialization cost. Wakeup calibration had
+two fixed 2 ms settling waits. Each now uses the existing 200 µs spin cap,
+with all six calibration rounds retained. Pool creation measured
+4.198 → 0.582 ms, 7.214×, in four balanced process blocks with 31 constructor
+trials per process. Loading and destruction are outside constructor timing.
+
+Against `6d78e24`, the same consumer at `9d5c28a` measured:
+
+| First batch workload | Baseline ms | Candidate ms | Speedup |
+| --- | ---: | ---: | ---: |
+| 1,024 FineWeb-Edu documents | 33.601 | 30.130 | 1.115× |
+| 1,024 Pleias documents | 18.305 | 14.785 | 1.238× |
+| 256 decision questions | 4.186 | 4.215 | 0.993× |
+
+Four ABBA/BAAB blocks, three fresh-tokenizer samples per process, affinity
+8–15, Rust 1.98.1, Clang 21 and CPython 3.13.15. Times are means of block
+medians; speedups are geometric means of paired ratios. Every text block
+improved: FineWeb 1.093–1.136×, Pleias 1.226–1.252×. Every token and packed-array
+digest matched. The gain comes from initializing the first batch, rather than
+faster lookup or BPE. Decision preparation showed no improvement.
+
+The measured wheel pair's executable section differs only in six immediate-value
+bytes; lookup and BPE code and their addresses are identical. The final change
+passed 13 Rust tests, 45 native callers, 90 protected-page callers and 54 Python
+batch, snapshot, boundary and threading checks.
+
+The rebuilt production Nix environment independently confirmed the first-batch
+gain. Two ABBA/BAAB blocks per input size, three samples per process at 1,024
+records and two at 8,192 records:
+
+| Production input | Records | Baseline ms | Candidate ms | Speedup |
+| --- | ---: | ---: | ---: | ---: |
+| FineWeb-Edu | 1,024 | 33.559 | 29.748 | 1.128× |
+| Pleias | 1,024 | 18.243 | 14.726 | 1.239× |
+| FineWeb-Edu | 8,192 | 237.741 | 234.270 | 1.015× |
+| Pleias | 8,192 | 112.973 | 110.588 | 1.022× |
+
+The longer streams amortize initialization, so their gain is smaller. These
+measurements establish a startup improvement, not higher sustained BPE
+throughput. All cross-build token and packing digests matched; the updated
+consumer passed 157 CPU tests with 19 GPU skips. Its profiling helper accepts
+`--text-rows 8192 --text-root /path/to/text` for the longer comparison.
+
+Reproduce constructor measurements with the bounded Rust probe:
+
+```sh
+nix-shell --run 'cargo build --release --example batch_startup_probe'
+nix-shell -p util-linux --run 'taskset -c 8-15 target/release/examples/batch_startup_probe /path/to/tokenizer.json 31'
+```
+
+The native scanner probe also accepts a final CPU tier after `MEMO_MIB`:
+`auto`, `scalar`, `avx2` or `avx512`. The last requires the `avx512` Cargo feature.
+
 ## Workloads and reproduction
 
 The current consumer is Qwen3.5-4B decision scoring and text preprocessing in

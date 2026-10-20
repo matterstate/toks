@@ -50,6 +50,9 @@ against Hugging Face and verifies that inherited pools fall back after a fork.
 
 ## Performance canaries
 
+Keep installed measurement binaries immutable. Inspect copies:
+`objcopy --dump-section` can rewrite its input even when the bytes stay identical.
+
 Compare a candidate against a known-working Rust build using the same compiler,
 profile, CPU target, host, affinity, tokenizer files and corpus. Keep frozen
 token streams or their complete length-prefixed digests. Validate outputs

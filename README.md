@@ -13,7 +13,7 @@ frozen correctness and performance reference.
 On NixOS, enter a shell with the build tools:
 
 ```sh
-nix-shell -p cargo rustc clang llvm gnumake python313 uv
+nix-shell
 ```
 
 From that shell:
@@ -30,6 +30,8 @@ uv build --wheel python --python 3.13
 `tools/ci/test.sh` checks native and scalar execution, the assembly audit and
 missing critical tokenizer fixtures. The fetch command verifies pinned hashes;
 the cache defaults to `~/.cache/toks`. See [CI](docs/ci.md) for the full checks.
+The shell uses wrapped Clang for host C builds and unwrapped Clang for the
+cross-target assembly audit, where host compiler flags would be incorrect.
 
 Linux x86-64 and macOS arm64 have been exercised. CI currently runs on Linux
 x86-64. The Rust Windows port is incomplete. The core remains mostly unsafe;

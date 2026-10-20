@@ -192,10 +192,11 @@ fuzz:
 # the platform layer or libc; its teeth are tests/abi/cf_teeth.c, compiled with the library's flags.
 ASM_TRIPLES_arm64  := aarch64-apple-darwin aarch64-linux-gnu aarch64-windows-msvc
 ASM_TRIPLES_x86_64 := x86_64-apple-darwin x86_64-linux-gnu x86_64-pc-windows-msvc
+ASM_CC ?= $(CC)
 define ASMCHECK_TRIPLE
 $(BUILD_DIR)/asmcheck/$(2)/%.o: %.S
 	@mkdir -p $$(dir $$@)
-	$(CC) --target=$(2) $(CPPFLAGS) -Isrc/asm/$(1) -MMD -MP -c $$< -o $$@
+	$(ASM_CC) --target=$(2) $(CPPFLAGS) -Isrc/asm/$(1) -MMD -MP -c $$< -o $$@
 ASMCHECK += $$(patsubst %.S,$(BUILD_DIR)/asmcheck/$(2)/%.o,$$(wildcard src/asm/$(1)/*.S tests/asm/$(1)/*.S))
 endef
 $(foreach i,arm64 x86_64,$(foreach t,$(ASM_TRIPLES_$(i)),$(eval $(call ASMCHECK_TRIPLE,$(i),$(t)))))

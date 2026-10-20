@@ -1,5 +1,8 @@
 # Replacing the Python C adapter with Rust
 
+> Historical migration record through `17ec6e9`. The C reference is retired;
+> current regression and canary checks are in [validation](../validation.md).
+
 This plan maps `python/toks/_toks.c` as inspected on 2026-10-08. The file has
 2,299 lines and remains separate from the Rust core under `rust/`. No adapter
 implementation or benchmark was changed while preparing this document.

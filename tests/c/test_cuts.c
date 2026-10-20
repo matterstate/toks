@@ -1,11 +1,10 @@
-/* test_cuts.c: run_cuts (api.c; docs/notes/c-core.md §api.c.3, docs/models/kimi.md §2.3) against the per-code-point
- * walk it speeds up, copied below verbatim from api.c @ d11f9d1: the same cuts on every text. api.c is compiled into
- * this test (as test_memo_hash does) and run on a zeroed context with only the cut limits set: no template, so
- * run_piece emits each cut piece's end and the ends are the cuts. Small limits make every edge frequent: a word of 8
- * ascii atoms across a run's limit or a chunk's end, runs of each str.isspace() class, multi-byte spaces and
- * non-spaces, ill-formed bytes (one non-space atom each), segments right at the skip's min(cut_run, cut_chunk) bytes;
- * then kimi's own 25,000 / 400,000 on long texts. */
-#include "../../src/core/api.c"
+/* The Rust test-internals build compares run_cuts with the scalar walk from
+ * api.c at d11f9d1. Small cut limits exercise boundaries; long inputs cover
+ * Kimi's 25,000 / 400,000 limits. */
+#include "core.h"
+typedef toks_emit emit;
+extern int py_isspace(uint32_t);
+extern void run_cuts(const toks_ctx *, toks_scratch *, const uint8_t *, uint64_t, uint64_t, int, emit *, int, int);
 
 #include "guard.h"
 

@@ -5,7 +5,7 @@
  *
  *   clang -std=c17 -O2 -Wall -Wextra -Werror -Iinclude -Isrc/core -Isrc/platform -Isrc/asm/x86_64 \
  *     -Itests/common -o teeth tests/abi/teeth.c tests/abi/bad_x86_64.S tests/common/abicheck_x86_64.S \
- *     src/platform/cpu.c
+ *     target/release/libtoks.a -lpthread -lm -ldl
  *
  * (macos x86-64: add -arch x86_64 and run under rosetta.) Exit 0 iff every report is exact.
  */

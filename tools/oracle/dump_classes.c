@@ -2,7 +2,7 @@
  * src/core/classes.c with class_flags 0, the onig data of src/gen/ucd_flags.c) to stdout, for
  * tools/oracle/classes_diff.py.
  *
- *   clang -std=c17 -O2 -Isrc/core tools/oracle/dump_classes.c src/core/classes.c src/gen/ucd_flags.c \
+ *   clang -std=c17 -O2 -Isrc/core tools/oracle/dump_classes.c target/release/libtoks.a -lpthread -lm -ldl \
  *       -o build/kimi/dump_classes && build/kimi/dump_classes > build/kimi/toks_classes.bin
  */
 #include <stdio.h>

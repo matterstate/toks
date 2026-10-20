@@ -62,23 +62,10 @@ for feature in sorted({special[s.stem] for s in sources if s.stem in special}):
         target = ['--target', a.rust_target] if a.rust_target else []
         subprocess.run(['cargo', 'rustc', '-p', 'toks', '--lib', '--crate-type', 'staticlib', '--release', '--features', features, '--target-dir', str(dest)] + target, stdout=log, stderr=subprocess.STDOUT, check=True)
     variants[feature] = str(dest / (a.rust_target or '') / 'release/libtoks.a')
-def source(s):
-    text = s.read_text()
-    if s.stem not in ('test_cuts', 'test_memo_hash', 'test_state_hash'): return s
-    if s.stem == 'test_cuts':
-        text = text.replace('#include "../../src/core/api.c"', '''#include "core.h"
-typedef toks_emit emit;
-extern int py_isspace(uint32_t);
-extern void run_cuts(const toks_ctx *, toks_scratch *, const uint8_t *, uint64_t, uint64_t, int, emit *, int, int);''')
-    else:
-        text = text.replace('#include "../../src/core/api.c"', '').replace('#include "../../src/core/k5_long.c"', '')
-    path = out / s.name
-    path.write_text(text)
-    return path
 def run(s):
     name = s.stem
     start = time.monotonic()
-    cmd = flags + ['-o', str(out/name), str(source(s))] + [variants.get(special.get(name), v) if v == a.lib else v for v in common]
+    cmd = flags + ['-o', str(out/name), str(s)] + [variants.get(special.get(name), v) if v == a.lib else v for v in common]
     cp = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     (out/f'{name}.build.log').write_bytes(cp.stdout)
     if cp.returncode: return {'test': name, 'status': 'build-fail', 'rc': cp.returncode}

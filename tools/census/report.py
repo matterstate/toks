@@ -92,19 +92,17 @@ O200K_EXACT = (r"[^\r\n\p{L}\p{N}]?" + _O_UP + "*" + _O_LO + "+" + _O_CONTR + "|
 assert O200K_EXACT in O200K and P_CL100K in CL100K and P_QWEN2 in CL100K and P_QWEN35 in CL100K and P_GPT2 in CL100K
 
 
-def config_c_patterns():
-    """the exact strings src/core/config.c compiles today (TOKS_PATTERNS), c-unescaped."""
-    p = ROOT / "src/core/config.c"
-    if not p.exists():
-        return []
-    src = p.read_text()
-    m = re.search(r"TOKS_PATTERNS\[\]\s*=\s*\{(.*?)\n\};", src, re.S)
-    if not m:
-        return []
-    out = []
-    for lit in re.findall(r'\{\s*"((?:[^"\\]|\\.)*)"', m.group(1)):
-        out.append(re.sub(r"\\(.)", lambda x: {"n": "\n", "r": "\r", "t": "\t"}.get(x.group(1), x.group(1)), lit))
-    return out
+def config_rust_patterns():
+    """Read the compiled fast-path patterns from the production Rust table."""
+    import ast
+
+    source = (ROOT / "rust/src/core/config.rs").read_text()
+    table = source.split("pub static mut TOKS_PATTERNS:", 1)[1].split("\n];", 1)[0]
+    literals = re.findall(r'regex: (b"(?:[^"\\]|\\.)*")', table)
+    assert len(literals) == 9
+    return [
+        ast.literal_eval(literal).removesuffix(b"\0").decode() for literal in literals
+    ]
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -413,7 +411,7 @@ def build(st):
     res, an, models = st["resolved"], st["analyzed"], st["models"]
     toks = {}       # tok id -> record
     rows = []
-    cfgc = config_c_patterns()
+    cfgc = config_rust_patterns()
     for rid, m in models.items():
         if not m.get("slices"):
             continue
@@ -1152,10 +1150,10 @@ def critical(st, rows, toks, by_id, cfgc=()):
         if t0 and any((x.get("pattern") or {}).get("Regex") == P_QWEN35 for x in (t0["chain"] or [])):
             pr = t0.get("probe") or {}
             if P_QWEN35 in cfgc:
-                txt = ("The pattern is the hub's qwen 3.5 string (kernels.md section 3), which `src/core/config.c` "
+                txt = ("The pattern is the hub's qwen 3.5 string (kernels.md section 3), which `rust/src/core/config.rs` "
                        "compiles (TOKS_PATTERNS).")
             else:
-                txt = ("The pattern is the kernels.md section 3 qwen 3.5 string, but `src/core/config.c` compiles a "
+                txt = ("The pattern is the kernels.md section 3 qwen 3.5 string, but `rust/src/core/config.rs` compiles a "
                        "different spelling: the exact-string match refuses the hub file (section 9).")
             an_ = pr.get("after_nfc")
             if pr.get("what") == "normalizer NFC (m1b)" and an_:
@@ -1296,7 +1294,7 @@ def findings(d, rows, toks, wb, cfgc):
     if cfgc and P_QWEN35 not in cfgc and q35:
         bad = [c for c in cfgc if c not in KERNELS_MD]
         tids = [t for x in q35 for t in x["tokenizers"]]
-        out.append(f"**config.c refuses the qwen 3.5 family.** `src/core/config.c` TOKS_PATTERNS holds "
+        out.append(f"**config.rs refuses the qwen 3.5 family.** `rust/src/core/config.rs` TOKS_PATTERNS holds "
                    f"`{json.dumps(bad[0]) if bad else '?'}`; every hub file of qwen 3.5 / 3.6 / 3.8 "
                    f"({', '.join(x['pid'] for x in q35)}: {len(tids)} tokenizers, {fmt_pct(share(tids))} of (b)) "
                    f"spells the letter prefix `[^\\r\\n\\p{{L}}\\p{{N}}]?` (no `\\p{{M}}`), which is kernels.md "
@@ -1865,7 +1863,7 @@ def write_md(d, path: Path, by_id, toks):
     if pr.get("rows"):
         w("")
         stg = pr.get("stages") or {}
-        w(f"**The code today.** `tools/census/probe.c` runs `toks_load` (src/core/load.c: the config parse or the "
+        w(f"**The code today.** `tools/census/probe.c` runs `toks_load` (rust/src/core/load.rs: the config parse or the "
           f"tiktoken reader, compile, the split check, the algorithm's tables, the decode tables, the tier) at commit "
           f"`{(pr.get('commit') or '?')[:10]}` (library sources as of `{pr.get('library_commit') or '?'}`) on "
           f"{pr.get('host') or 'a lab host'}{' at ' + pr['date'] if pr.get('date') else ''} over every distinct "

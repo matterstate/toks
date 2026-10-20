@@ -1,4 +1,7 @@
 toks testing
+
+> Historical C implementation record. Current Rust checks are documented in
+> [validation](validation.md); C-only build and campaign runners have been retired.
 ============
 
 `make test` is the gate on every host: docs/ci.md says where CI runs it, docs/machines.md names the lab machines.

@@ -1,5 +1,8 @@
 # Final native encoder comparison
 
+> Historical migration record through `17ec6e9`. The C reference is retired;
+> current regression and canary checks are in [validation](../validation.md).
+
 The Rust encoder is modestly faster over this fixed matrix in aggregate, with
 larger wins on some SentencePiece and WordPiece workloads. It does not win every
 cell. Python adapter overhead is measured separately and remains slower than C.

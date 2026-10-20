@@ -12,7 +12,7 @@
  *
  * Standalone (not part of `make test`):
  *   clang -std=c17 -O2 -Wall -Wextra -Wconversion -Wsign-conversion -Werror \
- *     -I src -I . tests/unicode/main.c src/core/classes.c src/gen/ucd_flags.c \
+ *     -I src -I . tests/unicode/main.c target/release/libtoks.a -lpthread -lm -ldl \
  *     -o build/unicode_test
  *   uv run tests/unicode/probe.py | ./build/unicode_test
  */

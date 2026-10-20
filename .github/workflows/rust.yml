@@ -35,13 +35,12 @@ jobs:
         run: tools/ci/test.sh
       - name: Protected pages
         run: make test-guard > build/ci/guard.log 2>&1
-      - name: Installed Python wheel and C reference
+      - name: Installed Python wheel, snapshots and pinned oracles
         run: |
-          make reference > build/ci/c-reference.log 2>&1
           uv build --wheel python --python 3.13 --out-dir build/wheels
           uv venv --python 3.13 build/python-env
           uv pip install --python build/python-env/bin/python build/wheels/*.whl pytest tokenizers==0.23.2 tiktoken==0.14.0 transformers==5.18.0
-          TOKS_LIB="$PWD/build/c-reference/linux-x86_64/libtoks.so" TOKS_PY_REPORT=build/ci/python.json build/python-env/bin/python -m pytest -q -ra -p no:cacheprovider python/tests | tee build/ci/python.log
+          TOKS_PY_REPORT=build/ci/python.json build/python-env/bin/python -m pytest -q -ra -p no:cacheprovider python/tests | tee build/ci/python.log
       - name: Source archive
         run: uv build --sdist python --python 3.13 --out-dir build/dist
       - name: Logs

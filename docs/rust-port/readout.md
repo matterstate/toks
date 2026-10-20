@@ -4,6 +4,10 @@ The consumer is `typed-decisions`: Qwen3.5-4B decision scoring and text-training
 preprocessing on Atlas (AMD EPYC 9124, Linux x86-64, CPython 3.13). These checks
 load tokenizer files only. They do not load model weights or use the GPU.
 
+The current [validation policy](../validation.md) uses reviewed Rust snapshots
+and pinned external oracles. The C reference used in historical checks below
+has been retired; existing measurement receipts are preserved.
+
 Two paths matter:
 
 - A decision question encodes its rendered chat prompt, then re-encodes the
@@ -166,8 +170,8 @@ Cargo's preserved build-script outputs identify GCC as the native-assembly
 compiler for both this experiment and the earlier batch experiment. The
 earlier Clang attribution recorded the available tool rather than the selected
 compiler. Rebuilding `e865559` under the measured shell reproduced its native
-module byte for byte. These measurements use `CC=gcc`; the Nix shell now uses
-Clang's stdenv so the frozen C reference also builds with its required compiler.
+module byte for byte. These measurements use `CC=gcc`. The Nix shell was
+corrected to use Clang's stdenv before the C reference was retired.
 
 | Workload | Method | Baseline ms | Candidate ms | Speedup |
 | --- | --- | ---: | ---: | ---: |

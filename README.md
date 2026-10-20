@@ -5,8 +5,8 @@ derived from [Actual Computer's toks](https://github.com/actual-computer/toks).
 The default branch is `main`.
 
 The Rust core uses the original NEON/AVX2 assembly and exposes an owned Rust API,
-the C ABI and a PyO3 Python extension. The original C implementation stays as a
-frozen correctness and performance reference.
+the C ABI and a PyO3 Python extension. Regression snapshots and pinned external
+oracles check correctness; known-working Rust builds provide performance baselines.
 
 ## Build and test
 
@@ -23,7 +23,6 @@ make
 python3 tools/ci/fetch_tokenizers.py
 tools/ci/test.sh
 make test-guard
-make reference
 uv build --wheel python --python 3.13
 ```
 
@@ -43,8 +42,9 @@ ownership.
 - `rust/`: production tokenizer core and worker pool.
 - `src/asm/`: shared assembly kernels; `include/`: C ABI.
 - `python/`: PyO3 binding, Python API and parity tests.
-- `src/core/`, `src/platform/`, `Makefile.reference`: frozen C reference.
-- `tests/`: correctness fixtures and C callers used against both implementations.
+- `src/core/*.h`, `src/platform/*.h`: layout declarations for assembly and ABI tests.
+- `src/gen/`: pinned table data and declarations used by test oracles.
+- `tests/`: correctness fixtures and C ABI callers linked to Rust.
 - `tools/`: test, oracle and benchmark callers.
 - `docs/`: algorithms, API contracts, migration details and measurement receipts.
 
@@ -58,7 +58,7 @@ include regressions and rejected experiments. The later
 These are historical measurements on the named machines, not a throughput
 guarantee for every tokenizer or the Python adapter.
 
-See the [Python API](python/README.md), [testing guide](docs/testing.md) and
+See the [Python API](python/README.md), [validation guide](docs/validation.md) and
 [contribution guide](CONTRIBUTING.md) for development details.
 
 The code is Apache-2.0; see [LICENSE](LICENSE), [NOTICE](NOTICE),

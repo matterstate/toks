@@ -1,4 +1,7 @@
 fuzzing toks
+
+> Historical C implementation record. Current Rust checks are documented in
+> [validation](validation.md); C-only build and campaign runners have been retired.
 ============
 
 SPEC §14.2 (sanitizer matrix), §14.4 (stateful, synthetic testing), T6 (libFuzzer per entry point, >= 24 cpu-h per

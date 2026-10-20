@@ -9,7 +9,7 @@ through hf tokenizers 0.23.2 itself (never through python's unicodedata or a reg
            RIGHTMOST_SPACE_AT_START), every scalar, both sides. --out writes the \\w ranges as a c table.
   numeric  rust char::is_numeric as hf's Digits pre-tokenizer applies it, every scalar, against oniguruma's
            \\p{N} as hf's Split sees it (the P13 digits-gpt2 analysis).
-  invert   for every pattern string in src/core/config.c's table: Split(Removed, invert=true) against
+  invert   for every pattern string in rust/src/core/config.rs's table: Split(Removed, invert=true) against
            Split(Isolated) over every scalar in four contexts, then random strings (--n, --seed).
 
 Everything is printed; any disagreement with an expectation exits 1.
@@ -173,14 +173,14 @@ def probe_numeric():
 
 
 def config_patterns():
-    src = open(os.path.join(ROOT, "src/core/config.c"), encoding="utf-8").read()
-    body = src[src.index("TOKS_PATTERNS[] = {"):]
-    body = body[:body.index("};")]
-    out = []
-    for m in re.finditer(r'\{\s*((?:"(?:[^"\\]|\\.)*"\s*)+),', body):
-        lit = "".join(re.findall(r'"((?:[^"\\]|\\.)*)"', m.group(1)))
-        out.append(lit.encode("latin-1").decode("unicode_escape"))
-    return out
+    import ast
+
+    with open(os.path.join(ROOT, "rust/src/core/config.rs"), encoding="utf-8") as file:
+        source = file.read()
+    table = source.split("pub static mut TOKS_PATTERNS:", 1)[1].split("\n];", 1)[0]
+    literals = re.findall(r'regex: (b"(?:[^"\\]|\\.)*")', table)
+    assert len(literals) == 9
+    return [ast.literal_eval(literal).removesuffix(b"\0").decode() for literal in literals]
 
 
 ALPHA = ("abcXYZ éÉßſİı ÆÇ Ωω Жж αβ ٣ 汉字かカ한 ‿_' \"!?.,;:/\\-+*=<>()[]{}@#$%^&|~` 0123456789 ²½Ⅻ٤ \t\n\r"
@@ -191,7 +191,7 @@ ALPHA = ("abcXYZ éÉßſİı ÆÇ Ωω Жж αβ ٣ 汉字かカ한 ‿_' \"!?.
 def probe_invert(n, seed):
     bad = 0
     pats = config_patterns()
-    print(f"{len(pats)} patterns in src/core/config.c")
+    print(f"{len(pats)} patterns in rust/src/core/config.rs")
     for pat in pats:
         iso = pre_tokenizers.Split(Regex(pat), "isolated", invert=False)
         rem = pre_tokenizers.Split(Regex(pat), "removed", invert=True)

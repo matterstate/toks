@@ -3,9 +3,7 @@
 gpt2's pinned file is the subject: ids below are hf 0.23.2's (checked by test_parity.py too).
 """
 import array
-import ctypes
 import gc
-import glob
 import hashlib
 import json
 import mmap
@@ -323,57 +321,6 @@ def test_encode_bound(gpt2):
         gpt2.encode_bound("12")
     with pytest.raises(TypeError):
         gpt2.encode_bound(12.0)
-
-
-def _libtoks():
-    """The separate C reference (make reference), or an explicit $TOKS_LIB."""
-    suffix = {"Darwin": ".dylib", "Windows": ".dll"}.get(platform.system(), ".so")   # this platform's, never a foreign one
-    paths = [os.environ["TOKS_LIB"]] if os.environ.get("TOKS_LIB") else sorted(
-        glob.glob(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-                               "build", "c-reference", "*", "libtoks" + suffix)))
-    if not paths:
-        pytest.skip("no C reference library (make reference, or TOKS_LIB=<path>)")
-    lib = ctypes.CDLL(paths[0])
-    lib.toks_load.argtypes = [ctypes.POINTER(ctypes.c_void_p), ctypes.c_char_p, ctypes.c_void_p]
-    lib.toks_load.restype = ctypes.c_int64
-    lib.toks_encode_bound.argtypes = [ctypes.c_void_p, ctypes.c_uint64]
-    lib.toks_encode_bound.restype = ctypes.c_uint64
-    lib.toks_unload.argtypes = [ctypes.c_void_p]
-    lib.toks_unload.restype = None
-    return lib
-
-
-def test_encode_bound_vs_c():
-    """Tokenizer.encode_bound(n) == toks_encode_bound(ctx, n) of the C library on the same file, for r 1 (gpt2,
-    llama3: a template id), 3 (qwen38: NFC byte-level), 11 (dg-exaone35: NFKC), 18/3 and 198/3 (unigram charsmaps), at
-    the lengths where ceil(r n) rounds, the limit, and the saturation at 2^64 - 1; and on each file encode stays within
-    the bound on texts that make many ids a byte (decomposing and compatibility characters, spaces, digits)"""
-    tokenizers = os.path.expanduser(os.environ.get("TOKS_TOKENIZER_CACHE", "~/.cache/toks/tokenizers"))
-    lib = _libtoks()
-    seen = 0
-    for name in ("gpt2", "llama3", "qwen38", "dg-exaone35", "uni_t5base", "uni_albert", "gemma4"):
-        path = os.path.join(tokenizers, name)
-        if not os.path.isfile(path):
-            continue
-        tok = toks.Tokenizer.from_file(path)
-        ctx = ctypes.c_void_p()
-        assert lib.toks_load(ctypes.byref(ctx), path.encode(), None) == 0, name
-        try:
-            for n in list(range(0, 50)) + [255, 256, 4095, 4096, 4097, 10**6, toks.MAX_TEXT, toks.MAX_TEXT + 1,
-                                           2**62, 2**63, 2**64 // 3, 2**64 - 2, 2**64 - 1]:
-                assert tok.encode_bound(n) == lib.toks_encode_bound(ctx, n), (name, n)
-            for text in ("\ufdfa" * 64, "\U0001d160" * 64, "\u00e9\u0301 \u2460\u2474" * 50, " " * 777 + "x", "1 2 3 " * 300):
-                n = len(text.encode())
-                ids = tok.encode(text)
-                assert len(ids) <= tok.encode_bound(n), (name, text[:8], len(ids))
-                out = array.array("I", bytes(4 * tok.encode_bound(n)))
-                m = tok.encode_into(text, out)
-                assert m == len(ids) and list(out[:m]) == ids, (name, text[:8])
-        finally:
-            lib.toks_unload(ctx)
-        seen += 1
-    if seen == 0:
-        pytest.skip(f"none of the tokenizer files under {tokenizers}")
 
 
 def test_lookups_llama2():

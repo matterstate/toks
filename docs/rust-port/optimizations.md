@@ -1,5 +1,8 @@
 # Optimization record
 
+> Historical migration record through `17ec6e9`. The C reference is retired;
+> current regression and canary checks are in [validation](../validation.md).
+
 ## Follow-up: emit the winning Unigram path directly
 
 A fresh arm64 T5 multilingual profile put about 60% of samples in `uni_piece`.

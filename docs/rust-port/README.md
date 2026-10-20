@@ -1,5 +1,8 @@
 # Rust migration
 
+> Historical migration record through `17ec6e9`. The C reference is retired;
+> current regression and canary checks are in [validation](../validation.md).
+
 The Rust library implements the tokenizer core and parallel worker pool. Cargo
 compiles Rust and the existing native assembly; it does not compile any C
 implementation. The public C ABI and table layouts are retained so the existing

@@ -1,59 +1,144 @@
-#!/usr/bin/env python3
-"""Generate pinned HF oracle streams once, then check C and Rust against them."""
+#! /usr/bin/env nix-shell
+#! nix-shell -i python3 -p python313 clang uv
+# ruff: noqa: EXE005, SIM102
+"""Generate pinned Hugging Face streams and check the Rust library against them."""
+
 import argparse
-from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import os
-from pathlib import Path
 import platform
+import re
 import subprocess
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-os.chdir(ROOT)
-p = argparse.ArgumentParser()
-p.add_argument('--models', nargs='+')
-p.add_argument('--n', type=int, default=2500)
-p.add_argument('--jobs', type=int, default=4)
-p.add_argument('--out', default='build/rust-unigram-oracle')
-p.add_argument('--reuse', action='store_true', help='use existing pinned oracle streams')
-p.add_argument('--python', help='Python with tokenizers==0.23.2; otherwise use uv')
-p.add_argument('--c-lib', help='separate C reference archive (default: build/c-reference/<platform>/libtoks.a)')
-p.add_argument('--rust-lib', default='target/release/libtoks.a')
-a = p.parse_args()
-out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
-cache = Path(os.environ.get('TOKS_TOKENIZER_CACHE', Path.home()/'.cache/toks/tokenizers'))
-# Match tests/unigram/run_all.sh's generator model set. The separate Python
-# model used to construct this generator's context lacks ALBERT/XLNet normalizers;
-# this is a generator limitation, not a claim about the library's support.
-models = a.models or sorted(x.name for x in cache.glob('uni_*') if x.name not in ('uni_albert', 'uni_xlnet'))
-isa = 'arm64' if platform.machine() in ('arm64','aarch64') else 'x86_64'
-plat = 'macos' if platform.system() == 'Darwin' else 'linux'
-libraries = {'c': a.c_lib or f'build/c-reference/{plat}-{isa}/libtoks.a', 'rust': a.rust_lib}
-for side, lib in libraries.items():
-    subprocess.run(['clang', '-O2', '-std=c17', '-Iinclude', 'tests/unigram/e2e_check.c', lib,
-                    '-lpthread', '-lm', '-o', str(out/side)] + (['-ldl'] if plat=='linux' else []), check=True)
-def run(model):
-    stream = out/(model+'.bin')
-    if not a.reuse:
-        with stream.open('wb') as f, (out/(model+'.generator.log')).open('wb') as err:
-            py = [a.python] if a.python else ['uv','run','-q','--with','tokenizers==0.23.2','python']
-            subprocess.run(py + ['tests/unigram/e2e_gen.py','--tok',model,'--kind','random','--n',str(a.n)],
-                           stdout=f, stderr=err, check=True)
-    result = {'model': model, 'model_sha256': hashlib.sha256((cache/model).read_bytes()).hexdigest(),
-              'oracle_sha256': hashlib.sha256(stream.read_bytes()).hexdigest(), 'generator': 'tokenizers==0.23.2',
-              'random_cases_requested': a.n, 'results': {}}
-    for side in ('c','rust'):
-        with stream.open('rb') as f:
-            cp = subprocess.run([str(out/side),str(cache/model)],stdin=f,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-        log = cp.stdout.decode(errors='replace')
-        (out/(model+'.'+side+'.log')).write_text(log)
-        result['results'][side] = {'status': cp.returncode, 'log': log}
-    print(model, {s: r['status'] for s,r in result['results'].items()}, flush=True)
-    return result
-with ThreadPoolExecutor(max_workers=a.jobs) as pool:
-    results = list(pool.map(run, models))
-(out/'results.json').write_text(json.dumps({'host': platform.platform(),
-    'libraries': {s: {'path': lib, 'sha256': hashlib.sha256(Path(lib).read_bytes()).hexdigest()} for s,lib in libraries.items()}, 'models': results,
-    'generator_exclusions': [] if a.models else ['uni_albert', 'uni_xlnet']},indent=2)+'\n')
-raise SystemExit(any(r['status'] != 0 for m in results for r in m['results'].values()))
+
+def main() -> None:
+    root = Path(__file__).resolve().parents[2]
+    os.chdir(root)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--models", nargs="+")
+    parser.add_argument("--n", type=int, default=2500)
+    parser.add_argument("--jobs", type=int, default=4)
+    parser.add_argument("--out", type=Path, default=Path("build/rust-unigram-oracle"))
+    parser.add_argument("--reuse", action="store_true")
+    parser.add_argument(
+        "--python", help="Python with tokenizers==0.23.2; otherwise use uv"
+    )
+    parser.add_argument(
+        "--rust-lib", type=Path, default=Path("target/release/libtoks.a")
+    )
+    args = parser.parse_args()
+    if not 1 <= args.n <= 100000:
+        parser.error("n must be 1..100000")
+    if not 1 <= args.jobs <= 32:
+        parser.error("jobs must be 1..32")
+    cache = Path(
+        os.environ.get("TOKS_TOKENIZER_CACHE", Path.home() / ".cache/toks/tokenizers")
+    )
+    exclusions = ("uni_albert", "uni_xlnet")
+    models = args.models or sorted(
+        path.name for path in cache.glob("uni_*") if path.name not in exclusions
+    )
+    if not 1 <= len(models) <= 128:
+        parser.error("expected 1..128 models")
+    args.out.mkdir(parents=True, exist_ok=True)
+    runner = args.out / "rust"
+    libraries = ["-lpthread", "-lm"]
+    if platform.system() == "Linux":
+        libraries += ["-ldl", "-lrt", "-lutil"]
+    subprocess.run(
+        [
+            "clang",
+            "-O2",
+            "-std=c17",
+            "-Iinclude",
+            "tests/unigram/e2e_check.c",
+            str(args.rust_lib),
+            *libraries,
+            "-o",
+            str(runner),
+        ],
+        check=True,
+        timeout=120,
+    )
+
+    def run(model: str) -> dict:
+        stream = args.out / (model + ".bin")
+        if not args.reuse:
+            python = (
+                [args.python]
+                if args.python
+                else ["uv", "run", "-q", "--with", "tokenizers==0.23.2", "python"]
+            )
+            with (
+                stream.open("wb") as output,
+                (args.out / (model + ".generator.log")).open("wb") as errors,
+            ):
+                subprocess.run(
+                    python
+                    + [
+                        "tests/unigram/e2e_gen.py",
+                        "--tok",
+                        model,
+                        "--kind",
+                        "random",
+                        "--n",
+                        str(args.n),
+                    ],
+                    stdout=output,
+                    stderr=errors,
+                    check=True,
+                    timeout=900,
+                )
+        with stream.open("rb") as source:
+            result = subprocess.run(
+                [str(runner), str(cache / model)],
+                stdin=source,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                timeout=900,
+                check=False,
+            )
+        log = result.stdout.decode(errors="replace")
+        summary = re.search(r": ([0-9]+) encodes,", log)
+        compared = int(summary.group(1)) if summary is not None else 0
+        status = result.returncode
+        if status == 0:
+            if compared == 0:
+                status = 1
+                log += "No encode cases were compared.\n"
+        (args.out / (model + ".rust.log")).write_text(log)
+        with stream.open("rb") as source:
+            oracle_hash = hashlib.file_digest(source, "sha256").hexdigest()
+        with (cache / model).open("rb") as source:
+            model_hash = hashlib.file_digest(source, "sha256").hexdigest()
+        print(model, status, flush=True)
+        return {
+            "model": model,
+            "model_sha256": model_hash,
+            "oracle_sha256": oracle_hash,
+            "status": status,
+            "encodes_compared": compared,
+            "log": log,
+        }
+
+    with ThreadPoolExecutor(max_workers=args.jobs) as pool:
+        results = list(pool.map(run, models))
+    with args.rust_lib.open("rb") as source:
+        library_hash = hashlib.file_digest(source, "sha256").hexdigest()
+    report = {
+        "host": platform.platform(),
+        "library_sha256": library_hash,
+        "generator": "tokenizers==0.23.2",
+        "random_cases_requested": args.n,
+        "generator_exclusions": [] if args.models else list(exclusions),
+        "models": results,
+    }
+    (args.out / "results.json").write_text(json.dumps(report, indent=2) + "\n")
+    raise SystemExit(any(result["status"] != 0 for result in results))
+
+
+if __name__ == "__main__":
+    main()

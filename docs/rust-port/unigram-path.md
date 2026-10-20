@@ -1,5 +1,8 @@
 # Unigram path-emission follow-up
 
+> Historical migration record through `17ec6e9`. The C reference is retired;
+> current regression and canary checks are in [validation](../validation.md).
+
 The Unigram encoder now reverses its winning predecessor chain into forward
 lengths and visits only the selected token boundaries during emission. It no
 longer scans every input byte after scoring. Scoring, tie rules, token IDs and

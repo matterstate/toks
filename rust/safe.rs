@@ -9,6 +9,9 @@ use std::{
     sync::Arc,
 };
 
+mod batch;
+pub use batch::BatchEncoder;
+
 pub use api::toks_info as Info;
 
 /// A stable native error code and, for loading errors, the diagnostic reason.

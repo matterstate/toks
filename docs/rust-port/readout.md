@@ -61,6 +61,86 @@ output digests and affinity. Alternate whole baseline and candidate processes
 in ABBA/BAAB blocks; repeated samples within a process are not independent
 observations. Compare complete digests before interpreting timings.
 
+## Native batch dispatch
+
+The Python adapter now uses the existing native worker pool for batches of
+32–4,096 inputs totaling 1–64 MiB. The pool has at most four participants,
+including the caller, and retains its workers between calls. Smaller batches
+use the serial encoder. The core's measured cost model decides how much work
+to distribute within the pool.
+
+The owned Rust wrapper keeps the tokenizer alive until workers have joined,
+reserves separate output buffers, retries short capacities once, and exposes
+only initialized results. Python input snapshots remain alive across the
+GIL release. Padding is applied after encoding, in original input order.
+Forked Python processes use serial encoding for inherited tokenizers; a new
+child-local tokenizer can create its own pool.
+
+## Atlas results, 2026-10-20
+
+Both variants use Rust 1.98.1, Clang 21.1.8, the `python` profile (optimization
+level 3, thin LTO, one codegen unit, unwind), and the default portable CPU target.
+The baseline is `e16b816`. CPU affinity is 8–15. Test jobs finished before the
+five ABBA/BAAB blocks ran. Each process has three samples per cell; times below
+are means of block medians, with paired geometric-mean ratios. Ratios above
+one favor the candidate. All observations are retained in
+[the full receipt](receipts/readout-parallel-epyc9124.json).
+
+| Workload | Method | Baseline ms | Candidate ms | Speedup |
+| --- | --- | ---: | ---: | ---: |
+| 256 decision prompts | encode | 1.36 | 1.43 | 0.95× |
+| 256 decision prompts | encode into buffer | 1.08 | 1.08 | 0.99× |
+| 256 decision prompts | full answer-letter validation | 3.11 | 3.08 | 1.01× |
+| 1,024 FineWeb-Edu documents | single calls | 35.41 | 35.36 | 1.00× |
+| 1,024 FineWeb-Edu documents | batches of 32 | 35.57 | 35.33 | 1.01× |
+| 1,024 FineWeb-Edu documents | one batch | 33.70 | 21.80 | 1.55× |
+| 1,024 Pleias documents | single calls | 18.07 | 18.07 | 1.00× |
+| 1,024 Pleias documents | batches of 32 | 18.01 | 17.68 | 1.02× |
+| 1,024 Pleias documents | one batch | 17.12 | 13.10 | 1.31× |
+
+The initial encode-only estimate is sensitive to one candidate process whose
+three samples were 1.99, 1.42 and 2.15 ms. No observations were discarded.
+A decision-only follow-up used three further ABBA/BAAB blocks with 15 samples
+per process and did not reproduce that loss:
+
+| 256 decision prompts | Baseline ms | Candidate ms | Speedup |
+| --- | ---: | ---: | ---: |
+| encode | 1.36 | 1.34 | 1.01× |
+| encode into buffer | 1.06 | 1.07 | 1.00× |
+| full answer-letter validation | 3.09 | 3.07 | 1.01× |
+
+The follow-up's encode ratios span 1.00–1.03×; these small differences do not
+establish a readout speedup. Its [complete receipt](receipts/readout-decisions-epyc9124.json)
+retains every timing and digest. Pass `--workload decisions --repetitions 15`
+to reproduce that subset.
+
+The large-batch ratios span 1.53–1.57× for FineWeb-Edu and 1.28–1.34× for
+Pleias across the five blocks. The improvement uses additional CPU workers;
+this is a preprocessing wall-time result, not a GPU training or inference
+speedup. The corpus and host are fixed, so these small-block measurements do
+not establish performance on other data or architectures.
+
+## Correctness
+
+All before/after token-stream digests match. A separate direct comparison with
+Hugging Face tokenizers 0.23.2 matches all 2,304 inputs and 1,438,578 tokens.
+
+Validation includes:
+
+- Four new Rust tests: algorithm/flag parity, pool lifetime and thread transfer,
+  error recovery and limits, and a normalization expansion requiring retry.
+  The eight existing owned-API tests also pass.
+- All 45 native C callers pass in automatic, scalar and both protected-page
+  geometries. All 122 pinned tokenizer fixtures were available.
+- Ten focused Python cases pass, including mutable inputs, Unicode and added
+  tokens, order, left/right padding, supported truncation, extended encodings,
+  concurrent callers and use after fork.
+- The broad Python run passed 339 cases and skipped 44 optional cases. Its
+  version check initially lacked installed package metadata; the installed-wheel
+  version check plus the ten batch cases then passed together (11 checks).
+- Wheel and source archive builds pass; the source archive includes the new
+  Rust module.
+
 ## DeepInfer reference
 
 DeepSeek's [DeepInfer Q&A](https://github.com/deepseek-ai/DeepInfer/blob/main/doc/inference_deployment_qa.md)

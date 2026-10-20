@@ -81,6 +81,8 @@ impl Tokenizer {
                     encode_special: AtomicBool::new(false),
                     cache: Mutex::new(Cache::default()),
                     pool: Mutex::new(Vec::new()),
+                    batch: Mutex::new(None),
+                    process_id: std::process::id(),
                 }),
             },
         )?;

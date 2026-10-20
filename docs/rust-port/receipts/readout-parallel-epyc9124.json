@@ -1,0 +1,3168 @@
+{
+  "date": "2026-10-20",
+  "cpu": "AMD EPYC 9124 16-Core Processor",
+  "baseline_revision": "e16b8163c15e8227102b2770c131dde0a6fc32b4",
+  "candidate": "native batch worker pool, 1 MiB gate, process-fork isolation",
+  "rustc": "1.98.1",
+  "clang": "21.1.8",
+  "python": "3.13.15 (main, Aug  5 2026, 12:25:43) [GCC 15.3.0]",
+  "profile": "python: opt-level 3, thin LTO, one codegen unit, panic unwind; default portable CPU target",
+  "protocol": "5 whole-process ABBA/BAAB blocks, 3 fresh-tokenizer samples per process; paired block median ratios; CPU affinity 8-15; all test jobs finished before timing",
+  "source_sha256": {
+    "rust/safe/batch.rs": "65cb9598a16d00d11b8f2826d38d2a5d1c90051b5454d723768fd7747cdeb113",
+    "rust/safe.rs": "e49a13c1203485d5bd924794cd94b21ffa07fd31157e3dfc6537f32abbcd6d61",
+    "rust/lib.rs": "ea2f9b109efc7d7a96a11bd6631dda333ec66c747e26fcf1141d9423c29a4a4c",
+    "python/rust/src/lib.rs": "15bf59d98809472cc5d992545633c0edb675881524b66ad55e081d390342546f",
+    "python/rust/src/tokenizer.rs": "cbc67e342305925ab8ceb1ac20326b1395c9439b2ed58c058bb0e8e04094f1c6",
+    "python/rust/src/encode.rs": "a08182093824f2b2e614d4212cf9bc0fc92e1706d11850d777a42df549414065"
+  },
+  "summary": [
+    {
+      "workload": "decisions",
+      "method": "encode",
+      "documents": 256,
+      "bytes": 310519,
+      "tokens": 74929,
+      "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+      "baseline_ms": 1.3562052,
+      "candidate_ms": 1.4323141000000001,
+      "block_speedups": [
+        0.9827212344596691,
+        0.8340919796634674,
+        0.9937076629365965,
+        0.9811078217371034,
+        0.9640859082629335
+      ],
+      "speedup": 0.9491767233630477
+    },
+    {
+      "workload": "decisions",
+      "method": "encode_into",
+      "documents": 256,
+      "bytes": 310519,
+      "tokens": 74929,
+      "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+      "baseline_ms": 1.0750258000000001,
+      "candidate_ms": 1.0844163999999998,
+      "block_speedups": [
+        1.0057697280045486,
+        0.9932059105490211,
+        0.9710431413470212,
+        0.9868998264448399,
+        1.0001111742072148
+      ],
+      "speedup": 0.9913329614191889
+    },
+    {
+      "workload": "decisions",
+      "method": "validate",
+      "documents": 256,
+      "bytes": 310519,
+      "tokens": 74929,
+      "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+      "baseline_ms": 3.1056022000000003,
+      "candidate_ms": 3.0750287000000003,
+      "block_speedups": [
+        1.0193632798029881,
+        1.0053641880974025,
+        1.0107268916389902,
+        1.015703225480386,
+        0.9986296486615328
+      ],
+      "speedup": 1.009930529711786
+    },
+    {
+      "workload": "fineweb_edu",
+      "method": "encode",
+      "documents": 1024,
+      "bytes": 4696708,
+      "tokens": 1027272,
+      "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+      "baseline_ms": 35.409637700000005,
+      "candidate_ms": 35.3622212,
+      "block_speedups": [
+        1.0029926865615169,
+        0.9829757446620749,
+        1.0389105795958475,
+        0.9858237600476262,
+        0.9960419497521469
+      ],
+      "speedup": 1.0011499489211366
+    },
+    {
+      "workload": "fineweb_edu",
+      "method": "batch32",
+      "documents": 1024,
+      "bytes": 4696708,
+      "tokens": 1027272,
+      "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+      "baseline_ms": 35.573590100000004,
+      "candidate_ms": 35.334464200000006,
+      "block_speedups": [
+        1.0204160126625064,
+        1.0016963177522464,
+        0.9953335355133682,
+        1.0122110374224464,
+        1.0043660622449657
+      ],
+      "speedup": 1.0067671013910666
+    },
+    {
+      "workload": "fineweb_edu",
+      "method": "batch1024",
+      "documents": 1024,
+      "bytes": 4696708,
+      "tokens": 1027272,
+      "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+      "baseline_ms": 33.7054089,
+      "candidate_ms": 21.7983733,
+      "block_speedups": [
+        1.5274250902453848,
+        1.5335542415210528,
+        1.5484839545129976,
+        1.5468905062772302,
+        1.5750385606512909
+      ],
+      "speedup": 1.5461915917654365
+    },
+    {
+      "workload": "pleias_synth",
+      "method": "encode",
+      "documents": 1024,
+      "bytes": 1751862,
+      "tokens": 336377,
+      "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+      "baseline_ms": 18.069405800000002,
+      "candidate_ms": 18.0752432,
+      "block_speedups": [
+        1.0118548043165547,
+        0.9685358936747912,
+        1.0165035246094773,
+        0.9845203392838386,
+        1.0170448177372238
+      ],
+      "speedup": 0.9994970535976501
+    },
+    {
+      "workload": "pleias_synth",
+      "method": "batch32",
+      "documents": 1024,
+      "bytes": 1751862,
+      "tokens": 336377,
+      "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+      "baseline_ms": 18.0152494,
+      "candidate_ms": 17.6772658,
+      "block_speedups": [
+        1.041363384823731,
+        0.9940583233988604,
+        1.0460333259441041,
+        1.0081551270161075,
+        1.0065466121295399
+      ],
+      "speedup": 1.0190234753918246
+    },
+    {
+      "workload": "pleias_synth",
+      "method": "batch1024",
+      "documents": 1024,
+      "bytes": 1751862,
+      "tokens": 336377,
+      "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+      "baseline_ms": 17.1188378,
+      "candidate_ms": 13.0958374,
+      "block_speedups": [
+        1.3378867391766958,
+        1.2834798965760577,
+        1.3101596614628008,
+        1.327598942658128,
+        1.2780009121076772
+      ],
+      "speedup": 1.3072123463655732
+    }
+  ],
+  "runs": [
+    {
+      "block": 0,
+      "index": 0,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            2015000,
+            1375287,
+            1377477
+          ],
+          "median_ns": 1377477
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1160739,
+            1080740,
+            1073230
+          ],
+          "median_ns": 1080740
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3118511,
+            3157940,
+            3108381
+          ],
+          "median_ns": 3118511
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35303184,
+            35299774,
+            39928700
+          ],
+          "median_ns": 35303184
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            36428572,
+            36676060,
+            37130156
+          ],
+          "median_ns": 36676060
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33107105,
+            33419901,
+            35120015
+          ],
+          "median_ns": 33419901
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            19582164,
+            17562262,
+            17723981
+          ],
+          "median_ns": 17723981
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17876350,
+            17655881,
+            17733771
+          ],
+          "median_ns": 17733771
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            16933618,
+            16903309,
+            16822709
+          ],
+          "median_ns": 16903309
+        }
+      ]
+    },
+    {
+      "block": 0,
+      "index": 1,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            2003251,
+            1283288,
+            1342357
+          ],
+          "median_ns": 1342357
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1144249,
+            1075959,
+            1043110
+          ],
+          "median_ns": 1075959
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3070060,
+            3097770,
+            3015841
+          ],
+          "median_ns": 3070060
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33460731,
+            34457712,
+            34583910
+          ],
+          "median_ns": 34457712
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34615220,
+            34820228,
+            34013455
+          ],
+          "median_ns": 34615220
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            21407926,
+            21218558,
+            21364397
+          ],
+          "median_ns": 21364397
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            19592283,
+            17853970,
+            17231156
+          ],
+          "median_ns": 17853970
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17372354,
+            17631262,
+            17452464
+          ],
+          "median_ns": 17452464
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            12932037,
+            13201534,
+            12769718
+          ],
+          "median_ns": 12932037
+        }
+      ]
+    },
+    {
+      "block": 0,
+      "index": 2,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1869593,
+            1375057,
+            1404367
+          ],
+          "median_ns": 1404367
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1110839,
+            1058870,
+            1062790
+          ],
+          "median_ns": 1062790
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3049771,
+            3074011,
+            3043451
+          ],
+          "median_ns": 3049771
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33614530,
+            35869399,
+            36305614
+          ],
+          "median_ns": 35869399
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35057586,
+            36287524,
+            36124646
+          ],
+          "median_ns": 36124646
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            23270129,
+            22635914,
+            21311156
+          ],
+          "median_ns": 22635914
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20528394,
+            17353275,
+            17124467
+          ],
+          "median_ns": 17353275
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17508553,
+            17344634,
+            17735451
+          ],
+          "median_ns": 17508553
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            12843248,
+            13171754,
+            12770498
+          ],
+          "median_ns": 12843248
+        }
+      ]
+    },
+    {
+      "block": 0,
+      "index": 3,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1902602,
+            1321787,
+            1310688
+          ],
+          "median_ns": 1321787
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1138840,
+            1070349,
+            1065870
+          ],
+          "median_ns": 1070349
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3033371,
+            3119820,
+            3148390
+          ],
+          "median_ns": 3119820
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34820168,
+            35315283,
+            35234394
+          ],
+          "median_ns": 35234394
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35444102,
+            35508032,
+            36688241
+          ],
+          "median_ns": 35508032
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33787278,
+            34874618,
+            33260233
+          ],
+          "median_ns": 33787278
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            21303377,
+            17877890,
+            17900639
+          ],
+          "median_ns": 17900639
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            18091308,
+            18673352,
+            19340586
+          ],
+          "median_ns": 18673352
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17581103,
+            17665341,
+            16979858
+          ],
+          "median_ns": 17581103
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "index": 0,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            2012061,
+            1286118,
+            1297458
+          ],
+          "median_ns": 1297458
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1128939,
+            1075760,
+            1100810
+          ],
+          "median_ns": 1100810
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3051751,
+            3071260,
+            3030821
+          ],
+          "median_ns": 3051751
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33731158,
+            34098245,
+            33921776
+          ],
+          "median_ns": 33921776
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34191234,
+            34680589,
+            34535870
+          ],
+          "median_ns": 34535870
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            21598884,
+            21642184,
+            21534525
+          ],
+          "median_ns": 21598884
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            19988459,
+            17672092,
+            17291535
+          ],
+          "median_ns": 17672092
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17372385,
+            17821880,
+            17284655
+          ],
+          "median_ns": 17372385
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            13131185,
+            12977676,
+            13096755
+          ],
+          "median_ns": 13096755
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "index": 1,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1884132,
+            1358257,
+            1343007
+          ],
+          "median_ns": 1358257
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1144270,
+            1076550,
+            1090199
+          ],
+          "median_ns": 1090199
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3093680,
+            3080150,
+            3067161
+          ],
+          "median_ns": 3080150
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33258463,
+            34271784,
+            34965646
+          ],
+          "median_ns": 34271784
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35064586,
+            36699411,
+            34246444
+          ],
+          "median_ns": 35064586
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            32758068,
+            33319412,
+            34079145
+          ],
+          "median_ns": 33319412
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20098378,
+            17302086,
+            17304965
+          ],
+          "median_ns": 17304965
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17481214,
+            17731041,
+            17693042
+          ],
+          "median_ns": 17693042
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17153316,
+            16824919,
+            17271775
+          ],
+          "median_ns": 17153316
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "index": 2,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1900692,
+            1381017,
+            1357877
+          ],
+          "median_ns": 1381017
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1125179,
+            1064740,
+            1049530
+          ],
+          "median_ns": 1064740
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3085420,
+            3115630,
+            3145290
+          ],
+          "median_ns": 3115630
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33313242,
+            34788848,
+            35004826
+          ],
+          "median_ns": 34788848
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34105176,
+            34693210,
+            34955027
+          ],
+          "median_ns": 34693210
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33437592,
+            34424112,
+            33412252
+          ],
+          "median_ns": 33437592
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            19683312,
+            17539923,
+            17242455
+          ],
+          "median_ns": 17539923
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17814061,
+            17417314,
+            17451894
+          ],
+          "median_ns": 17451894
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            16869649,
+            16681551,
+            16707321
+          ],
+          "median_ns": 16707321
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "index": 3,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1986681,
+            1415157,
+            2150440
+          ],
+          "median_ns": 1986681
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1151099,
+            1068870,
+            1024180
+          ],
+          "median_ns": 1068870
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3100691,
+            3110971,
+            3124140
+          ],
+          "median_ns": 3110971
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35161315,
+            37917989,
+            36334924
+          ],
+          "median_ns": 36334924
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35083036,
+            35103795,
+            37614852
+          ],
+          "median_ns": 35103795
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            22140279,
+            21932021,
+            21399366
+          ],
+          "median_ns": 21932021
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            19989849,
+            17646242,
+            18304776
+          ],
+          "median_ns": 18304776
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17982619,
+            18003038,
+            17521733
+          ],
+          "median_ns": 17982619
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            13285144,
+            13351732,
+            12958796
+          ],
+          "median_ns": 13285144
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "index": 0,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1977761,
+            1403727,
+            1357087
+          ],
+          "median_ns": 1403727
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1088200,
+            1051950,
+            1070960
+          ],
+          "median_ns": 1070960
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3176930,
+            3149620,
+            3096241
+          ],
+          "median_ns": 3149620
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34986156,
+            36121946,
+            37974648
+          ],
+          "median_ns": 36121946
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34572941,
+            37572382,
+            35368203
+          ],
+          "median_ns": 35368203
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            32705589,
+            33200043,
+            34814468
+          ],
+          "median_ns": 33200043
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20389446,
+            18644022,
+            17851190
+          ],
+          "median_ns": 18644022
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17893769,
+            17976799,
+            17880790
+          ],
+          "median_ns": 17893769
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17631622,
+            17029978,
+            16813180
+          ],
+          "median_ns": 17029978
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "index": 1,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1886832,
+            1345997,
+            1407086
+          ],
+          "median_ns": 1407086
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1160719,
+            1045020,
+            1081719
+          ],
+          "median_ns": 1081719
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3525327,
+            3155470,
+            3008572
+          ],
+          "median_ns": 3155470
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34211974,
+            35414862,
+            34836269
+          ],
+          "median_ns": 34836269
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            36177965,
+            37535202,
+            36718490
+          ],
+          "median_ns": 36718490
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            22236518,
+            22116259,
+            21701703
+          ],
+          "median_ns": 22116259
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20532044,
+            17619602,
+            17720762
+          ],
+          "median_ns": 17720762
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17408824,
+            17510364,
+            19248737
+          ],
+          "median_ns": 17510364
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            13457712,
+            13022046,
+            13014516
+          ],
+          "median_ns": 13022046
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "index": 2,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1886042,
+            1347177,
+            1375346
+          ],
+          "median_ns": 1375346
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1129730,
+            1095589,
+            1086260
+          ],
+          "median_ns": 1095589
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3080260,
+            3065451,
+            3133680
+          ],
+          "median_ns": 3080260
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33818788,
+            35906008,
+            38595632
+          ],
+          "median_ns": 35906008
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35181125,
+            34996966,
+            36043476
+          ],
+          "median_ns": 35181125
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            22116189,
+            21783842,
+            21628894
+          ],
+          "median_ns": 21783842
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20197457,
+            18336566,
+            18318835
+          ],
+          "median_ns": 18336566
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17629602,
+            17701162,
+            17698541
+          ],
+          "median_ns": 17698541
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            13208454,
+            13840108,
+            13154284
+          ],
+          "median_ns": 13208454
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "index": 3,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1927412,
+            1361197,
+            1332057
+          ],
+          "median_ns": 1361197
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1108200,
+            1042460,
+            1043300
+          ],
+          "median_ns": 1043300
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3153000,
+            3139840,
+            3155770
+          ],
+          "median_ns": 3153000
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            37441554,
+            37372954,
+            36189555
+          ],
+          "median_ns": 37372954
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            36195895,
+            36000916,
+            38782311
+          ],
+          "median_ns": 36195895
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34778559,
+            35266054,
+            33655769
+          ],
+          "median_ns": 34778559
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20076578,
+            17925860,
+            18008379
+          ],
+          "median_ns": 18008379
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            18172316,
+            19050319,
+            18935919
+          ],
+          "median_ns": 18935919
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            18856540,
+            16947969,
+            17336165
+          ],
+          "median_ns": 17336165
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "index": 0,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1861273,
+            1348877,
+            1292668
+          ],
+          "median_ns": 1348877
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1129989,
+            1056260,
+            1076679
+          ],
+          "median_ns": 1076679
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3055251,
+            3041392,
+            3094491
+          ],
+          "median_ns": 3055251
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35272584,
+            35141715,
+            35946428
+          ],
+          "median_ns": 35272584
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34674000,
+            35091355,
+            34730599
+          ],
+          "median_ns": 34730599
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            21847262,
+            21535125,
+            21419986
+          ],
+          "median_ns": 21535125
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20110768,
+            17991769,
+            17336845
+          ],
+          "median_ns": 17991769
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17229986,
+            18389065,
+            17633212
+          ],
+          "median_ns": 17633212
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            13054536,
+            12767459,
+            13070485
+          ],
+          "median_ns": 13054536
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "index": 1,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1911102,
+            1305797,
+            1318078
+          ],
+          "median_ns": 1318078
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1124409,
+            1050460,
+            1073360
+          ],
+          "median_ns": 1073360
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3093900,
+            3108981,
+            3055000
+          ],
+          "median_ns": 3093900
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34790648,
+            35601320,
+            35909518
+          ],
+          "median_ns": 35601320
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34898647,
+            35859069,
+            35674760
+          ],
+          "median_ns": 35674760
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            32984136,
+            35566091,
+            33926717
+          ],
+          "median_ns": 33926717
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20659063,
+            18334865,
+            17761461
+          ],
+          "median_ns": 18334865
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17910920,
+            17432804,
+            18611952
+          ],
+          "median_ns": 17910920
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17735251,
+            16929148,
+            17062257
+          ],
+          "median_ns": 17062257
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "index": 2,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1912452,
+            1362847,
+            1369297
+          ],
+          "median_ns": 1369297
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1132989,
+            1062550,
+            1088600
+          ],
+          "median_ns": 1088600
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3059531,
+            3145920,
+            3095960
+          ],
+          "median_ns": 3095960
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33836518,
+            36218785,
+            34792579
+          ],
+          "median_ns": 34792579
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34793748,
+            35098726,
+            35218165
+          ],
+          "median_ns": 35098726
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33095605,
+            32395361,
+            32684229
+          ],
+          "median_ns": 32684229
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            19429054,
+            17605323,
+            17741791
+          ],
+          "median_ns": 17741791
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17448124,
+            18207857,
+            17553583
+          ],
+          "median_ns": 17553583
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17515473,
+            17239045,
+            19110268
+          ],
+          "median_ns": 17515473
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "index": 3,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            2001901,
+            1273648,
+            1390246
+          ],
+          "median_ns": 1390246
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1113979,
+            1122629,
+            1059210
+          ],
+          "median_ns": 1113979
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3038911,
+            3059511,
+            3035431
+          ],
+          "median_ns": 3038911
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            37012497,
+            36133586,
+            36025287
+          ],
+          "median_ns": 36133586
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            36343034,
+            35189095,
+            34602130
+          ],
+          "median_ns": 35189095
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            22563395,
+            21438346,
+            21526065
+          ],
+          "median_ns": 21526065
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20276047,
+            18652122,
+            18625393
+          ],
+          "median_ns": 18652122
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17544413,
+            17516463,
+            17777781
+          ],
+          "median_ns": 17544413
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            14553192,
+            12990777,
+            12987366
+          ],
+          "median_ns": 12990777
+        }
+      ]
+    },
+    {
+      "block": 4,
+      "index": 0,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1835112,
+            1313637,
+            1342287
+          ],
+          "median_ns": 1342287
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1135259,
+            1034210,
+            1108720
+          ],
+          "median_ns": 1108720
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3060431,
+            3042091,
+            3051661
+          ],
+          "median_ns": 3051661
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33878187,
+            36181205,
+            35782770
+          ],
+          "median_ns": 35782770
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35633390,
+            37005778,
+            34656839
+          ],
+          "median_ns": 35633390
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            33031216,
+            33780208,
+            33688949
+          ],
+          "median_ns": 33688949
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            19856951,
+            18164227,
+            19233127
+          ],
+          "median_ns": 19233127
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17929329,
+            17467853,
+            18351465
+          ],
+          "median_ns": 17929329
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            16814299,
+            16807380,
+            17148567
+          ],
+          "median_ns": 16814299
+        }
+      ]
+    },
+    {
+      "block": 4,
+      "index": 1,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1991421,
+            1385187,
+            1298847
+          ],
+          "median_ns": 1385187
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1309578,
+            1053139,
+            1099409
+          ],
+          "median_ns": 1099409
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3080390,
+            3037181,
+            3073891
+          ],
+          "median_ns": 3073891
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            36155806,
+            34452942,
+            35767149
+          ],
+          "median_ns": 35767149
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34998776,
+            35638111,
+            35575331
+          ],
+          "median_ns": 35575331
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            22318887,
+            21401556,
+            21535335
+          ],
+          "median_ns": 21535335
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20294496,
+            17819240,
+            17904080
+          ],
+          "median_ns": 17904080
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17667332,
+            20883011,
+            18190967
+          ],
+          "median_ns": 18190967
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            14217284,
+            13370923,
+            13307104
+          ],
+          "median_ns": 13370923
+        }
+      ]
+    },
+    {
+      "block": 4,
+      "index": 2,
+      "variant": "candidate",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1907422,
+            1385536,
+            1322907
+          ],
+          "median_ns": 1385536
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1105529,
+            1068360,
+            1037671
+          ],
+          "median_ns": 1068360
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3110910,
+            3049171,
+            3063951
+          ],
+          "median_ns": 3063951
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34168134,
+            37383284,
+            35122805
+          ],
+          "median_ns": 35122805
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            35819299,
+            35570471,
+            35040036
+          ],
+          "median_ns": 35570471
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            21891761,
+            22465006,
+            21955891
+          ],
+          "median_ns": 21955891
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20412615,
+            18963020,
+            17392564
+          ],
+          "median_ns": 18963020
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17879140,
+            18496344,
+            17781961
+          ],
+          "median_ns": 17879140
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            13242404,
+            13058815,
+            13154454
+          ],
+          "median_ns": 13154454
+        }
+      ]
+    },
+    {
+      "block": 4,
+      "index": 3,
+      "variant": "baseline",
+      "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+      "cpu_affinity": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+      "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+      "module_sha256": "80a81b05bd55ffef307a06b1abac0be4ba69de6be5d80acf366d8021652bf5be",
+      "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+      "rows": [
+        {
+          "workload": "decisions",
+          "method": "encode",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1993391,
+            1318747,
+            1328928
+          ],
+          "median_ns": 1328928
+        },
+        {
+          "workload": "decisions",
+          "method": "encode_into",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            1113989,
+            1059290,
+            1046230
+          ],
+          "median_ns": 1059290
+        },
+        {
+          "workload": "decisions",
+          "method": "validate",
+          "documents": 256,
+          "bytes": 310519,
+          "tokens": 74929,
+          "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+          "samples_ns": [
+            3077770,
+            3112580,
+            3057001
+          ],
+          "median_ns": 3077770
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34587511,
+            34940107,
+            34826598
+          ],
+          "median_ns": 34826598
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34987356,
+            35823039,
+            35851398
+          ],
+          "median_ns": 35823039
+        },
+        {
+          "workload": "fineweb_edu",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 4696708,
+          "tokens": 1027272,
+          "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+          "samples_ns": [
+            34241714,
+            35146105,
+            34811409
+          ],
+          "median_ns": 34811409
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "encode",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            20390355,
+            18262366,
+            17846560
+          ],
+          "median_ns": 18262366
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch32",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17840400,
+            19029408,
+            18376915
+          ],
+          "median_ns": 18376915
+        },
+        {
+          "workload": "pleias_synth",
+          "method": "batch1024",
+          "documents": 1024,
+          "bytes": 1751862,
+          "tokens": 336377,
+          "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+          "samples_ns": [
+            17085157,
+            17525513,
+            17000878
+          ],
+          "median_ns": 17085157
+        }
+      ]
+    }
+  ],
+  "hugging_face_check": {
+    "oracle": "0.23.2",
+    "rows": [
+      {
+        "workload": "decisions",
+        "documents": 256,
+        "tokens": 74929,
+        "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d"
+      },
+      {
+        "workload": "fineweb_edu",
+        "documents": 1024,
+        "tokens": 1027272,
+        "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4"
+      },
+      {
+        "workload": "pleias_synth",
+        "documents": 1024,
+        "tokens": 336377,
+        "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945"
+      }
+    ]
+  }
+}

@@ -149,14 +149,33 @@ impl Tokenizer {
             longest_text = longest_text.max(text.len);
             tx.push(text);
         }
-        let values = this.with_slot(py, longest_text, |s| {
-            let mut run = || {
-                tx.iter()
-                    .map(|text| s.encoder.encode(text.bytes(), F::from_bits(flags | 32)))
-                    .collect::<Result<Vec<_>, _>>()
-            };
-            if total >= 2048 { py.detach(run) } else { run() }.map_err(|e| core_error(py, e))
-        })?;
+        let parallel = tx.len() >= 32
+            && tx.len() <= toks::BatchEncoder::TEXTS_MAX
+            && (1 << 20..=toks::BatchEncoder::BYTES_MAX).contains(&total)
+            && this.process_id == std::process::id();
+        let values = if parallel {
+            py.detach(|| {
+                let mut batch = crate::lock(&this.batch);
+                if batch.is_none() {
+                    *batch = Some(this.core.batch_encoder(this.options)?);
+                }
+                let texts: Vec<_> = tx.iter().map(Text::bytes).collect();
+                batch
+                    .as_mut()
+                    .expect("batch pool initialized")
+                    .encode(&texts, F::from_bits(flags | 32))
+            })
+            .map_err(|e| core_error(py, e))?
+        } else {
+            this.with_slot(py, longest_text, |s| {
+                let mut run = || {
+                    tx.iter()
+                        .map(|text| s.encoder.encode(text.bytes(), F::from_bits(flags | 32)))
+                        .collect::<Result<Vec<_>, _>>()
+                };
+                if total >= 2048 { py.detach(run) } else { run() }.map_err(|e| core_error(py, e))
+            })?
+        };
         let longest = values.iter().map(Vec::len).max().unwrap_or(0);
         let out = PyList::empty(py);
         for (ids, text) in values.iter().zip(tx) {

@@ -19,6 +19,11 @@ def main() -> None:
     parser.add_argument("--corpus", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--repetitions", type=int, default=5)
+    parser.add_argument(
+        "--workload",
+        choices=("decisions", "fineweb_edu", "pleias_synth"),
+        action="append",
+    )
     args = parser.parse_args()
     if not 1 <= args.repetitions <= 31:
         parser.error("repetitions must be 1..31")
@@ -42,7 +47,7 @@ def main() -> None:
             present.add(token["content"])
     definition = json.dumps(definition)
     rows = []
-    for name in ("decisions", "fineweb_edu", "pleias_synth"):
+    for name in args.workload or ("decisions", "fineweb_edu", "pleias_synth"):
         texts = corpus[name]
         if not 1 <= len(texts) <= 1024:
             parser.error(f"{name} must contain 1..1024 inputs")

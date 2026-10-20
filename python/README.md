@@ -35,6 +35,15 @@ tok.n_vocab, tok.eot_token, tok.special_tokens_set, tok.token_byte_values()
 
 ## The API and what each call equals
 
+`encode_batch` and `encode_batch_ex` reuse a native worker pool for batches of
+32–4,096 inputs totaling 1–64 MiB. The pool uses at most four participants,
+including the caller, and respects the process's available CPUs. Smaller batches
+use the serial encoder. Input order, token IDs, truncation and padding stay the
+same. Concurrent large batches on one tokenizer wait for the same pool while
+the GIL is released.
+After a process fork, an inherited tokenizer uses serial encoding; construct a
+new tokenizer in the child to use its own worker pool.
+
 Every call below is checked against the reference named beside it by python/tests (through the built wheel), on
 every tokenizer.json under tests/data and in the tokenizer cache, and on the tiktoken models.
 

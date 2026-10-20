@@ -9,6 +9,7 @@
 extern crate libc;
 
 mod safe;
+pub use safe::BatchEncoder;
 pub use safe::{AddedToken, DecodeFlags, Decoder, EncodeFlags, Encoder, Error, Info, ScratchOptions, Template, Tier, Tokenizer};
 
 pub mod src {

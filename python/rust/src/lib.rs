@@ -79,6 +79,8 @@ struct Tokenizer {
     encode_special: AtomicBool,
     cache: Mutex<Cache>,
     pool: Mutex<Vec<Slot>>,
+    batch: Mutex<Option<toks::BatchEncoder>>,
+    process_id: u32,
 }
 impl Tokenizer {
     fn with_slot<T>(

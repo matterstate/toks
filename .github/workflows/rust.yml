@@ -1,19 +1,15 @@
-name: Rust port
-
+name: Rust
 on:
   push:
-    branches: [codex/rust-port]
+    branches: [main]
   pull_request:
-    paths: ['rust/**', 'python/**', 'src/asm/**', 'include/**', 'Cargo.*', 'Makefile*', 'tools/rust-port/**', 'tools/ci/**', '.github/workflows/rust.yml']
+    branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: rust-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   linux-x86_64:
     runs-on: ubuntu-24.04
@@ -52,7 +48,7 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
-          name: rust-port-results
+          name: rust-results
           path: |
             build/ci/*.log
             build/ci/*.json

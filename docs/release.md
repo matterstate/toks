@@ -1,5 +1,8 @@
 # Releasing toks
 
+This is the historical release procedure for Actual Computer's C implementation.
+This private Rust fork uses `main`; its current checks are in [CI](ci.md).
+
 A toks release is a tag `v<MAJOR.MINOR.PATCH>` on master, the C library + headers per platform, and the Python
 wheels. One number: `TOKS_VERSION` in `include/toks.h`. Everything else reads it (`toks_version()`, the wheel's
 version through `python/setup.py`, `toks.__version__`, the bundle names, the generated asm include);

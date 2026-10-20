@@ -31,10 +31,8 @@ governs.
 
 ## Contributing
 
-Contributions land under [CONTRIBUTING.md](CONTRIBUTING.md): for now every pull request that merges is run by an
-Actual Computer engineer, who cherry-picks contributors' commits with their authorship kept, and every commit
-carries a sign-off plus a grant that lets Actual Computer Inc. relicense the contribution, so toks stays one work
-under one licensor.
+Contributions to this private fork follow [CONTRIBUTING.md](CONTRIBUTING.md)
+and use Apache-2.0. Existing upstream grants and notices remain intact.
 
 ## Trademarks
 

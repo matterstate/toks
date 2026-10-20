@@ -1,7 +1,7 @@
 # toks for Python
 
-The Python package of [toks](../README.md): a CPython extension module over the C ABI
-([`include/toks.h`](../include/toks.h)), with the library linked in statically. Ids are exactly hf
+The Python package of [toks](../README.md): a PyO3 CPython extension over the Rust core,
+with the library linked in statically. Ids are exactly hf
 `tokenizers` 0.23.2's; the API follows hf's `tokenizers.Tokenizer` so it drops in, and the same object answers
 tiktoken's `Encoding` calls.
 

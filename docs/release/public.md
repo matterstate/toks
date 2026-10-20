@@ -1,5 +1,8 @@
 # Going public: the flip runbook
 
+This is Actual Computer's historical publication runbook. It does not apply to
+the private `matterstate/toks` fork; current checks are in [CI](../ci.md).
+
 How the toks repository goes from a private history to a public one, and what to check before the switch. The
 public repository starts from **one orphan root commit of the scrubbed tree**: the private history (commit
 messages, PR bodies and receipts that named lab machines, home directories and people) is not carried over.

@@ -86,3 +86,34 @@ about 1%, beyond the earlier worker-pool gain.
 All before/after token digests matched. These results describe tokenizer wall
 time on one host and corpus. They do not establish GPU training or end-to-end
 inference improvements, or guarantee performance on other hosts.
+
+## Consumer preprocessing
+
+A CPU profile of the integrated consumer found that Python integer-list
+conversion costs about 21 ms per frozen FineWeb batch. The consumer now uses
+`encode_into` with a reusable NumPy buffer and an owned copy per retained
+document. Both sides use the same installed fork binary; this change is in
+[typed-decisions `34da9d5`](https://github.com/matterstate/typed-decisions/blob/34da9d5/reports/tokenizer_integration_profile.md).
+
+Original JSONL prefixes, 1,024 documents each, with reading, JSON decoding,
+tokenization, array construction and held-out/training packing included:
+
+| Workload | Baseline ms | Candidate ms | Speedup |
+| --- | ---: | ---: | ---: |
+| FineWeb-Edu JSONL | 63.841 | 48.792 | 1.308× |
+| Pleias SYNTH JSONL | 28.323 | 22.625 | 1.252× |
+| 256 decision questions | 20.471 | 20.382 | 1.004× |
+
+Two whole-process ABBA/BAAB blocks, three fresh-tokenizer samples per process,
+CPU affinity 8–15. Inputs are warm in the OS page cache; loading, output hashing
+and persistence are outside timing. Previous outputs are released and GC
+collected before each measurement; automatic GC inside workloads stays enabled.
+The four-block frozen-corpus comparison measured 1.371× FineWeb and 1.256×
+Pleias. Every output digest matches. Decision preparation is unchanged and no
+readout speedup is established; chat-template rendering dominates that path.
+
+The [complete receipt](../benchmarks/results/consumer-tokenization-epyc9124.json)
+retains all final samples, source hashes, prefix hashes and separate warm
+CPU/memory diagnostics. The consumer CPU suite passed 138 tests with 19 GPU
+skips, including three new buffer/split regressions. These measurements do not
+establish model inference or GPU training throughput.

@@ -695,7 +695,7 @@
         14,
         15
       ],
-      "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "model": "<model-cache>/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
       "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
       "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
       "model_files": {
@@ -708,11 +708,11 @@
     },
     "variants": {
       "a": {
-        "module": "/home/ethoma/projects/toks-lookup-perf/build/lookup-perf/baseline-immutable/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module": "<tokenizer-checkout>/build/lookup-perf/baseline-immutable/toks/_toks.cpython-313-x86_64-linux-gnu.so",
         "module_sha256": "b9ed6139214f70f998c628662da04ea53f9d66880faa9d28b4b2fea9f4cb8df9"
       },
       "b": {
-        "module": "/home/ethoma/projects/toks-lookup-perf/build/lookup-perf/settle-immutable/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module": "<tokenizer-checkout>/build/lookup-perf/settle-immutable/toks/_toks.cpython-313-x86_64-linux-gnu.so",
         "module_sha256": "5665f4a2fd146a01b9eb5838ca4292e1be9f19340a29e30db1ab8c8ccfef9016"
       }
     },
@@ -744,11 +744,11 @@
       "decisions": {},
       "fineweb_edu": {
         "tokens": 1090466,
-        "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl"
+        "reader_source": "<data-root>/text/fineweb_edu.jsonl"
       },
       "pleias_synth": {
         "tokens": 336377,
-        "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl"
+        "reader_source": "<data-root>/text/pleias_synth.jsonl"
       }
     },
     "processes": [
@@ -2465,7 +2465,7 @@
             14,
             15
           ],
-          "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "model": "<model-cache>/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
           "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
           "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
           "model_files": {
@@ -2478,11 +2478,11 @@
         },
         "variants": {
           "a": {
-            "module": "/home/ethoma/projects/toks/build/lookup-perf/package/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module": "<tokenizer-checkout>/build/lookup-perf/package/toks/_toks.cpython-313-x86_64-linux-gnu.so",
             "module_sha256": "b9ed6139214f70f998c628662da04ea53f9d66880faa9d28b4b2fea9f4cb8df9"
           },
           "b": {
-            "module": "/home/ethoma/projects/toks-lookup-perf/build/lookup-perf/package/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+            "module": "<tokenizer-checkout>/build/lookup-perf/package/toks/_toks.cpython-313-x86_64-linux-gnu.so",
             "module_sha256": "06c20f26076c0cc7936b12dd1a623b57b85e5ae321c83269536248a2dd94dd95"
           }
         },
@@ -2514,11 +2514,11 @@
           "decisions": {},
           "fineweb_edu": {
             "tokens": 1090466,
-            "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl"
+            "reader_source": "<data-root>/text/fineweb_edu.jsonl"
           },
           "pleias_synth": {
             "tokens": 336377,
-            "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl"
+            "reader_source": "<data-root>/text/pleias_synth.jsonl"
           }
         },
         "processes": [
@@ -4843,10 +4843,10 @@
             14,
             15
           ],
-          "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "model": "<model-cache>/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
           "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
           "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
-          "module": "/home/ethoma/projects/toks/build/lookup-perf/package/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+          "module": "<tokenizer-checkout>/build/lookup-perf/package/toks/_toks.cpython-313-x86_64-linux-gnu.so",
           "module_sha256": "b9ed6139214f70f998c628662da04ea53f9d66880faa9d28b4b2fea9f4cb8df9",
           "model_files": {
             "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
@@ -4855,13 +4855,13 @@
             "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
           },
           "args": {
-            "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
-            "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
-            "output": "/home/ethoma/projects/toks-lookup-perf/build/lookup-perf/eight-pilot/0-a.json",
+            "corpus": "<tokenizer-checkout>/build/readout/corpus.json",
+            "cases": "<data-root>/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+            "output": "<tokenizer-checkout>/build/lookup-perf/eight-pilot/0-a.json",
             "samples": 3,
             "profile": false,
             "decisions_only": false,
-            "text_root": "/home/ethoma/data/text"
+            "text_root": "<data-root>/text"
           },
           "rows": [
             {
@@ -4884,7 +4884,7 @@
               "diagnostic_list_conversion_ns": 22465577,
               "diagnostic_pack_ns": 3768979,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -4898,7 +4898,7 @@
               "diagnostic_list_conversion_ns": 7170052,
               "diagnostic_pack_ns": 1675862,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -4924,7 +4924,7 @@
               "diagnostic_list_conversion_ns": 22461217,
               "diagnostic_pack_ns": 3709430,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -4938,7 +4938,7 @@
               "diagnostic_list_conversion_ns": 7213852,
               "diagnostic_pack_ns": 1800610,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -4964,7 +4964,7 @@
               "diagnostic_list_conversion_ns": 22427927,
               "diagnostic_pack_ns": 3588351,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -4978,7 +4978,7 @@
               "diagnostic_list_conversion_ns": 7206212,
               "diagnostic_pack_ns": 1820981,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5004,10 +5004,10 @@
             14,
             15
           ],
-          "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "model": "<model-cache>/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
           "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
           "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
-          "module": "/home/ethoma/projects/toks-lookup-perf/build/lookup-perf/package-eight/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+          "module": "<tokenizer-checkout>/build/lookup-perf/package-eight/toks/_toks.cpython-313-x86_64-linux-gnu.so",
           "module_sha256": "23c139aa147aa1dca310b334218e011dced2038dfc392250763331b3041171d9",
           "model_files": {
             "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
@@ -5016,13 +5016,13 @@
             "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
           },
           "args": {
-            "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
-            "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
-            "output": "/home/ethoma/projects/toks-lookup-perf/build/lookup-perf/eight-pilot/1-b.json",
+            "corpus": "<tokenizer-checkout>/build/readout/corpus.json",
+            "cases": "<data-root>/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+            "output": "<tokenizer-checkout>/build/lookup-perf/eight-pilot/1-b.json",
             "samples": 3,
             "profile": false,
             "decisions_only": false,
-            "text_root": "/home/ethoma/data/text"
+            "text_root": "<data-root>/text"
           },
           "rows": [
             {
@@ -5045,7 +5045,7 @@
               "diagnostic_list_conversion_ns": 22219910,
               "diagnostic_pack_ns": 3785799,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -5059,7 +5059,7 @@
               "diagnostic_list_conversion_ns": 7331081,
               "diagnostic_pack_ns": 1818970,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5085,7 +5085,7 @@
               "diagnostic_list_conversion_ns": 22269619,
               "diagnostic_pack_ns": 3688520,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -5099,7 +5099,7 @@
               "diagnostic_list_conversion_ns": 7794426,
               "diagnostic_pack_ns": 1837840,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5125,7 +5125,7 @@
               "diagnostic_list_conversion_ns": 22227500,
               "diagnostic_pack_ns": 3716430,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -5139,7 +5139,7 @@
               "diagnostic_list_conversion_ns": 7204002,
               "diagnostic_pack_ns": 1685012,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5165,10 +5165,10 @@
             14,
             15
           ],
-          "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "model": "<model-cache>/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
           "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
           "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
-          "module": "/home/ethoma/projects/toks-lookup-perf/build/lookup-perf/package-eight/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+          "module": "<tokenizer-checkout>/build/lookup-perf/package-eight/toks/_toks.cpython-313-x86_64-linux-gnu.so",
           "module_sha256": "23c139aa147aa1dca310b334218e011dced2038dfc392250763331b3041171d9",
           "model_files": {
             "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
@@ -5177,13 +5177,13 @@
             "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
           },
           "args": {
-            "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
-            "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
-            "output": "/home/ethoma/projects/toks-lookup-perf/build/lookup-perf/eight-pilot/2-b.json",
+            "corpus": "<tokenizer-checkout>/build/readout/corpus.json",
+            "cases": "<data-root>/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+            "output": "<tokenizer-checkout>/build/lookup-perf/eight-pilot/2-b.json",
             "samples": 3,
             "profile": false,
             "decisions_only": false,
-            "text_root": "/home/ethoma/data/text"
+            "text_root": "<data-root>/text"
           },
           "rows": [
             {
@@ -5206,7 +5206,7 @@
               "diagnostic_list_conversion_ns": 22269450,
               "diagnostic_pack_ns": 3703210,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -5220,7 +5220,7 @@
               "diagnostic_list_conversion_ns": 7732916,
               "diagnostic_pack_ns": 1970668,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5246,7 +5246,7 @@
               "diagnostic_list_conversion_ns": 22202100,
               "diagnostic_pack_ns": 3772479,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -5260,7 +5260,7 @@
               "diagnostic_list_conversion_ns": 7229392,
               "diagnostic_pack_ns": 1890640,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5286,7 +5286,7 @@
               "diagnostic_list_conversion_ns": 22249210,
               "diagnostic_pack_ns": 3467203,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -5300,7 +5300,7 @@
               "diagnostic_list_conversion_ns": 7765237,
               "diagnostic_pack_ns": 1811000,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5326,10 +5326,10 @@
             14,
             15
           ],
-          "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "model": "<model-cache>/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
           "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
           "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
-          "module": "/home/ethoma/projects/toks/build/lookup-perf/package/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+          "module": "<tokenizer-checkout>/build/lookup-perf/package/toks/_toks.cpython-313-x86_64-linux-gnu.so",
           "module_sha256": "b9ed6139214f70f998c628662da04ea53f9d66880faa9d28b4b2fea9f4cb8df9",
           "model_files": {
             "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
@@ -5338,13 +5338,13 @@
             "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670"
           },
           "args": {
-            "corpus": "/home/ethoma/projects/toks/build/readout/corpus.json",
-            "cases": "/home/ethoma/data/decisions/synth_verified_reasoning_v1/train_00.jsonl",
-            "output": "/home/ethoma/projects/toks-lookup-perf/build/lookup-perf/eight-pilot/3-a.json",
+            "corpus": "<tokenizer-checkout>/build/readout/corpus.json",
+            "cases": "<data-root>/decisions/synth_verified_reasoning_v1/train_00.jsonl",
+            "output": "<tokenizer-checkout>/build/lookup-perf/eight-pilot/3-a.json",
             "samples": 3,
             "profile": false,
             "decisions_only": false,
-            "text_root": "/home/ethoma/data/text"
+            "text_root": "<data-root>/text"
           },
           "rows": [
             {
@@ -5367,7 +5367,7 @@
               "diagnostic_list_conversion_ns": 22245800,
               "diagnostic_pack_ns": 3781759,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -5381,7 +5381,7 @@
               "diagnostic_list_conversion_ns": 7191622,
               "diagnostic_pack_ns": 1850930,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5407,7 +5407,7 @@
               "diagnostic_list_conversion_ns": 22349149,
               "diagnostic_pack_ns": 3791349,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -5421,7 +5421,7 @@
               "diagnostic_list_conversion_ns": 8516418,
               "diagnostic_pack_ns": 1843610,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5447,7 +5447,7 @@
               "diagnostic_list_conversion_ns": 22242200,
               "diagnostic_pack_ns": 3741729,
               "tokens": 1090466,
-              "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl",
+              "reader_source": "<data-root>/text/fineweb_edu.jsonl",
               "reader_prefix_sha256": "c41d4f38fc08396f938bb21ff49c13ca0e1afb261d44a8b848148a4107178249",
               "sha256": "be94e98dab902fb7cd7158b7c62f4577b94471a3d48ca25fa298aa796954c511",
               "encode_sha256": "fd6bb4f677294e477adea2c5686a9ef72a32af67ead2e1d750a318b57e636d64",
@@ -5461,7 +5461,7 @@
               "diagnostic_list_conversion_ns": 7244592,
               "diagnostic_pack_ns": 1697031,
               "tokens": 336377,
-              "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl",
+              "reader_source": "<data-root>/text/pleias_synth.jsonl",
               "reader_prefix_sha256": "5bfa9e63d887328302e42d88e8e74de4387c4fadcdabf6fefcb316ccede3d35b",
               "sha256": "a2f37341ec921e30e41d2a0370647b0363365e014fc1c53f04dad5cce0cc88c4",
               "encode_sha256": "5369f0d2d9aace2b1fba618d04bce1035c01fb4643800dc91e137660d51016e0",
@@ -5561,7 +5561,7 @@
         14,
         15
       ],
-      "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "model": "<model-cache>/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
       "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
       "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
       "model_files": {
@@ -5574,11 +5574,11 @@
     },
     "variants": {
       "a": {
-        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module": "<nix-store>/typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
         "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93"
       },
       "b": {
-        "module": "/nix/store/wmmjqwj5r914fjqg7k5hz377q0br84js-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module": "<nix-store>/typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
         "module_sha256": "355a02df0a4f4c8de85500ed8d2ce5c5ce83528c3b101375493bfd6e2b981e84"
       }
     },
@@ -5610,11 +5610,11 @@
       "decisions": {},
       "fineweb_edu": {
         "tokens": 1090466,
-        "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl"
+        "reader_source": "<data-root>/text/fineweb_edu.jsonl"
       },
       "pleias_synth": {
         "tokens": 336377,
-        "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl"
+        "reader_source": "<data-root>/text/pleias_synth.jsonl"
       }
     },
     "processes": [
@@ -6189,7 +6189,7 @@
         14,
         15
       ],
-      "model": "/home/ethoma/projects/typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "model": "<model-cache>/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
       "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
       "cases_sha256": "868dedaff537a5638f0fde25ff2af419a759476d60fa11ccbc676315625b7d79",
       "model_files": {
@@ -6202,11 +6202,11 @@
     },
     "variants": {
       "a": {
-        "module": "/nix/store/vpvjmz38p9zgkld2pz0ncp1yz3cffrwk-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module": "<nix-store>/typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
         "module_sha256": "0cecb4d0507beece844a79ea6877ffaef372ab36610d079db026f3da5e58ff93"
       },
       "b": {
-        "module": "/nix/store/wmmjqwj5r914fjqg7k5hz377q0br84js-typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
+        "module": "<nix-store>/typed-decisions-env/lib/python3.13/site-packages/toks/_toks.cpython-313-x86_64-linux-gnu.so",
         "module_sha256": "355a02df0a4f4c8de85500ed8d2ce5c5ce83528c3b101375493bfd6e2b981e84"
       }
     },
@@ -6238,11 +6238,11 @@
       "decisions": {},
       "fineweb_edu": {
         "tokens": 8528310,
-        "reader_source": "/home/ethoma/data/text/fineweb_edu.jsonl"
+        "reader_source": "<data-root>/text/fineweb_edu.jsonl"
       },
       "pleias_synth": {
         "tokens": 2661168,
-        "reader_source": "/home/ethoma/data/text/pleias_synth.jsonl"
+        "reader_source": "<data-root>/text/pleias_synth.jsonl"
       }
     },
     "processes": [

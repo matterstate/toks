@@ -1,4 +1,4 @@
-/* test_version.c: the release macros agree with each other and with the library (docs/release.md). */
+/* test_version.c: the release macros agree with each other and with the library. */
 #include <stdio.h>
 #include <string.h>
 

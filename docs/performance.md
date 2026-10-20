@@ -118,22 +118,25 @@ The native scanner probe also accepts a final CPU tier after `MEMO_MIB`:
 
 ## Workloads and reproduction
 
-The current consumer is Qwen3.5-4B decision scoring and text preprocessing in
-`typed-decisions`. Benchmarks load tokenizer files only and use no GPU or model
-weights. A decision workload encodes each rendered prompt and validates its
+The measured consumer performs Qwen3.5-4B decision scoring and text preprocessing.
+Its application source and decision dataset are not distributed with this fork.
+Benchmarks load tokenizer files only and use no GPU or model weights.
+A decision workload encodes each rendered prompt and validates its
 answer-letter extensions. Text workloads measure encoding and Python list
 construction for FineWeb-Edu and Pleias SYNTH, excluding NumPy conversion.
 
-Prepare the local corpus with the consumer's locked environment:
+The optional corpus exporter requires that consumer and its datasets. For a
+local checkout, set `CONSUMER_CHECKOUT`, `MODEL_DIRECTORY`, `CASES`, `FINEWEB`, and
+`PLEIAS` to their corresponding paths before running:
 
 ```sh
 mkdir -p build/readout
-DEV=CPU ../typed-decisions-baseline/.env/bin/typed-decisions-run python tools/bench/readout-corpus.py \
-  --project ../typed-decisions-baseline \
-  --model ../typed-decisions-baseline/model-cache/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
-  --cases "$HOME/data/decisions/synth_verified_reasoning_v1/train_00.jsonl" \
-  --fineweb "$HOME/data/text/fineweb_edu.jsonl" \
-  --pleias "$HOME/data/text/pleias_synth.jsonl" \
+DEV=CPU "$CONSUMER_CHECKOUT/.env/bin/typed-decisions-run" python tools/bench/readout-corpus.py \
+  --project "$CONSUMER_CHECKOUT" \
+  --model "$MODEL_DIRECTORY" \
+  --cases "$CASES" \
+  --fineweb "$FINEWEB" \
+  --pleias "$PLEIAS" \
   --out build/readout/corpus.json
 ```
 
@@ -209,7 +212,7 @@ A CPU profile of the integrated consumer found that Python integer-list
 conversion costs about 21 ms per frozen FineWeb batch. The consumer now uses
 `encode_into` with a reusable NumPy buffer and an owned copy per retained
 document. Both sides use the same installed fork binary; this change is in
-[typed-decisions `34da9d5`](https://github.com/matterstate/typed-decisions/blob/34da9d5/reports/tokenizer_integration_profile.md).
+typed-decisions `34da9d5` (consumer source).
 
 Original JSONL prefixes, 1,024 documents each, with reading, JSON decoding,
 tokenization, array construction and held-out/training packing included:
@@ -270,9 +273,7 @@ contains all 24 paired processes and 288 timed observations, input/output
 hashes, the Nix binary fingerprint and separate warm profiles. The production
 build passed 377 Python tests with 43 skips; standalone and independently
 rebuilt source-distribution wheels each passed 44 focused tests. The consumer
-passed 138 CPU tests with 19 GPU skips. The
-[consumer report](https://github.com/matterstate/typed-decisions/blob/aaf5f879cdfe6554d5a75b679ed0f02e1eecadf3/reports/tokenizer_batch_buffer.md)
-describes the integration and measurement scope.
+passed 138 CPU tests with 19 GPU skips.
 
 ## Consumer Qwen rendering (2026-10-20)
 
@@ -299,8 +300,7 @@ and both option orders. Warm Python allocation peaks fall from 0.661 to
 The [receipt](../benchmarks/results/consumer-chat-render-epyc9124.json) retains
 all 16 processes, 96 timed observations, source/output hashes, profiles and
 the audit. The consumer's full CPU suite passed 154 tests with 19 GPU skips;
-17 renderer-focused tests also passed. See the
-[consumer report](https://github.com/matterstate/typed-decisions/blob/442133903cf51e2c97c94bd1075ddf1adc9cc2f7/reports/chat_template_performance.md).
+17 renderer-focused tests also passed.
 No model inference or GPU training throughput is established by this study.
 
 ## Consumer buffer reservation follow-up (2026-10-20)
@@ -334,5 +334,4 @@ hashes and warm profiles. The final combined consumer at `9d5c28a` passed
 157 CPU tests with 19 GPU skips and 22 final renderer/buffer-focused tests.
 Its source fingerprinting also preserves generic Jinja behavior for unusual
 source strings and rejects template subclass spoofing. The pinned-Qwen render
-audit again matches all 24,576 prompts byte-for-byte. See the
-[consumer report](https://github.com/matterstate/typed-decisions/blob/9d5c28a333ba786d47661776bec8934618fbd6c6/reports/tokenizer_buffer_memory.md).
+audit again matches all 24,576 prompts byte-for-byte.

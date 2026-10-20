@@ -1,6 +1,6 @@
 # Contributing
 
-Changes to this private fork target `main` in `matterstate/toks`. Keep each
+Changes to this fork target `main` in `matterstate/toks`. Keep each
 change focused and preserve upstream authorship and notices. Contributions to
 this fork use Apache-2.0; this fork adds no separate relicensing grant.
 

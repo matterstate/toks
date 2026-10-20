@@ -1,6 +1,6 @@
 # toks
 
-Matterstate's private Rust fork of [bitemyapp/toks](https://github.com/bitemyapp/toks),
+Matterstate's Rust fork of [bitemyapp/toks](https://github.com/bitemyapp/toks),
 derived from [Actual Computer's toks](https://github.com/actual-computer/toks).
 The default branch is `main`.
 
@@ -25,6 +25,18 @@ uv build --wheel python --python 3.13
 CI runs on Linux x86-64. Linux x86-64 and macOS arm64 have been exercised;
 Windows support is incomplete. See [CI](docs/ci.md) for installed-wheel checks.
 
+To install this fork locally, run these commands from the repository root in
+the Nix shell:
+
+```sh
+uv venv --python 3.13 build/python-env
+uv pip install --python build/python-env/bin/python ./python
+build/python-env/bin/python -c 'import toks; print(toks.__version__)'
+```
+
+This builds the checked-out fork. Installing `toks` by name from a package
+registry may select the upstream package instead.
+
 ## Layout
 
 | Path | Contents |
@@ -46,4 +58,6 @@ text preprocessing; it does not establish end-to-end inference throughput.
 The code is Apache-2.0; see [LICENSE](LICENSE), [NOTICE](NOTICE),
 [LICENSING.md](LICENSING.md) and [third-party notices](THIRD_PARTY_NOTICES.md).
 Inherited tags preserve their original licensing; `v0.3.2` is the upstream C
-release, not a release of this Rust fork.
+release, not a release of this Rust fork. The working fork version is `0.4.0`;
+see [versioning](docs/versioning.md). No `0.4.0` release tag or registry package
+has been published.

@@ -25,13 +25,13 @@ governs.
 - *Earlier releases.* toks 0.3.0 and 0.3.1 shipped under the Business Source License 1.1 with Apache-2.0 as
   their Change License, and their tags still carry that text. Every release after 0.3.1 is Apache-2.0 from the
   day it ships.
-- toks's C and assembly core carries no third-party code; its Unicode tables are derived from the Unicode
-  Character Database, partly through the generated tables of three Rust crates (notices in
+- toks's Unicode tables are derived from the Unicode Character Database, partly through the generated
+  tables of three Rust crates (notices in
   [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
 
 ## Contributing
 
-Contributions to this private fork follow [CONTRIBUTING.md](CONTRIBUTING.md)
+Contributions to this fork follow [CONTRIBUTING.md](CONTRIBUTING.md)
 and use Apache-2.0. Existing upstream grants and notices remain intact.
 
 ## Trademarks

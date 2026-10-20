@@ -5,6 +5,7 @@
 - [Validation](validation.md): regression snapshots, oracle checks and performance canaries.
 - [CI](ci.md): required checks and local reproduction.
 - [Performance](performance.md): Qwen workloads, measurements and reproduction.
+- [Versioning](versioning.md): fork versions, inherited tags and package installation.
 
 Old C implementation notes, migration plans, release reports, model censuses,
 charts and raw experiment logs are available in Git history at `13493f7`.

@@ -27,12 +27,12 @@ extern "C" {
 #define TOKS_ABI_MAJOR 0
 #define TOKS_ABI_MINOR 4
 
-/* the release, semver (docs/release.md): tag v<TOKS_VERSION>, and the python wheel's version. The abi's own
+/* The fork version, shared by Cargo, the native library and the Python package. The ABI's own
  * compatibility is TOKS_ABI_*: a release that changes the abi bumps both. */
 #define TOKS_VERSION_MAJOR 0
-#define TOKS_VERSION_MINOR 3
-#define TOKS_VERSION_PATCH 2
-#define TOKS_VERSION       "0.3.2"
+#define TOKS_VERSION_MINOR 4
+#define TOKS_VERSION_PATCH 0
+#define TOKS_VERSION       "0.4.0"
 
 #if defined(_WIN32)
 #  if defined(TOKS_BUILD_SHARED)

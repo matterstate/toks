@@ -1,0 +1,3079 @@
+{
+  "baseline_commit": "e865559",
+  "candidate_source_sha256": "bbfbf60d529cee713ca5d8b2e44118de5d117aeb3aad27de818c852cfbd2d84f",
+  "protocol": "4 whole-process ABBA/BAAB blocks, 7 fresh-tokenizer samples per cell; tests and builds stopped before timing; affinity 8-15; same corpus, Rust 1.98.1, GCC 16.2.0 for native assembly, python build profile and portable CPU target; every paired observation retained",
+  "summary": [
+    {
+      "workload": "decisions",
+      "method": "encode",
+      "baseline_ms": 1.378742125,
+      "candidate_ms": 1.358940875,
+      "speedup": 1.0144609306407801,
+      "block_speedups": [
+        1.0280430372009617,
+        1.002756543553388,
+        1.0421196261086865,
+        0.9858638184362047
+      ]
+    },
+    {
+      "workload": "decisions",
+      "method": "encode_into",
+      "baseline_ms": 1.081704625,
+      "candidate_ms": 1.0885205,
+      "speedup": 0.9937627843849686,
+      "block_speedups": [
+        1.0054151019937252,
+        0.9777767971163702,
+        1.0061050567761058,
+        0.9860579789886502
+      ]
+    },
+    {
+      "workload": "decisions",
+      "method": "validate",
+      "baseline_ms": 3.102387125,
+      "candidate_ms": 2.970316375,
+      "speedup": 1.0443871794923363,
+      "block_speedups": [
+        1.037261070496811,
+        1.072421668734724,
+        1.0463122749513127,
+        1.022188870953631
+      ]
+    },
+    {
+      "workload": "fineweb_edu",
+      "method": "encode",
+      "baseline_ms": 35.027505625,
+      "candidate_ms": 34.510897,
+      "speedup": 1.0150122547754201,
+      "block_speedups": [
+        1.0003069194257854,
+        1.017579207945254,
+        1.022598410200344,
+        1.0197143530838122
+      ]
+    },
+    {
+      "workload": "fineweb_edu",
+      "method": "batch32",
+      "baseline_ms": 34.9571835,
+      "candidate_ms": 34.697590375000004,
+      "speedup": 1.007515338896991,
+      "block_speedups": [
+        0.9989652838684663,
+        1.0095873067527728,
+        1.0135834473476155,
+        1.0079822395984732
+      ]
+    },
+    {
+      "workload": "fineweb_edu",
+      "method": "batch1024",
+      "baseline_ms": 21.706206875,
+      "candidate_ms": 21.431851375,
+      "speedup": 1.0128006074797529,
+      "block_speedups": [
+        1.0060753613198439,
+        1.015517839764677,
+        1.0138644644719983,
+        1.0157757504766924
+      ]
+    },
+    {
+      "workload": "pleias_synth",
+      "method": "encode",
+      "baseline_ms": 17.675923125,
+      "candidate_ms": 17.640701,
+      "speedup": 1.0019275814476747,
+      "block_speedups": [
+        1.0204778066292097,
+        0.9938331621030213,
+        1.004271969691827,
+        0.9894114667527121
+      ]
+    },
+    {
+      "workload": "pleias_synth",
+      "method": "batch32",
+      "baseline_ms": 17.720891375,
+      "candidate_ms": 17.563016375,
+      "speedup": 1.009015979297276,
+      "block_speedups": [
+        1.0093081743412802,
+        0.9968853080036484,
+        1.0179586311681954,
+        1.012029240883503
+      ]
+    },
+    {
+      "workload": "pleias_synth",
+      "method": "batch1024",
+      "baseline_ms": 13.120827375000001,
+      "candidate_ms": 12.97714725,
+      "speedup": 1.0110759574465276,
+      "block_speedups": [
+        1.0076943212350506,
+        1.0145909071535861,
+        1.0103170641010786,
+        1.0117137867223094
+      ]
+    }
+  ],
+  "blocks": [
+    [
+      {
+        "variant": "baseline",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1885046,
+                1406310,
+                1303601,
+                1337891,
+                1493050,
+                1377480,
+                1384740
+              ],
+              "median_ns": 1384740
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1117292,
+                1059153,
+                1049822,
+                1090402,
+                1043872,
+                1071873,
+                1071612
+              ],
+              "median_ns": 1071612
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3098849,
+                3063798,
+                3054849,
+                3101258,
+                3108378,
+                3097458,
+                3153448
+              ],
+              "median_ns": 3098849
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                35758447,
+                35338030,
+                34071039,
+                34975702,
+                34728404,
+                35586348,
+                34403696
+              ],
+              "median_ns": 34975702
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                35443628,
+                34672584,
+                34587825,
+                34684574,
+                35934795,
+                34714784,
+                34495105
+              ],
+              "median_ns": 34684574
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21888285,
+                21734946,
+                21634196,
+                21733036,
+                21464577,
+                21492008,
+                21592557
+              ],
+              "median_ns": 21634196
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19677250,
+                17655854,
+                19693290,
+                17651625,
+                19438571,
+                18156591,
+                17857543
+              ],
+              "median_ns": 18156591
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17792414,
+                17642564,
+                17540545,
+                18220991,
+                19222863,
+                17723783,
+                17497295
+              ],
+              "median_ns": 17723783
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13349726,
+                13193726,
+                13331205,
+                13251756,
+                13417255,
+                13079977,
+                12968557
+              ],
+              "median_ns": 13251756
+            }
+          ]
+        }
+      },
+      {
+        "variant": "candidate",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "ee4940d06ebf311694ec44f82cc50734fd8d772a8a354c3722bb82b447ea8ca4",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1950447,
+                1348911,
+                1469039,
+                1274621,
+                1351370,
+                1372140,
+                1420039
+              ],
+              "median_ns": 1372140
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1102653,
+                1086652,
+                1113252,
+                1168812,
+                1085302,
+                1064902,
+                1057263
+              ],
+              "median_ns": 1086652
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2925919,
+                2976658,
+                3184577,
+                2985868,
+                2956099,
+                2984208,
+                2951689
+              ],
+              "median_ns": 2976658
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                33513120,
+                35546055,
+                34883381,
+                36064902,
+                35213358,
+                34490773,
+                35899363
+              ],
+              "median_ns": 35213358
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34859320,
+                35462016,
+                35886463,
+                36104191,
+                35031429,
+                34313104,
+                35257008
+              ],
+              "median_ns": 35257008
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21713414,
+                21453667,
+                21696094,
+                21320657,
+                21531986,
+                21904733,
+                21837413
+              ],
+              "median_ns": 21696094
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                20144316,
+                17941051,
+                17817422,
+                18044910,
+                17524114,
+                17887922,
+                17489894
+              ],
+              "median_ns": 17887922
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17853071,
+                17715402,
+                17542504,
+                17483715,
+                17937721,
+                18482347,
+                17745123
+              ],
+              "median_ns": 17745123
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13312084,
+                13355224,
+                13078346,
+                12848487,
+                12881577,
+                13267845,
+                13088076
+              ],
+              "median_ns": 13088076
+            }
+          ]
+        }
+      },
+      {
+        "variant": "candidate",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "ee4940d06ebf311694ec44f82cc50734fd8d772a8a354c3722bb82b447ea8ca4",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1964406,
+                1368780,
+                1332101,
+                1341580,
+                1333350,
+                1343650,
+                1563918
+              ],
+              "median_ns": 1343650
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1104402,
+                1040672,
+                1053173,
+                1062892,
+                1073942,
+                1053713,
+                1074483
+              ],
+              "median_ns": 1062892
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3035678,
+                2973768,
+                2982108,
+                3004188,
+                2930849,
+                3013118,
+                2946769
+              ],
+              "median_ns": 2982108
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                33417879,
+                34914738,
+                34588920,
+                34967928,
+                35287166,
+                35061237,
+                35087016
+              ],
+              "median_ns": 34967928
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                36360577,
+                35058417,
+                35507523,
+                34913418,
+                34205003,
+                35225125,
+                35266925
+              ],
+              "median_ns": 35225125
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21405715,
+                21303326,
+                21289276,
+                21498335,
+                21315175,
+                21507374,
+                21121198
+              ],
+              "median_ns": 21315175
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19759037,
+                17721322,
+                17481784,
+                17368384,
+                17474543,
+                17570742,
+                17367625
+              ],
+              "median_ns": 17481784
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17573833,
+                17412973,
+                17723121,
+                17747872,
+                17513333,
+                18256727,
+                17466634
+              ],
+              "median_ns": 17573833
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13377143,
+                13080645,
+                13038855,
+                12938106,
+                12897526,
+                13778170,
+                12697107
+              ],
+              "median_ns": 13038855
+            }
+          ]
+        }
+      },
+      {
+        "variant": "baseline",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1967746,
+                1407209,
+                1363570,
+                1560758,
+                1451570,
+                1309191,
+                1384490
+              ],
+              "median_ns": 1407209
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1147202,
+                1089572,
+                1131521,
+                1074372,
+                1052232,
+                1070552,
+                1123692
+              ],
+              "median_ns": 1089572
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3302586,
+                3081947,
+                3050948,
+                3067358,
+                3144637,
+                3077868,
+                3086608
+              ],
+              "median_ns": 3081947
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34177511,
+                35242504,
+                34968486,
+                36339225,
+                35227124,
+                35562160,
+                34963655
+              ],
+              "median_ns": 35227124
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                36292425,
+                35458171,
+                35724630,
+                35688870,
+                36890631,
+                35522791,
+                36772641
+              ],
+              "median_ns": 35724630
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21807220,
+                21811971,
+                21748392,
+                21585182,
+                21638382,
+                21557863,
+                21572622
+              ],
+              "median_ns": 21638382
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                20037214,
+                17685891,
+                18046728,
+                17649611,
+                17932799,
+                17937409,
+                18807142
+              ],
+              "median_ns": 17937409
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17675790,
+                17685921,
+                17758020,
+                18226017,
+                18536165,
+                17923928,
+                18180557
+              ],
+              "median_ns": 17923928
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13143324,
+                12997035,
+                13225494,
+                12999905,
+                13304633,
+                12936825,
+                13076204
+              ],
+              "median_ns": 13076204
+            }
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "variant": "candidate",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "ee4940d06ebf311694ec44f82cc50734fd8d772a8a354c3722bb82b447ea8ca4",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2141974,
+                1418269,
+                1325620,
+                1354400,
+                1370810,
+                1386350,
+                1322280
+              ],
+              "median_ns": 1370810
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1123681,
+                1084382,
+                1081162,
+                1159141,
+                1101122,
+                1113071,
+                1115362
+              ],
+              "median_ns": 1113071
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3242426,
+                2997808,
+                2950488,
+                2963938,
+                2967368,
+                3138537,
+                2923078
+              ],
+              "median_ns": 2967368
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                32828489,
+                34022820,
+                33668163,
+                35693867,
+                36083515,
+                33794861,
+                34151349
+              ],
+              "median_ns": 34022820
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34189739,
+                34129749,
+                36229543,
+                34982482,
+                35530599,
+                36235883,
+                35357860
+              ],
+              "median_ns": 35357860
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                22195036,
+                21482032,
+                21604380,
+                21050815,
+                21370183,
+                21416502,
+                21572131
+              ],
+              "median_ns": 21482032
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                20018543,
+                17288452,
+                17600200,
+                17573431,
+                17563831,
+                18079876,
+                17842119
+              ],
+              "median_ns": 17600200
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17630070,
+                17696190,
+                17734789,
+                19125728,
+                17972247,
+                17981427,
+                17577851
+              ],
+              "median_ns": 17734789
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13237362,
+                13027014,
+                13022884,
+                13180873,
+                12956655,
+                13087063,
+                13189642
+              ],
+              "median_ns": 13087063
+            }
+          ]
+        }
+      },
+      {
+        "variant": "baseline",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1953365,
+                1381579,
+                1371450,
+                1314310,
+                1356440,
+                1338230,
+                1388550
+              ],
+              "median_ns": 1371450
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1156592,
+                1169762,
+                1077832,
+                1127102,
+                1073962,
+                1081352,
+                1073792
+              ],
+              "median_ns": 1081352
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3047567,
+                3091588,
+                3048447,
+                3127627,
+                3263096,
+                3099038,
+                3090427
+              ],
+              "median_ns": 3091588
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34266947,
+                34476705,
+                34590993,
+                34377576,
+                34548244,
+                34882521,
+                34937042
+              ],
+              "median_ns": 34548244
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                37838649,
+                35526947,
+                34986131,
+                35523036,
+                35374488,
+                35395378,
+                35190509
+              ],
+              "median_ns": 35395378
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                22268984,
+                22026197,
+                22038466,
+                21790039,
+                21486010,
+                21732568,
+                22187385
+              ],
+              "median_ns": 22026197
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19700404,
+                17272572,
+                17440321,
+                17239842,
+                17634129,
+                17861187,
+                17855147
+              ],
+              "median_ns": 17634129
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17837077,
+                17426530,
+                18218045,
+                17643899,
+                17541210,
+                17680978,
+                17468760
+              ],
+              "median_ns": 17643899
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13519799,
+                12922304,
+                13245571,
+                13172762,
+                12996473,
+                13036833,
+                12994804
+              ],
+              "median_ns": 13036833
+            }
+          ]
+        }
+      },
+      {
+        "variant": "baseline",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1914706,
+                1419550,
+                1336190,
+                1334930,
+                1338660,
+                1395440,
+                1318640
+              ],
+              "median_ns": 1338660
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1094981,
+                1048783,
+                1049333,
+                1080302,
+                1067863,
+                1055202,
+                1088542
+              ],
+              "median_ns": 1067863
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3355315,
+                3250196,
+                3253916,
+                3020137,
+                3088847,
+                3318805,
+                3307815
+              ],
+              "median_ns": 3253916
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                35332467,
+                34399963,
+                37102393,
+                34337964,
+                34707191,
+                34851180,
+                35535385
+              ],
+              "median_ns": 34851180
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                35065248,
+                35012048,
+                34709511,
+                35078027,
+                36495217,
+                36259819,
+                35351926
+              ],
+              "median_ns": 35078027
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21996556,
+                21633079,
+                21422510,
+                22062935,
+                21386380,
+                21796637,
+                21596889
+              ],
+              "median_ns": 21633079
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19885911,
+                17820047,
+                17452039,
+                17670178,
+                17371080,
+                17488249,
+                17345700
+              ],
+              "median_ns": 17488249
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17370470,
+                18132174,
+                17623137,
+                19352666,
+                17918475,
+                17510379,
+                17792397
+              ],
+              "median_ns": 17792397
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13723797,
+                13291381,
+                13497649,
+                13504259,
+                12989062,
+                13100312,
+                13158292
+              ],
+              "median_ns": 13291381
+            }
+          ]
+        }
+      },
+      {
+        "variant": "candidate",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "ee4940d06ebf311694ec44f82cc50734fd8d772a8a354c3722bb82b447ea8ca4",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1959095,
+                1375360,
+                1331850,
+                1312780,
+                1321870,
+                1342520,
+                1327240
+              ],
+              "median_ns": 1331850
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1103522,
+                1057182,
+                2187033,
+                1073292,
+                1104582,
+                1084992,
+                1065962
+              ],
+              "median_ns": 1084992
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2941978,
+                2949618,
+                2964357,
+                2969158,
+                2892678,
+                2952198,
+                2939478
+              ],
+              "median_ns": 2949618
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34949187,
+                34213492,
+                34150963,
+                35280955,
+                34177693,
+                34086344,
+                33969905
+              ],
+              "median_ns": 34177693
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34446311,
+                34546511,
+                34148783,
+                34312992,
+                34522880,
+                33740036,
+                34551190
+              ],
+              "median_ns": 34446311
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21510099,
+                21413158,
+                21797406,
+                22884298,
+                21829645,
+                21279970,
+                21245430
+              ],
+              "median_ns": 21510099
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                20169718,
+                17361179,
+                17740116,
+                17345299,
+                17304200,
+                18128903,
+                18253052
+              ],
+              "median_ns": 17740116
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                18048204,
+                17203090,
+                17812225,
+                18665520,
+                18295102,
+                17587357,
+                17492259
+              ],
+              "median_ns": 17812225
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                12820573,
+                12787164,
+                12913982,
+                13192600,
+                12862523,
+                12887553,
+                12800483
+              ],
+              "median_ns": 12862523
+            }
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "variant": "baseline",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2007855,
+                1479979,
+                1393269,
+                1358470,
+                1366279,
+                1471769,
+                1424490
+              ],
+              "median_ns": 1424490
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1114952,
+                1097152,
+                1128092,
+                1098082,
+                1076322,
+                1073582,
+                1133951
+              ],
+              "median_ns": 1098082
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3078996,
+                3063127,
+                3152376,
+                3088247,
+                3122316,
+                3113586,
+                3065907
+              ],
+              "median_ns": 3088247
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34221341,
+                34947316,
+                36205367,
+                34541019,
+                34555948,
+                35115085,
+                34182772
+              ],
+              "median_ns": 34555948
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                35039005,
+                34865816,
+                34854837,
+                34727297,
+                35101164,
+                35192894,
+                35634481
+              ],
+              "median_ns": 35039005
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21579366,
+                21760775,
+                21948904,
+                21775155,
+                21708185,
+                22590139,
+                21228909
+              ],
+              "median_ns": 21760775
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                20224147,
+                17386168,
+                17528627,
+                17715885,
+                17642816,
+                18623389,
+                17597856
+              ],
+              "median_ns": 17642816
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17858635,
+                18469210,
+                18739978,
+                17996073,
+                18255731,
+                17430357,
+                17593117
+              ],
+              "median_ns": 17996073
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13069121,
+                12923602,
+                13425728,
+                13061411,
+                13151980,
+                12744283,
+                13081461
+              ],
+              "median_ns": 13069121
+            }
+          ]
+        }
+      },
+      {
+        "variant": "candidate",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "ee4940d06ebf311694ec44f82cc50734fd8d772a8a354c3722bb82b447ea8ca4",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1976375,
+                1369820,
+                1354949,
+                1322900,
+                1294420,
+                1331160,
+                1363690
+              ],
+              "median_ns": 1354949
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1134601,
+                1067552,
+                1029632,
+                1105692,
+                1071542,
+                1107172,
+                1097992
+              ],
+              "median_ns": 1097992
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2942808,
+                3014607,
+                2965907,
+                2962007,
+                2931308,
+                3564662,
+                2927268
+              ],
+              "median_ns": 2962007
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                33544885,
+                34252139,
+                34097800,
+                33809543,
+                33981462,
+                34380748,
+                34268389
+              ],
+              "median_ns": 34097800
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                33990501,
+                34152979,
+                36670580,
+                34296339,
+                37326295,
+                34276659,
+                37035238
+              ],
+              "median_ns": 34296339
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21832043,
+                21362797,
+                21607235,
+                21197488,
+                21252808,
+                21404177,
+                21408157
+              ],
+              "median_ns": 21404177
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19739119,
+                17528177,
+                17609046,
+                18708367,
+                17781614,
+                17548966,
+                17347677
+              ],
+              "median_ns": 17609046
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17417197,
+                17376567,
+                17366877,
+                17467207,
+                17433277,
+                19429902,
+                17665295
+              ],
+              "median_ns": 17433277
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13167900,
+                12974091,
+                13103030,
+                12927201,
+                13184420,
+                12878641,
+                13009441
+              ],
+              "median_ns": 13009441
+            }
+          ]
+        }
+      },
+      {
+        "variant": "candidate",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "ee4940d06ebf311694ec44f82cc50734fd8d772a8a354c3722bb82b447ea8ca4",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2068164,
+                1334320,
+                1364630,
+                1344980,
+                1348340,
+                1330220,
+                1342340
+              ],
+              "median_ns": 1344980
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1123111,
+                1059842,
+                1042352,
+                1071592,
+                1070702,
+                1077942,
+                1065512
+              ],
+              "median_ns": 1070702
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2915168,
+                2917878,
+                2926497,
+                2935328,
+                2994577,
+                2985207,
+                3901790
+              ],
+              "median_ns": 2935328
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                33575013,
+                34450106,
+                34257478,
+                35393549,
+                34432596,
+                34195038,
+                35147631
+              ],
+              "median_ns": 34432596
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34033929,
+                34306187,
+                34614905,
+                34353686,
+                34793364,
+                35256880,
+                34064969
+              ],
+              "median_ns": 34353686
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                22765165,
+                21661844,
+                21076379,
+                21326287,
+                21084479,
+                21482145,
+                21130087
+              ],
+              "median_ns": 21326287
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19967867,
+                17238848,
+                17319597,
+                18227740,
+                17451596,
+                17415627,
+                18509078
+              ],
+              "median_ns": 17451596
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17629674,
+                18816466,
+                17522895,
+                17432326,
+                17238248,
+                17258578,
+                17682625
+              ],
+              "median_ns": 17522895
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13011490,
+                13004650,
+                13055570,
+                12910681,
+                12910141,
+                12976440,
+                12901161
+              ],
+              "median_ns": 12976440
+            }
+          ]
+        }
+      },
+      {
+        "variant": "baseline",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1981185,
+                1399809,
+                1389159,
+                1357669,
+                1392129,
+                1324380,
+                1330950
+              ],
+              "median_ns": 1389159
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1108011,
+                1087832,
+                1083852,
+                1081962,
+                1058882,
+                1087932,
+                1058112
+              ],
+              "median_ns": 1083852
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3163826,
+                3051696,
+                3132996,
+                3085996,
+                3082207,
+                3053766,
+                3059256
+              ],
+              "median_ns": 3082207
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34523824,
+                35711765,
+                34869872,
+                35523126,
+                40561528,
+                36065742,
+                34509164
+              ],
+              "median_ns": 35523126
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34287026,
+                34543524,
+                34728703,
+                34338436,
+                36859926,
+                34624993,
+                34297826
+              ],
+              "median_ns": 34543524
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21449505,
+                21670923,
+                21456434,
+                22256719,
+                21561984,
+                21731052,
+                21562124
+              ],
+              "median_ns": 21562124
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19667638,
+                17567604,
+                17424186,
+                17330946,
+                17670464,
+                18542687,
+                17567105
+              ],
+              "median_ns": 17567604
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17587864,
+                17759423,
+                17412105,
+                17514195,
+                17719984,
+                17469775,
+                18056230
+              ],
+              "median_ns": 17587864
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13855213,
+                13063849,
+                13184858,
+                13141478,
+                13233588,
+                13283268,
+                13173289
+              ],
+              "median_ns": 13184858
+            }
+          ]
+        }
+      }
+    ],
+    [
+      {
+        "variant": "candidate",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "ee4940d06ebf311694ec44f82cc50734fd8d772a8a354c3722bb82b447ea8ca4",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2152393,
+                1400249,
+                1427129,
+                1388949,
+                1366779,
+                1415019,
+                1411919
+              ],
+              "median_ns": 1411919
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1119592,
+                1074622,
+                1085452,
+                1072792,
+                1040122,
+                1133231,
+                1121011
+              ],
+              "median_ns": 1085452
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2920158,
+                2919667,
+                3136026,
+                3197076,
+                3151976,
+                3008547,
+                2985767
+              ],
+              "median_ns": 3008547
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                32376869,
+                34510433,
+                34109837,
+                34286475,
+                35600685,
+                34510633,
+                35943642
+              ],
+              "median_ns": 34510433
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34180666,
+                34534012,
+                34043027,
+                34971879,
+                34589152,
+                34019447,
+                34536253
+              ],
+              "median_ns": 34534012
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21478124,
+                21352594,
+                21272055,
+                21451334,
+                21626112,
+                21338485,
+                21497814
+              ],
+              "median_ns": 21451334
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19416290,
+                17284356,
+                18069650,
+                17689293,
+                18339438,
+                17343765,
+                17344745
+              ],
+              "median_ns": 17689293
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17345506,
+                17462705,
+                17475245,
+                17430724,
+                18185839,
+                17586134,
+                17522484
+              ],
+              "median_ns": 17475245
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13226047,
+                12811341,
+                12832010,
+                12742621,
+                12850820,
+                12833661,
+                13323806
+              ],
+              "median_ns": 12833661
+            }
+          ]
+        }
+      },
+      {
+        "variant": "baseline",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1845026,
+                1413369,
+                1361289,
+                1293840,
+                1308320,
+                1380210,
+                1343330
+              ],
+              "median_ns": 1361289
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1145461,
+                1084302,
+                1075622,
+                1119301,
+                1063012,
+                1081482,
+                1176570
+              ],
+              "median_ns": 1084302
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3031047,
+                3035896,
+                3044356,
+                3122486,
+                3071746,
+                3116635,
+                3050007
+              ],
+              "median_ns": 3050007
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                33781867,
+                35649823,
+                35176376,
+                35454624,
+                35180447,
+                35262996,
+                36528006
+              ],
+              "median_ns": 35262996
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34489102,
+                36735424,
+                34599411,
+                34775829,
+                34587451,
+                34413762,
+                34314333
+              ],
+              "median_ns": 34587451
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21960049,
+                21488663,
+                21509672,
+                21814040,
+                21757291,
+                21572292,
+                21829049
+              ],
+              "median_ns": 21757291
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19603428,
+                17346035,
+                18836024,
+                18694004,
+                17349935,
+                17236936,
+                17351055
+              ],
+              "median_ns": 17351055
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17436114,
+                17611153,
+                17710902,
+                17427014,
+                17794061,
+                17389965,
+                17537594
+              ],
+              "median_ns": 17537594
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13335426,
+                12890390,
+                12939609,
+                12921509,
+                13261237,
+                13334276,
+                12993788
+              ],
+              "median_ns": 12993788
+            }
+          ]
+        }
+      },
+      {
+        "variant": "baseline",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1856625,
+                1404339,
+                1336059,
+                1340849,
+                1352940,
+                1380369,
+                1336030
+              ],
+              "median_ns": 1352940
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1138071,
+                1083781,
+                1074381,
+                1077002,
+                1045381,
+                1047041,
+                1091461
+              ],
+              "median_ns": 1077002
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                3038456,
+                3056586,
+                3072336,
+                3111326,
+                3959910,
+                3103156,
+                3052247
+              ],
+              "median_ns": 3072336
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                35275725,
+                36720003,
+                35974219,
+                36184698,
+                35148965,
+                35235635,
+                34462031
+              ],
+              "median_ns": 35275725
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34604879,
+                34354072,
+                34271773,
+                34448061,
+                34607770,
+                34627779,
+                35247535
+              ],
+              "median_ns": 34604879
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                22369265,
+                21637611,
+                21451783,
+                21590501,
+                22133747,
+                22060267,
+                21474932
+              ],
+              "median_ns": 21637611
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19476118,
+                17173245,
+                17629532,
+                17669981,
+                17985899,
+                17566333,
+                17421244
+              ],
+              "median_ns": 17629532
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17540833,
+                17459454,
+                17474533,
+                17561593,
+                17769601,
+                18087798,
+                17841531
+              ],
+              "median_ns": 17561593
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13165437,
+                13062678,
+                13143537,
+                13231387,
+                12951728,
+                12984938,
+                12879159
+              ],
+              "median_ns": 13062678
+            }
+          ]
+        }
+      },
+      {
+        "variant": "candidate",
+        "report": {
+          "host": "Linux-6.18.48-x86_64-with-glibc2.42",
+          "cpu_affinity": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "corpus_sha256": "66f20155468079c24fe68640ec911e594911f7684329a1364ae7e199de60a082",
+          "tokenizer_sha256": "d868d01502157b74f8fd438db6fa7fcb2ef79a659ea12bd5ca45d17b8c1e6bdd",
+          "module_sha256": "ee4940d06ebf311694ec44f82cc50734fd8d772a8a354c3722bb82b447ea8ca4",
+          "protocol": "fresh tokenizer per sample; loading and output validation outside timing; ordered stream",
+          "rows": [
+            {
+              "workload": "decisions",
+              "method": "encode",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1971505,
+                1330650,
+                1295670,
+                1338860,
+                1341229,
+                1358129,
+                1359020
+              ],
+              "median_ns": 1341229
+            },
+            {
+              "workload": "decisions",
+              "method": "encode_into",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                1106411,
+                1040242,
+                1128601,
+                1189001,
+                1038402,
+                1047441,
+                1110682
+              ],
+              "median_ns": 1106411
+            },
+            {
+              "workload": "decisions",
+              "method": "validate",
+              "documents": 256,
+              "bytes": 310519,
+              "tokens": 74929,
+              "sha256": "fd47d7aedfaf4d6c56b4f0d0eb96901816c998815f480b4845f2013286f1af8d",
+              "samples_ns": [
+                2980897,
+                2955217,
+                2993726,
+                2926397,
+                2903927,
+                3017186,
+                3087075
+              ],
+              "median_ns": 2980897
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                33918323,
+                36183647,
+                34664548,
+                34421240,
+                37714684,
+                35888639,
+                34156152
+              ],
+              "median_ns": 34664548
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                34033503,
+                34648898,
+                33964673,
+                33768404,
+                34447210,
+                34110382,
+                34235661
+              ],
+              "median_ns": 34110382
+            },
+            {
+              "workload": "fineweb_edu",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 4696708,
+              "tokens": 1027272,
+              "sha256": "7eb1debf91d78eaceb4883eeae60fc9d34b4a40505363db37efe4eb3412f66a4",
+              "samples_ns": [
+                21882048,
+                21360603,
+                21041765,
+                21269613,
+                21158464,
+                23278487,
+                21257493
+              ],
+              "median_ns": 21269613
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "encode",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                19821064,
+                18547764,
+                17337723,
+                18329266,
+                17375294,
+                17665651,
+                17311504
+              ],
+              "median_ns": 17665651
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch32",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                17065536,
+                17079606,
+                17387063,
+                17277294,
+                18061088,
+                17123445,
+                17206744
+              ],
+              "median_ns": 17206744
+            },
+            {
+              "workload": "pleias_synth",
+              "method": "batch1024",
+              "documents": 1024,
+              "bytes": 1751862,
+              "tokens": 336377,
+              "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945",
+              "samples_ns": [
+                13161756,
+                12811409,
+                12786309,
+                12980098,
+                12921119,
+                14571985,
+                12663551
+              ],
+              "median_ns": 12921119
+            }
+          ]
+        }
+      }
+    ]
+  ],
+  "compiler_verification": "Both Cargo build-script outputs record CC = Some(gcc). Rebuilding e865559 under the same shell reproduces baseline module SHA-256 b8722f84a3a9bfb094eb9a7c2cd888b54d39ba11fabab083cbf7bf12a249240d byte for byte. Clang 21.1.8 was available but was not the native-assembly compiler."
+}

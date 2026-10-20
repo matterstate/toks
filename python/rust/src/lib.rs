@@ -131,22 +131,32 @@ impl Tokenizer {
                     .map_err(|_| PyMemoryError::new_err("ID cache"))?;
                 cache.ints.resize_with(n, || None);
             }
+            let integers = cache.ints.as_mut_slice();
+            #[cfg(not(any(PyPy, GraalPy)))]
+            let items = unsafe { (*out.as_ptr().cast::<pyo3::ffi::PyListObject>()).ob_item };
             for (i, &id) in ids.iter().enumerate() {
                 // Exact integer construction cannot invoke Python callbacks.
-                let value = if let Some(entry) = cache.ints.get_mut(id as usize) {
+                let value = if let Some(entry) = integers.get_mut(id as usize) {
                     if entry.is_none() {
                         *entry = Some(id.into_pyobject(py)?.into_any().unbind());
                     }
                     entry
                         .as_ref()
-                        .map(|v| v.clone_ref(py))
+                        .map(|v| v.bind(py).as_borrowed().to_owned().unbind())
                         .ok_or_else(|| PyTypeError::new_err("ID cache"))?
                 } else {
                     id.into_pyobject(py)?.into_any().unbind()
                 };
                 // The list owns this reference; no temporary Rust vector or
                 // second reference-count pass is needed.
-                unsafe { pyo3::ffi::PyList_SET_ITEM(out.as_ptr(), i as isize, value.into_ptr()) };
+                #[cfg(not(any(PyPy, GraalPy)))]
+                unsafe {
+                    items.add(i).write(value.into_ptr());
+                }
+                #[cfg(any(PyPy, GraalPy))]
+                unsafe {
+                    pyo3::ffi::PyList_SET_ITEM(out.as_ptr(), i as isize, value.into_ptr());
+                }
             }
         }
         Ok(out)

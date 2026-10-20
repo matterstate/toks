@@ -78,8 +78,9 @@ child-local tokenizer can create its own pool.
 
 ## Atlas results, 2026-10-20
 
-Both variants use Rust 1.98.1, Clang 21.1.8, the `python` profile (optimization
-level 3, thin LTO, one codegen unit, unwind), and the default portable CPU target.
+Both variants use Rust 1.98.1, GCC 16.2.0 for native assembly, the `python`
+profile (optimization level 3, thin LTO, one codegen unit, unwind), and the
+default portable CPU target.
 The baseline is `e16b816`. CPU affinity is 8–15. Test jobs finished before the
 five ABBA/BAAB blocks ran. Each process has three samples per cell; times below
 are means of block medians, with paired geometric-mean ratios. Ratios above
@@ -140,6 +141,65 @@ Validation includes:
   version check plus the ten batch cases then passed together (11 checks).
 - Wheel and source archive builds pass; the source archive includes the new
   Rust module.
+
+## Integer-list follow-up
+
+A warm profile of 256 repeated FineWeb-Edu batches on `e865559` attributed
+23.06% of sampled user cycles to `Tokenizer::int_list` and 12.16% to list
+destruction. Prefetching cached integer objects did not help in preliminary
+measurements and was removed.
+
+The retained change keeps the integer-cache slice and the private CPython
+list's slot pointer outside the token loop. A borrowed handle copies each
+cached object pointer before acquiring the list's owned reference. Each
+output entry still owns a reference. List allocation remains before the
+cache lock so cyclic GC can reenter the tokenizer; exact integer construction
+cannot invoke callbacks or resize the private list. Other interpreter layouts
+retain the existing list setter.
+
+The same toolchain, corpus and affinity were used for four ABBA/BAAB blocks
+against `e865559`, with seven samples per cell in each process. Tests and
+builds finished before timing. All 1,008 timed samples, module hashes and output
+digests are retained in [the receipt](receipts/readout-int-list-epyc9124.json).
+
+Cargo's preserved build-script outputs identify GCC as the native-assembly
+compiler for both this experiment and the earlier batch experiment. The
+earlier Clang attribution recorded the available tool rather than the selected
+compiler. Rebuilding `e865559` under the measured shell reproduced its native
+module byte for byte. These measurements use `CC=gcc`; the Nix shell now uses
+Clang's stdenv so the frozen C reference also builds with its required compiler.
+
+| Workload | Method | Baseline ms | Candidate ms | Speedup |
+| --- | --- | ---: | ---: | ---: |
+| 256 decision prompts | encode | 1.379 | 1.359 | 1.014× |
+| 256 decision prompts | encode into buffer | 1.082 | 1.089 | 0.994× |
+| 256 decision prompts | full answer-letter validation | 3.102 | 2.970 | 1.044× |
+| 1,024 FineWeb-Edu documents | single calls | 35.028 | 34.511 | 1.015× |
+| 1,024 FineWeb-Edu documents | batches of 32 | 34.957 | 34.698 | 1.008× |
+| 1,024 FineWeb-Edu documents | one batch | 21.706 | 21.432 | 1.013× |
+| 1,024 Pleias documents | single calls | 17.676 | 17.641 | 1.002× |
+| 1,024 Pleias documents | batches of 32 | 17.721 | 17.563 | 1.009× |
+| 1,024 Pleias documents | one batch | 13.121 | 12.977 | 1.011× |
+
+Answer-letter validation improves in all four blocks (1.022–1.072×). Plain
+decision encoding and single-call Pleias results vary around parity. The
+buffer path is unchanged in source and its small measured loss is included.
+These are tokenizer timings on one host, not model inference latency.
+
+All token-stream digests match. A fresh direct Hugging Face comparison again
+matches all 2,304 Qwen inputs and 1,438,578 tokens. New regression checks verify
+that repeated cached IDs acquire and release exactly one reference per list
+entry, and that piece offsets beyond the vocabulary-sized cache match the
+Hugging Face pre-tokenizer. The focused ownership, reentrancy, threading and
+batch checks pass (22 tests).
+
+The installed-wheel suite passes 344 tests with 43 skips for unsupported or
+optional oracle cases. Its expected fork test emits one deprecation warning.
+
+After the Nix compiler correction, a Clang-built candidate also passes those
+22 focused checks and all nine Qwen output-digest checks against the same
+Hugging Face oracle. All 30 API checks pass with the independently rebuilt
+Clang C reference. Its timings were ignored because tests were running.
 
 ## DeepInfer reference
 

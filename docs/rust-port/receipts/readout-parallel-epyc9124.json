@@ -3164,5 +3164,6 @@
         "sha256": "1412ad7d86108f5d4afd0859ff8d5ce084beab0d05a15c6bffb6593007a3e945"
       }
     ]
-  }
+  },
+  "native_assembly_compiler": "GCC 16.2.0; preserved baseline-target and candidate Cargo build-script outputs both record CC = Some(gcc). The clang field records the available audit tool, not the compiler selected by CC."
 }

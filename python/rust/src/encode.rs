@@ -149,33 +149,7 @@ impl Tokenizer {
             longest_text = longest_text.max(text.len);
             tx.push(text);
         }
-        let parallel = tx.len() >= 32
-            && tx.len() <= toks::BatchEncoder::TEXTS_MAX
-            && (1 << 20..=toks::BatchEncoder::BYTES_MAX).contains(&total)
-            && this.process_id == std::process::id();
-        let values = if parallel {
-            py.detach(|| {
-                let mut batch = crate::lock(&this.batch);
-                if batch.is_none() {
-                    *batch = Some(this.core.batch_encoder(this.options)?);
-                }
-                let texts: Vec<_> = tx.iter().map(Text::bytes).collect();
-                batch
-                    .as_mut()
-                    .expect("batch pool initialized")
-                    .encode(&texts, F::from_bits(flags | 32))
-            })
-            .map_err(|e| core_error(py, e))?
-        } else {
-            this.with_slot(py, longest_text, |s| {
-                let mut run = || {
-                    tx.iter()
-                        .map(|text| s.encoder.encode(text.bytes(), F::from_bits(flags | 32)))
-                        .collect::<Result<Vec<_>, _>>()
-                };
-                if total >= 2048 { py.detach(run) } else { run() }.map_err(|e| core_error(py, e))
-            })?
-        };
+        let values = this.batch_values(py, &tx, flags, total, longest_text)?;
         let longest = values.iter().map(Vec::len).max().unwrap_or(0);
         let out = PyList::empty(py);
         for (ids, text) in values.iter().zip(tx) {
@@ -187,6 +161,42 @@ impl Tokenizer {
             }
         }
         Ok(out)
+    }
+    fn batch_values(
+        &self,
+        py: Python<'_>,
+        tx: &[Text],
+        flags: u32,
+        total: usize,
+        longest_text: usize,
+    ) -> PyResult<Vec<Vec<u32>>> {
+        let parallel = tx.len() >= 32
+            && tx.len() <= toks::BatchEncoder::TEXTS_MAX
+            && (1 << 20..=toks::BatchEncoder::BYTES_MAX).contains(&total)
+            && self.process_id == std::process::id();
+        if parallel {
+            py.detach(|| {
+                let mut batch = crate::lock(&self.batch);
+                if batch.is_none() {
+                    *batch = Some(self.core.batch_encoder(self.options)?);
+                }
+                let texts: Vec<_> = tx.iter().map(Text::bytes).collect();
+                batch
+                    .as_mut()
+                    .expect("batch pool initialized")
+                    .encode(&texts, F::from_bits(flags | 32))
+            })
+            .map_err(|e| core_error(py, e))
+        } else {
+            self.with_slot(py, longest_text, |s| {
+                let mut run = || {
+                    tx.iter()
+                        .map(|text| s.encoder.encode(text.bytes(), F::from_bits(flags | 32)))
+                        .collect::<Result<Vec<_>, _>>()
+                };
+                if total >= 2048 { py.detach(run) } else { run() }.map_err(|e| core_error(py, e))
+            })
+        }
     }
     fn tt_encode<'py>(
         slf: &Bound<'py, Self>,
@@ -407,6 +417,78 @@ impl Tokenizer {
             out.write_ids(&s.ids);
             Ok(s.ids.len())
         })
+    }
+    #[pyo3(signature=(texts, out, *, add_special_tokens=Arg::MISSING, added_tokens=Arg::MISSING, continuation=Arg::MISSING))]
+    fn encode_batch_into<'py>(
+        &self,
+        texts: &Bound<'py, PyAny>,
+        out: &Bound<'py, PyAny>,
+        add_special_tokens: Arg<'py>,
+        added_tokens: Arg<'py>,
+        continuation: Arg<'py>,
+    ) -> PyResult<Bound<'py, PyList>> {
+        let py = texts.py();
+        let flags = self.flags(
+            add_special_tokens.get(),
+            added_tokens.get(),
+            continuation.get(),
+        )?;
+        if texts.is_instance_of::<PyString>() || texts.is_instance_of::<PyBytes>() {
+            return Err(PyTypeError::new_err(
+                "encode_batch_into takes a sequence of texts",
+            ));
+        }
+        let texts = buffers::tuple(texts)?;
+        if texts.len() > toks::BatchEncoder::TEXTS_MAX {
+            return Err(PyValueError::new_err(
+                "encode_batch_into accepts at most 4096 texts",
+            ));
+        }
+        let mut out = Buffer::output(out)?;
+        let mut inputs = Vec::new();
+        let mut total = 0usize;
+        let mut longest_text = 0usize;
+        for text in texts.iter() {
+            let text = Text::get(&text)?;
+            out.reject_overlap(&text)?;
+            total = total
+                .checked_add(text.len)
+                .ok_or_else(|| PyValueError::new_err("batch too large"))?;
+            longest_text = longest_text.max(text.len);
+            inputs.push(text);
+        }
+        let values = self.batch_values(py, &inputs, flags, total, longest_text)?;
+        let longest = values.iter().map(Vec::len).max().unwrap_or(0);
+        let mut offsets = Vec::with_capacity(values.len() + 1);
+        offsets.push(0usize);
+        for ids in &values {
+            let count = ids
+                .len()
+                .checked_add(self.pad_count(flags, ids.len(), longest))
+                .and_then(|count| offsets.last().unwrap().checked_add(count))
+                .ok_or_else(|| PyValueError::new_err("batch output too large"))?;
+            offsets.push(count);
+        }
+        let count = *offsets.last().unwrap();
+        let result = PyList::new(py, &offsets)?;
+        if count > out.view.len as usize / 4 {
+            return Ok(result);
+        }
+        assert_eq!(offsets.len(), values.len() + 1);
+        assert!(count <= out.view.len as usize / 4);
+        let info = self.core.info();
+        for (index, ids) in values.iter().enumerate() {
+            let start = offsets[index];
+            let pad = offsets[index + 1] - start - ids.len();
+            if info.pad_left != 0 {
+                out.fill_ids_at(info.pad_id, start, pad);
+                out.write_ids_at(ids, start + pad);
+            } else {
+                out.write_ids_at(ids, start);
+                out.fill_ids_at(info.pad_id, start + ids.len(), pad);
+            }
+        }
+        Ok(result)
     }
     #[pyo3(signature=(texts, *, add_special_tokens=Arg::MISSING, added_tokens=Arg::MISSING, continuation=Arg::MISSING))]
     fn encode_batch<'py>(

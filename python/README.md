@@ -18,6 +18,7 @@ enc.ids, enc.attention_mask, enc.type_ids, enc.special_tokens_mask, enc.tokens
 tok.encode_batch(texts)                                    # list of lists, without the GIL, padded as hf pads
 tok.encode_batch_ex(texts)                                 # == hf tok.encode_batch(texts): a list of Encoding
 n = tok.encode_into(text, out)                             # ids straight into a uint32 / int32 buffer
+offsets = tok.encode_batch_into(texts, out)                 # flat ids; document i is out[offsets[i]:offsets[i+1]]
 tok.encode_bound(len(text.encode()))                       # the most ids any text of that many bytes gives
 tok.decode(ids)                                            # == hf tok.decode(ids) (skip_special_tokens=True)
 tok.pieces(text)                                           # piece end offsets (utf-8 bytes)
@@ -35,7 +36,7 @@ tok.n_vocab, tok.eot_token, tok.special_tokens_set, tok.token_byte_values()
 
 ## The API and what each call equals
 
-`encode_batch` and `encode_batch_ex` reuse a native worker pool for batches of
+`encode_batch`, `encode_batch_ex` and `encode_batch_into` reuse a native worker pool for batches of
 32–4,096 inputs totaling 1–64 MiB. The pool uses at most four participants,
 including the caller, and respects the process's available CPUs. Smaller batches
 use the serial encoder. Input order, token IDs, truncation and padding stay the
@@ -43,6 +44,19 @@ same. Concurrent large batches on one tokenizer wait for the same pool while
 the GIL is released.
 After a process fork, an inherited tokenizer uses serial encoding; construct a
 new tokenizer in the child to use its own worker pool.
+
+`encode_batch_into` accepts up to 4,096 texts and a writable contiguous buffer of
+4-byte integers. It returns `len(texts) + 1` offsets, starting at zero; the last
+offset is the total ID count. IDs and batch padding match `encode_batch`. If the
+buffer is too small, it returns the required offsets and leaves the buffer
+unchanged: **always check `offsets[-1] <= len(out)` before using the output**.
+Resize and retry when necessary, or pass an empty buffer to query the size.
+Input/output overlap is rejected, and the unused tail is
+unchanged. Mutable inputs are snapshotted before releasing the GIL; output is
+copied from Rust staging after reacquiring it. No Python integer is created per
+token. For an unpadded tokenizer, `sum(tok.encode_bound(len(text.encode())) for
+text in texts)` is a conservative capacity; configured batch padding may need
+more space. Empty batches return `[0]`.
 
 Every call below is checked against the reference named beside it by python/tests (through the built wheel), on
 every tokenizer.json under tests/data and in the tokenizer cache, and on the tiktoken models.
@@ -55,6 +69,7 @@ every tokenizer.json under tests/data and in the tokenizer cache, and on the tik
 | `encode_batch(texts, ...)` | `list[list[int]]` | hf `Tokenizer.encode_batch(texts)`'s ids: the file's padding over the batch (BatchLongest: to its longest member) |
 | `encode_batch_ex(texts, ...)` | `list[Encoding]` | hf `Tokenizer.encode_batch(texts)`, field by field |
 | `encode_into(text, out, ...)` | the count | `encode`'s ids, written into `out` |
+| `encode_batch_into(texts, out, ...)` | document offsets | `encode_batch`'s ids, concatenated into `out` |
 | `encode_bound(n)` | `int` | toks_encode_bound |
 | `pieces(text, *, added_tokens, continuation)` | `list[int]` | hf's normalizer + pre-tokenizer, as byte offsets |
 | `decode(ids, skip_special_tokens=True)`, `decode_batch(...)` | `str` | hf `Tokenizer.decode` |

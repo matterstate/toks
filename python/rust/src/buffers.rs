@@ -59,6 +59,26 @@ impl<'py> Buffer<'py> {
         }
         Ok(())
     }
+    pub fn write_ids_at(&mut self, ids: &[u32], start: usize) {
+        assert!(start <= self.view.len as usize / 4);
+        assert!(ids.len() <= self.view.len as usize / 4 - start);
+        unsafe {
+            ptr::copy_nonoverlapping(
+                ids.as_ptr().cast::<u8>(),
+                self.view.buf.cast::<u8>().add(start * 4),
+                ids.len() * 4,
+            )
+        };
+    }
+    pub fn fill_ids_at(&mut self, id: u32, start: usize, count: usize) {
+        assert!(start <= self.view.len as usize / 4);
+        assert!(count <= self.view.len as usize / 4 - start);
+        for index in start..start + count {
+            unsafe {
+                ptr::write_unaligned(self.view.buf.cast::<u8>().add(index * 4).cast::<u32>(), id)
+            };
+        }
+    }
     pub fn write_ids(&mut self, ids: &[u32]) {
         let n = ids.len().min(self.view.len as usize / 4);
         // The exported destination may be unaligned. No Rust reference to it

@@ -3,6 +3,7 @@
 import json
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
+from itertools import pairwise
 from pathlib import Path
 
 import pytest
@@ -19,12 +20,8 @@ import toks
         lambda text: memoryview(text.encode()),
     ],
 )
-def test_large_batch_matches_serial(
-    gpt2: toks.Tokenizer, container: Callable[[str], object]
-) -> None:
-    texts = [
-        f"Record {index}: café 中文 😀 <|endoftext|>\n" * 400 for index in range(64)
-    ]
+def test_large_batch_matches_serial(gpt2: toks.Tokenizer, container: Callable[[str], object]) -> None:
+    texts = [f"Record {index}: café 中文 😀 <|endoftext|>\n" * 400 for index in range(64)]
     inputs = [container(text) for text in texts]
     assert sum(len(text.encode()) for text in texts) > 1 << 20
     for options in (
@@ -34,9 +31,7 @@ def test_large_batch_matches_serial(
     ):
         expected = [gpt2.encode(text, **options) for text in inputs]
         assert gpt2.encode_batch(inputs, **options) == expected
-        assert [
-            encoding.ids for encoding in gpt2.encode_batch_ex(inputs, **options)
-        ] == expected
+        assert [encoding.ids for encoding in gpt2.encode_batch_ex(inputs, **options)] == expected
 
 
 @pytest.mark.parametrize("direction", ["Left", "Right"])
@@ -68,9 +63,12 @@ def test_large_batch_padding_truncation_against_hugging_face(
     ]
     assert sum(len(text.encode()) for text in texts) > 1 << 20
     expected = oracle.encode_batch(texts, add_special_tokens=False)
-    assert tokenizer.encode_batch(texts, add_special_tokens=False) == [
-        encoding.ids for encoding in expected
-    ]
+    assert tokenizer.encode_batch(texts, add_special_tokens=False) == [encoding.ids for encoding in expected]
+    from array import array
+
+    output = array("I", [0]) * sum(len(encoding.ids) for encoding in expected)
+    offsets = tokenizer.encode_batch_into(texts, output, add_special_tokens=False)
+    assert [list(output[a:b]) for a, b in pairwise(offsets)] == [encoding.ids for encoding in expected]
     actual = tokenizer.encode_batch_ex(texts, add_special_tokens=False)
     for left, right in zip(actual, expected, strict=True):
         assert left.ids == right.ids
@@ -82,14 +80,8 @@ def test_large_batch_padding_truncation_against_hugging_face(
 def test_shared_large_batch_pool_concurrent_callers_and_errors(
     gpt2: toks.Tokenizer,
 ) -> None:
-    batches = [
-        [f"Batch {batch}, row {index}: hello world\n" * 600 for index in range(64)]
-        for batch in range(3)
-    ]
-    expected = [
-        [gpt2.encode(text, add_special_tokens=False) for text in batch]
-        for batch in batches
-    ]
+    batches = [[f"Batch {batch}, row {index}: hello world\n" * 600 for index in range(64)] for batch in range(3)]
+    expected = [[gpt2.encode(text, add_special_tokens=False) for text in batch] for batch in batches]
     with ThreadPoolExecutor(max_workers=3) as executor:
         results = list(
             executor.map(
@@ -116,6 +108,11 @@ def test_inherited_batch_pool_after_fork(gpt2_path: str) -> None:
         nonlocal tokenizer
         try:
             assert tokenizer.encode_batch(texts, add_special_tokens=False) == expected
+            from array import array
+
+            output = array("I", [0]) * sum(map(len, expected))
+            offsets = tokenizer.encode_batch_into(texts, output, add_special_tokens=False)
+            assert [list(output[a:b]) for a, b in pairwise(offsets)] == expected
             tokenizer = None
             sending.send(True)
         finally:

@@ -11,8 +11,8 @@ script asks tiktoken itself: an Encoding whose pattern is `[\\p{Han}]` and whose
 returns one token per member (tiktoken drops unmatched text), over all of U+0000..U+10FFFF but the surrogates.
 The members become ascending, disjoint ranges, written as
 
-    src/gen/han_ranges.h   TOKS_HAN_N, TOKS_HAN_CODEPOINTS, TOKS_HAN_SHA256, extern toks_han_ranges
-    src/gen/han_ranges.c   the table
+    native/gen/han_ranges.h   TOKS_HAN_N, TOKS_HAN_CODEPOINTS, TOKS_HAN_SHA256, extern toks_han_ranges
+    native/gen/han_ranges.c   the table
 
 with the sha256 of the table (each range as two u32 little-endian: lo, hi) in both, which tests check.
 classes.c sets TOKS_C_HAN from this table under TOKS_CLASSES_HAN; tests/model/o200k_model.py and the c tests
@@ -113,7 +113,7 @@ def main():
     for i in range(0, len(rs), 4):
         rows.append("    " + " ".join("{ 0x%05Xu, 0x%05Xu }," % r for r in rs[i:i + 4]))
     args = dict(ver=tiktoken.__version__, n=len(rs), cps=n_cps, sha=sha, rows="\n".join(rows))
-    for path, text in ((REPO / "src/gen/han_ranges.h", H_SRC % args), (REPO / "src/gen/han_ranges.c", C_SRC % args)):
+    for path, text in ((REPO / "native/gen/han_ranges.h", H_SRC % args), (REPO / "native/gen/han_ranges.c", C_SRC % args)):
         path.write_text(text, encoding="utf-8", newline="\n")
         print("wrote %s (%d bytes) sha256 %s" % (path.relative_to(REPO), path.stat().st_size,
                                                   hashlib.sha256(path.read_bytes()).hexdigest()))

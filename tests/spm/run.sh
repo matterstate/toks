@@ -11,7 +11,7 @@ n=$2
 seed=${3:-1}
 workers=${WORKERS:-4}
 BUILD_DIR=build/spm-check make -s -j8 lib >/dev/null
-clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Isrc/core -Isrc/platform \
+clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Inative/core -Inative/platform \
   -o build/spm-check/check tests/spm/check.c build/spm-check/libtoks.a
 fetched=$(uv run --python 3.12 python tests/spm/fetch.py "$name")
 path=$(echo "$fetched" | awk '{print $NF}')

@@ -1,5 +1,5 @@
 /*
- * tests/c/test_wp.c: unit tests of the WordPiece / BERT c twins (src/core/norm.c BERT steps, wp_scan.c, wp.c; the reader is config.c).
+ * tests/c/test_wp.c: unit tests of the WordPiece / BERT c twins (native/core/norm.c BERT steps, wp_scan.c, wp.c; the reader is config.c).
  * Runs in `make test` in well under a second; the differential against hf on real tokenizers is
  * tests/wordpiece/run.sh (lab hosts).
  *
@@ -17,8 +17,8 @@
  *   decode     toks_decode through toks.h on six small WordPiece tokenizers whose strings stress the prefix rule
  *              and hf's cleanup passes, against hf 0.23.2's own strings (tests/data/wordpiece/decode_golden.inc)
  */
-#include "../../src/core/wp.h"
-#include "../../src/core/json.h"
+#include "../../native/core/wp.h"
+#include "../../native/core/json.h"
 #include "../common/wp_json.h"
 #include "toks.h"
 #include "guard.h"

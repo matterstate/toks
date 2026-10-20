@@ -17,9 +17,9 @@
  * is re-certified first: against K6, and under ignore_merges against the whole-piece rule (its key is a
  * model token: [that id]). Exit 0 iff nothing differs.
  */
-#include "../../src/core/bpe.h"
-#include "../../src/core/compile.h"
-#include "../../src/core/kernels.h"
+#include "../../native/core/bpe.h"
+#include "../../native/core/compile.h"
+#include "../../native/core/kernels.h"
 
 #include <inttypes.h>
 #include <stdio.h>

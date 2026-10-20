@@ -1,2 +1,0 @@
-STEP win-build status=0 secs=35 load=n/a
-STEP win-test status=0 secs=55 load=n/a

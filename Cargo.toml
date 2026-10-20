@@ -1,6 +1,30 @@
+[package]
+name = "toks"
+version = "0.3.2"
+edition = "2021"
+license = "Apache-2.0"
+description = "Exact tokenizer algorithms with native SIMD kernels"
+
+[lib]
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+cc = "1"
+
+[features]
+avx512 = []
+test-api = []
+test-allocator = []
+test-internals = []
+test-degenerate = []
+test-guard = []
+
 [workspace]
-members = ["rust", "python/rust"]
-default-members = ["rust"]
+members = ["python/rust"]
+default-members = ["."]
 resolver = "2"
 
 [profile.release]

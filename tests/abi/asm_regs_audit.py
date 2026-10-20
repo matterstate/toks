@@ -191,7 +191,7 @@ def main():
         sys.exit("usage: asm_regs_audit.py ASMCHECK_DIR CC")
     nx, bad = audit_x86(sys.argv[1], sys.argv[2])
     na = 0
-    for path in sorted(glob.glob(os.path.join("src/asm/arm64", "*.S"))):
+    for path in sorted(glob.glob(os.path.join("native/asm/arm64", "*.S"))):
         na += sum(1 for _ in funcs(path))
         bad += audit_arm64(path)
     print(f"asm_regs_audit: {nx} x86_64 functions (coff: register use vs win64 unwind codes), {na} arm64 functions "

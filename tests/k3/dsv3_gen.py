@@ -8,7 +8,7 @@
   uv run --python 3.12 --with tokenizers==0.23.2 python tests/k3/dsv3_gen.py golden > tests/k3/dsv3_golden.h
       the hand cases of tests/c/test_k3_dsv3.c with hf's piece ends (and, for ill-formed utf-8, the model's), as c data
   uv run --python 3.12 --with tokenizers==0.23.2 python tests/k3/dsv3_gen.py classes DUMP
-      DUMP = `dsv3_check --classes DUMP` (the class byte of every code point, src/core/classes.c with
+      DUMP = `dsv3_check --classes DUMP` (the class byte of every code point, native/core/classes.c with
       TOKS_CLASSES_DSV3): compared with the onig probes (dsv3_model.build_classes) on every scalar
 
 Record format (little-endian): u8 oracle (0: hf, 1: the python model on ill-formed bytes), u32 n_bytes, text,

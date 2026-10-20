@@ -26,7 +26,7 @@ This script
      and the classes of BertPreTokenizer, WhitespaceSplit and Whitespace; plus every ordered pair of the 83
      non-starters that survive strip_accents (canonical reordering), with and without a removed char or a ccc-0
      mark between them. Any disagreement with the derived tables stops the run;
-  3. writes tests/data/wordpiece/unicode.json (the python model's data) and src/gen/bert_tables.{c,h} (the c twin's
+  3. writes tests/data/wordpiece/unicode.json (the python model's data) and native/gen/bert_tables.{c,h} (the c twin's
      two-level tables), deterministic, and prints their sha256.
 
 Usage:
@@ -606,9 +606,9 @@ static inline uint16_t toks_bert_map_index(uint32_t cp)
          "const uint32_t toks_bert_pool[TOKS_BERT_POOL_N] = {", rows(pool, 12, "0x%04X"), "};", "",
          "const uint32_t toks_bert_keepns[TOKS_BERT_KEEPNS_N][2] = {",
          "\n".join("    {0x%04X, %d}," % (cp, keep_ccc[cp]) for cp in keep_ns), "};", ""]
-    (REPO / "src" / "gen" / "bert_tables.h").write_text(h)
-    (REPO / "src" / "gen" / "bert_tables.c").write_text("\n".join(c))
-    for p in ("tests/data/wordpiece/unicode.json", "src/gen/bert_tables.h", "src/gen/bert_tables.c"):
+    (REPO / "native" / "gen" / "bert_tables.h").write_text(h)
+    (REPO / "native" / "gen" / "bert_tables.c").write_text("\n".join(c))
+    for p in ("tests/data/wordpiece/unicode.json", "native/gen/bert_tables.h", "native/gen/bert_tables.c"):
         print("%s sha256 %s" % (p, hashlib.sha256((REPO / p).read_bytes()).hexdigest()))
     print("data sha256 %s; cls blocks %d, map blocks %d, map entries %d, pool %d, keep-ns %d; %.1f s" % (
         dsha, len(c_blocks), len(m_blocks), len(entries), len(pool), len(keep_ns), time.time() - t0))

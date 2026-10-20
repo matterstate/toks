@@ -27,7 +27,7 @@
  * lookup or a fill reads beyond b1. Validated: today's counters equal the library's (e2e.c's CTR) in 96 of 96 (cell,
  * state) triples (llama3 / gpt2 / qwen38 x en code ml zh x 4096 + whole), and 2shft's and 2k6sf's equal those of K5's c
  * twin built with each rule in 96 of 96 (12 cells x 4 states at 4096; kernels.md §6).
- * Build: tools/bench/k5_cache.sh, or cc -std=c17 -O2 -Iinclude -Isrc/core -Isrc/platform -o build/k5_cache
+ * Build: tools/bench/k5_cache.sh, or cc -std=c17 -O2 -Iinclude -Inative/core -Inative/platform -o build/k5_cache
  *        tools/bench/k5_cache.c build/<os>-<isa>/libtoks.a -lpthread */
 #define _POSIX_C_SOURCE 200809L
 #include "bpe.h"

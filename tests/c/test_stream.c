@@ -1,5 +1,5 @@
 /*
- * test_stream.c: stream decode (SPEC §3.4, §4.7; src/core/stream.c) against its rule, read again here
+ * test_stream.c: stream decode (SPEC §3.4, §4.7; native/core/stream.c) against its rule, read again here
  * independently of the core, and against toks_decode (batch).
  *
  * The rule: B = the bytes of the ids pushed since init / flush that decode keeps; after every push the

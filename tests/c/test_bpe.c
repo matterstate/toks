@@ -30,10 +30,10 @@
  *   arena    every build runs in an arena of exactly toks_bpe_tables_bytes(cfg) bytes, base 64-aligned
  *            and base + 8.
  */
-#include "../../src/core/bpe.h"
-#include "../../src/gen/dict.h"
+#include "../../native/core/bpe.h"
+#include "../../native/gen/dict.h"
 #include "bpe_words.h"
-#include "../../src/core/kernels.h"
+#include "../../native/core/kernels.h"
 #include "../common/guard.h"
 
 #include <inttypes.h>
@@ -544,7 +544,7 @@ static void test_seat(uint32_t n2)
     for (uint32_t i = 0; i < 30; i++) { expect(&M, un[i], un[i]); }
 }
 
-/* the piece dictionary (src/gen/dict.c) walked as toks_bpe_build walks it, which trusts each length byte d[0]: every
+/* the piece dictionary (native/gen/dict.c) walked as toks_bpe_build walks it, which trusts each length byte d[0]: every
  * length in 2..15 (the key's bound; a bad byte stops the walk here before it can run past the array), the count and
  * the bytes as generated (the file's header), and the walk ending on the literal's terminating 0 */
 static void test_dict(void)

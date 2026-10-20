@@ -1,5 +1,5 @@
 /*
- * tests/k1/k1_tab.h: added-token tables for the K1 tests, built by src/core/compile.c's own index builder
+ * tests/k1/k1_tab.h: added-token tables for the K1 tests, built by native/core/compile.c's own index builder
  * (toks_added_index; layout.h TT_ADD_*, docs/kernels.md §4), and a reference K1 written from the prose (every
  * token of the phase tried at every position, no index): leftmost, then longest. Header-only; included by
  * tests/c/test_k1.c and tests/k1/bench_k1.c.
@@ -12,8 +12,8 @@
 #define TOKS_TEST_K1_TAB_H
 
 /* kernels.h -> core.h declares memcpy / memset / memcmp itself: it comes before <string.h> */
-#include "../../src/core/kernels.h"
-#include "../../src/core/compile.h"
+#include "../../native/core/kernels.h"
+#include "../../native/core/compile.h"
 
 #include <stdint.h>
 #include <stdlib.h>

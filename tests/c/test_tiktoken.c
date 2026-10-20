@@ -1,5 +1,5 @@
 /*
- * test_tiktoken.c: the tiktoken reader (src/core/tiktoken.c; docs/models/kimi.md section 3).
+ * test_tiktoken.c: the tiktoken reader (native/core/tiktoken.c; docs/models/kimi.md section 3).
  *   - hand ranks files: vocabulary strings against an independent byte-level alphabet, holes, the exact merge
  *     list (brute force: every split whose halves are both tokens), the flags; compiled and bpe-built:
  *     TOKS_TF_IDS_AS_RANK with every pair's priority == its merged id and no rank2id (with cfg->ids_as_rank
@@ -252,7 +252,7 @@ static void consistent(const toks_config *cfg, const char *what)
 
 /* ---- hand ranks files -------------------------------------------------------------------------------- */
 
-/* toks_tiktoken_parse's output (src/core/tiktoken.h): the kimi pattern, the wrapper's cuts, and the specials
+/* toks_tiktoken_parse's output (native/core/tiktoken.h): the kimi pattern, the wrapper's cuts, and the specials
  * as config.h's two matchers -- phase 0 the trie's tokens, phase 1 all 256 names, each in id order. */
 static void check_phases(const toks_config *cfg, const toks_tiktoken_info *info, const char *what)
 {

@@ -75,7 +75,7 @@ def esc(s):
 
 def _corpus():
     parts = list(MULTI)
-    for d in ("docs", "tests/model", "src/core", "include"):
+    for d in ("docs", "tests/model", "native/core", "include"):
         p = os.path.join(ROOT, d)
         if not os.path.isdir(p):
             continue

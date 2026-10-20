@@ -5,7 +5,7 @@
  * x18 (never touched by toks; holds the platform's value on macos / windows), bit 31 for sp.
  * Returns fn's x0. Test-only code (the indirect call is not allowed in the library).
  */
-#include "../../src/asm/arm64/asm.h"
+#include "../../native/asm/arm64/asm.h"
 
 FUNC toks_abicheck_call
         PROLOGUE 5, 4, 32

@@ -9,7 +9,7 @@
  *
  * The first clobber stops the run (exit 3) with the harness's report decoded; a clean run prints the call count.
  */
-#include "../../src/core/layout.h"
+#include "../../native/core/layout.h"
 #include "../common/guard.h"
 
 #include <inttypes.h>

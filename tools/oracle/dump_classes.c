@@ -1,8 +1,8 @@
 /* tools/oracle/dump_classes.c: writes toks' class byte of every code point U+0000..U+10FFFF (0x110000 bytes,
- * src/core/classes.c with class_flags 0, the onig data of src/gen/ucd_flags.c) to stdout, for
+ * native/core/classes.c with class_flags 0, the onig data of native/gen/ucd_flags.c) to stdout, for
  * tools/oracle/classes_diff.py.
  *
- *   clang -std=c17 -O2 -Isrc/core tools/oracle/dump_classes.c target/release/libtoks.a -lpthread -lm -ldl \
+ *   clang -std=c17 -O2 -Inative/core tools/oracle/dump_classes.c target/release/libtoks.a -lpthread -lm -ldl \
  *       -o build/kimi/dump_classes && build/kimi/dump_classes > build/kimi/toks_classes.bin
  */
 #include <stdio.h>

@@ -17,8 +17,8 @@ The workflow checks:
 
 The fork has no scheduled jobs or automatic release publishing. Upstream's
 Blacksmith workflows and organization-specific contribution automation have
-been removed. Historical upstream release procedures under `docs/release/`
-describe the original C project.
+been removed. Historical upstream release procedures are available in Git at
+`13493f7`; they describe the original C project.
 
 ## Reproduce locally
 

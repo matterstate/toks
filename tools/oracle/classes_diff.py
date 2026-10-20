@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """tools/oracle/classes_diff.py: tiktoken's character classes (Kimi K3's pattern, probed through the tiktoken
-0.14.0 wheel over every scalar value) against toks' class tables (src/core/classes.c, onig data of hf
+0.14.0 wheel over every scalar value) against toks' class tables (native/core/classes.c, onig data of hf
 tokenizers 0.23.2), plus the Han set the pattern needs and toks does not carry yet.
 
     uv run --python 3.12 --with tiktoken==0.14.0 python tools/oracle/classes_diff.py [--onig-han FILE]

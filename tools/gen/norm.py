@@ -23,7 +23,7 @@ This script
      every scalar after every composition first's partner set is left to the lab-host differential
      (tests/norm/); NFKC, NFKD and StripAccents (and NFKD + StripAccents, albert's chain) on every scalar
      alone, every compatibility decomposition between marks. Any disagreement stops the run;
-  4. asserts the facts the C code relies on (see the header it writes) and emits src/gen/norm_nfc.{c,h} plus
+  4. asserts the facts the C code relies on (see the header it writes) and emits native/gen/norm_nfc.{c,h} plus
      the hf golden vectors tests/norm/nfc_golden.txt that `make test` checks.
 
 Usage:
@@ -467,7 +467,7 @@ def main():
                            pool=fmt(pool, "0x%08X", 8), comp=fmt(slots, "0x%016XULL", 4),
                            cls_ccc=fmt(cls_ccc, "%d", 24), kstage1=fmt(kstage1, "%d", 24),
                            kstage2=fmt(kstage2, "0x%08X", 8), fast=fmt(fast, "0x%016XULL", 4))
-    out = {REPO / "src/gen/norm_nfc.h": h_text, REPO / "src/gen/norm_nfc.c": c_text,
+    out = {REPO / "native/gen/norm_nfc.h": h_text, REPO / "native/gen/norm_nfc.c": c_text,
            REPO / "tests/norm/nfc_golden.txt": golden(model, hf_nfc, comp, ccc, classes, rep, scalars),
            REPO / "tests/norm/nfkc_golden.txt": kgolden(model, hf_nfkc, hf_nfkd, kdecomp)}
     for path, text in out.items():
@@ -526,7 +526,7 @@ H_TEXT = """/* toks: NFC / NFKC data exactly as hf tokenizers 0.23.2 runs it: cr
  * GENERATED FILE -- DO NOT EDIT.  Regenerate with: uv run tools/gen/norm.py
  * The generator parses the crate's own tables and verifies its model of the crate against hf's NFC and NFD on
  * every scalar alone, every scalar between two marks, the class order, every composition first x second,
- * all of hangul (docs: src/core/norm.h).
+ * all of hangul (docs: native/core/norm.h).
  *
  * Facts asserted by the generator (the C code relies on them):
  *   - every code point below U+0300 is a boundary NFC leaves unchanged: a byte < 0x%(hot)02X never needs work

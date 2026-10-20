@@ -1,5 +1,5 @@
 /*
- * test_par.c: toks_par (SPEC §0.3, §2.4, §4.10; src/par/par.c). It has no semantics of its own (T2), so every
+ * test_par.c: toks_par (SPEC §0.3, §2.4, §4.10; native/par/par.c). It has no semantics of its own (T2), so every
  * result is compared with the serial toks_encode call on the same bytes, flags and capacity:
  *
  *   - toks_par_encode on inputs from empty to past one unit's 1 MiB limit (word text that cuts everywhere,

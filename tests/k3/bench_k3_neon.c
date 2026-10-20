@@ -2,9 +2,9 @@
  * bench_k3_neon.c: K3 throughput, the c twin vs the neon tier, on the same input, one core.
  * NOT part of `make test`; a lab-host tool (maintainer doctrine: no benchmarks on the control-plane mac):
  *
- *   clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Isrc/core \
- *     -Isrc/platform -Isrc/asm/arm64 -o build/bench_k3_neon tests/k3/bench_k3_neon.c \
- *     src/core/classes.c src/core/k3_c.c src/gen/ucd_flags.c src/asm/arm64/k3_cl100k_neon.S
+ *   clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Inative/core \
+ *     -Inative/platform -Inative/asm/arm64 -o build/bench_k3_neon tests/k3/bench_k3_neon.c \
+ *     native/core/classes.c native/core/k3_c.c native/gen/ucd_flags.c native/asm/arm64/k3_cl100k_neon.S
  *   taskset -c 3 ./build/bench_k3_neon [-m MiB] [-r abba-blocks] [-c cap] [-v variant] name=spec ...
  *
  * Each `name=spec` is one input; spec is a '+'-joined list of sources, each a text file or
@@ -31,9 +31,9 @@
  * the load average (/proc/loadavg; -1 where there is none).
  */
 #define _POSIX_C_SOURCE 200809L   /* clock_gettime under -std=c17 on linux */
-#include "../../src/core/classes.h"
-#include "../../src/core/kernels.h"
-#include "../../src/core/layout.h"
+#include "../../native/core/classes.h"
+#include "../../native/core/kernels.h"
+#include "../../native/core/layout.h"
 
 #include <inttypes.h>
 #include <stdio.h>

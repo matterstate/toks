@@ -13,11 +13,11 @@
  */
 /* kernels.h -> core.h redeclares memcpy/memset/memcmp (freestanding core): it must come before
  * <string.h>, whose secure _chk macros would collide with the declarations. */
-#include "../../src/core/classes.h"
-#include "../../src/core/compile.h"
-#include "../../src/gen/han_ranges.h"
-#include "../../src/core/kernels.h"
-#include "../../src/core/layout.h"
+#include "../../native/core/classes.h"
+#include "../../native/core/compile.h"
+#include "../../native/gen/han_ranges.h"
+#include "../../native/core/kernels.h"
+#include "../../native/core/layout.h"
 #include "../common/guard.h"
 
 /* the tier under test: the c twin by default; for an asm tier, build this file by hand with
@@ -57,7 +57,7 @@ static toks_class_tables CTR;                   /* kimi's reference: CT plus TOK
 static toks_tables TT[NV];
 
 /* the reference for kimi's tables: the plain build with every block a Han range touches copied and the bit set
- * by hand, from the generated table (src/gen/han_ranges.c, tools/gen/han.py: tiktoken's own \p{Han}); classes.c's
+ * by hand, from the generated table (native/gen/han_ranges.c, tools/gen/han.py: tiktoken's own \p{Han}); classes.c's
  * TOKS_CLASSES_HAN build must equal it on every scalar value (check_han), and the table its recorded hash. */
 static uint16_t kimi_s1[0x1100];
 static uint8_t kimi_s2[0x1100 * 256];

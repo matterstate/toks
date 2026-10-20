@@ -1,5 +1,5 @@
 /*
- * test_bound.c: toks_encode_bound (include/toks.h "capacity"; the proof: src/core/compile.c toks_bound_terms_of).
+ * test_bound.c: toks_encode_bound (include/toks.h "capacity"; the proof: native/core/compile.c toks_bound_terms_of).
  * The contexts: the tokenizer files under tests/data in FIXTURES (each must load) and the cached tokenizers in CACHED
  * ($TOKS_TOKENIZER_CACHE, else ~/.cache/toks/tokenizers) plus kimik3 ($TOKS_KIMI_DIR, else ~/.cache/toks/kimik3); a
  * SKIP line for each one absent. Both lists are fixed (no directory is listed, so the test is the same on every os):
@@ -21,7 +21,7 @@
 #include "core.h"
 #include "compile.h"
 #include "unigram.h"
-#include "../../src/gen/norm_nfc.h"
+#include "../../native/gen/norm_nfc.h"
 
 #include <stdarg.h>
 #include <stdio.h>

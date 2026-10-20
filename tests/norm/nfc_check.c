@@ -1,5 +1,5 @@
 /*
- * nfc_check.c: the NFC normalizer (src/core/norm.c) against hf tokenizers 0.23.2 at scale. Not part of
+ * nfc_check.c: the NFC normalizer (native/core/norm.c) against hf tokenizers 0.23.2 at scale. Not part of
  * `make test`: tests/norm/run.sh pipes tests/norm/gen.py's records into it on a lab host.
  *
  * stdin: records of u32 n_in, in[n_in], u32 n_out, out[n_out] (little-endian; out = hf NFC(in)).
@@ -8,7 +8,7 @@
  * (so K2's 64-byte blocks fall at other positions); each result must equal hf's bytes exactly.
  * argv[1] names the family for the report. Exit 0 iff 0 mismatches.
  */
-#include "../../src/core/norm.h"
+#include "../../native/core/norm.h"
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -11,7 +11,7 @@
       texts from the same sources with hf's ids for the whole text (Tokenizer.encode, no special tokens,
       encode_special_tokens on), for tests/k3/o200k_e2e.c (TOKENIZER: a file with the o200k pattern)
   uv run --with tokenizers==0.23.2 python tests/k3/o200k_gen.py classes DUMP
-      DUMP = `o200k_check --classes DUMP` (the class byte of every code point, built by src/core/classes.c
+      DUMP = `o200k_check --classes DUMP` (the class byte of every code point, built by native/core/classes.c
       with class_flags 0): compared with the onig probes (o200k_model.build_classes) on every scalar
 
 Record format (little-endian): u8 variant (0 o200k, 1 nemo, 2 kimi), u32 n_bytes, text, u32 n_pieces,

@@ -3,8 +3,7 @@
 Rust is the only tokenizer implementation. The C tokenizer and its build,
 mutation, fuzz-campaign and migration runners have been retired. The C ABI test
 callers, shared assembly, layout declarations and pinned table data remain.
-Historical C source and campaign commands are available in revision `17ec6e9`;
-older design and measurement documents describe that implementation.
+Historical C source and campaign commands are available in revision `17ec6e9`.
 
 ## Regression checks
 
@@ -50,9 +49,9 @@ profile, CPU target, host, affinity, tokenizer files and corpus. Keep frozen
 token streams or their complete length-prefixed digests. Validate outputs
 outside timing and reject mismatches before interpreting speed.
 
-`tools/rust-port/bench.py --baseline <e2e> --candidate <e2e>` alternates native
+`tools/bench/compare.py --baseline <e2e> --candidate <e2e>` alternates native
 Rust callers in ABBA/BAAB blocks. `--golden <golden.json>` also checks an existing
-reviewed stream receipt. The [Qwen readout canary](rust-port/readout.md) compares
+reviewed stream receipt. The [Qwen readout canary](performance.md) compares
 isolated installed wheels and covers actual decision validation
 and training-text preprocessing with complete output digests.
 

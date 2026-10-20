@@ -28,7 +28,7 @@
 #define TOKS_HAVE_K5_NEON 0
 #define TOKS_HAVE_K5_AVX2 1
 #define TOKS_HAVE_K5_AVX512 0
-#include "../../src/core/kernels.h"
+#include "../../native/core/kernels.h"
 
 #include <stdio.h>
 

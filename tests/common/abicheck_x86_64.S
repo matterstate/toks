@@ -7,7 +7,7 @@
  * Frame: win64 needs 32 bytes of home space for the callee; the trampoline's own frame exceeds the 256-byte
  * kernel limit on win64, so it is laid out by hand here rather than with PROLOGUE.
  */
-#include "../../src/asm/x86_64/asm.h"
+#include "../../native/asm/x86_64/asm.h"
 
 #define CANARY(k) (0x0c0de00000000000 + (k))
 

@@ -1,5 +1,5 @@
 /*
- * test_norm.c: NFC (src/core/norm.c, SPEC §2.6) under `make test`.
+ * test_norm.c: NFC (native/core/norm.c, SPEC §2.6) under `make test`.
  *
  *   1. hf 0.23.2 golden vectors (tests/norm/nfc_golden.txt, written by tools/gen/norm.py): every case whole,
  *      behind 0..129 boundary bytes (so the 64-byte K2 block edge falls at every position of it), and cut in
@@ -19,8 +19,8 @@
  * The outer oracle is hf at scale: tests/norm/ (run on lab hosts).
  */
 /* norm.h -> core.h redeclares memcpy/memset/memcmp (freestanding core): it must come before <string.h>. */
-#include "../../src/core/norm.h"
-#include "../../src/gen/norm_nfc.h"
+#include "../../native/core/norm.h"
+#include "../../native/gen/norm_nfc.h"
 #include "../common/guard.h"
 
 #include <stdio.h>

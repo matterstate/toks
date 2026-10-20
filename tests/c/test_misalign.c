@@ -7,8 +7,8 @@
  * accesses are what UBSan checks (on a lab host or the mac, seconds; no asm, so the c twins run):
  *
  *   clang -std=c17 -O1 -g -fsanitize=undefined -fno-sanitize-recover=all -fno-strict-aliasing -fwrapv \
- *       -Iinclude -Isrc/core -Isrc/platform -o build/misalign_ubsan tests/c/test_misalign.c \
- *       src/core/?*.c src/platform/?*.c src/gen/?*.c && ./build/misalign_ubsan
+ *       -Iinclude -Inative/core -Inative/platform -o build/misalign_ubsan tests/c/test_misalign.c \
+ *       native/core/?*.c native/platform/?*.c native/gen/?*.c && ./build/misalign_ubsan
  *
  * The tokenizers (gpt2, and the wordpiece / unigram emitters: wp-bert-uncased, uni_t5base) are under
  * $TOKS_TOKENIZER_CACHE or ~/.cache/toks/tokenizers (as test_e2e); a missing one: SKIP. The wordpiece model wrote ids

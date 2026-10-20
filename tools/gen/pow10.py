@@ -3,11 +3,11 @@
 parser (docs/algorithms/unigram.md §2: serde_json 1.0.151 without float_roundtrip multiplies or divides the
 significand by POW10[|e|]). The C compiler rounds each literal exactly as rust does.
 
-    uv run tools/gen/pow10.py      -> src/gen/pow10.c
+    uv run tools/gen/pow10.py      -> native/gen/pow10.c
 """
 from pathlib import Path
 
-out = Path(__file__).resolve().parents[2] / "src/gen/pow10.c"
+out = Path(__file__).resolve().parents[2] / "native/gen/pow10.c"
 lits = [f"1e{k}" for k in range(309)]
 lines = ["/* toks: serde_json 1.0.151's POW10 (de.rs), 1e0 .. 1e308.  GENERATED FILE -- DO NOT EDIT.",
          " * Regenerate with: uv run tools/gen/pow10.py",

@@ -2,8 +2,8 @@
  * tests/k1/bench_k1.c: K1 (added-token find), an asm tier against the c twin: a differential fuzz and a
  * paired benchmark. A lab-host tool, not part of `make test` (maintainer doctrine: nothing heavy on the control-plane mac).
  *
- *   make lib    (the c twin as shipped, -O3; with the tier's .S in src/asm/<isa>/ the library has the tier too)
- *   clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Isrc/core -Isrc/platform \
+ *   make lib    (the c twin as shipped, -O3; with the tier's .S in native/asm/<isa>/ the library has the tier too)
+ *   clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Inative/core -Inative/platform \
  *     -o build/bench_k1 tests/k1/bench_k1.c tests/common/guard.c tests/common/abicheck_<isa>.S \
  *     build/<os>-<isa>/libtoks.a          [-DK1_TIER=<symbol>: default the isa's tier, neon / avx2]
  *

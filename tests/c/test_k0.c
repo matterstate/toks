@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../../src/platform/cpu.h"
+#include "../../native/platform/cpu.h"
 #include "../common/guard.h"
 
 #if defined(TOKS_ARCH_ARM64)

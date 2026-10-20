@@ -3,7 +3,7 @@
  * registers that rule protects on this platform: sysv rbx rbp r12-r15 (rsp); win64 also rdi, rsi and xmm6-15,
  * all 128 bits. Not in `make test` (x86-64 only); built by hand from the source root:
  *
- *   clang -std=c17 -O2 -Wall -Wextra -Werror -Iinclude -Isrc/core -Isrc/platform -Isrc/asm/x86_64 \
+ *   clang -std=c17 -O2 -Wall -Wextra -Werror -Iinclude -Inative/core -Inative/platform -Inative/asm/x86_64 \
  *     -Itests/common -o teeth tests/abi/teeth.c tests/abi/bad_x86_64.S tests/common/abicheck_x86_64.S \
  *     target/release/libtoks.a -lpthread -lm -ldl
  *

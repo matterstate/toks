@@ -1,33 +1,14 @@
-# The production library is Rust with assembly kernels. Generated data and tooling
-# stay out of GitHub language statistics.
+* text=auto eol=lf
 
-# generated tables: collapsed in diffs and left out of GitHub's language stats
 src/gen/** linguist-generated=true
-# generated test expectations (C initializers written from hf by the test generators): data, not C++
-tests/**/*.inc linguist-generated=true linguist-language=C
-# release / bench receipts and raw logs: data
-docs/release/rc/** linguist-generated=true
-docs/bench/raw/** linguist-generated=true
-# Preserved upstream charts
-docs/img/*.svg linguist-generated=true
+native/gen/** linguist-generated=true
+benchmarks/results/** linguist-generated=true
+benchmarks/** export-ignore
 
-# Tooling and research prototypes are separate from the production library.
 tools/** linguist-detectable=false
 tests/** linguist-detectable=false
-*.sh linguist-detectable=false
-*.cmd linguist-detectable=false
-docs/research/** linguist-detectable=false
+native/gen/** linguist-detectable=false
 
-# every text file is lf in every checkout, whatever core.autocrlf says: the tests read their data as bytes, and a
-# crlf checkout (Git for Windows' default) failed test_compile on 48 refusal names and spun test_tiktoken's number
-# loop on '\r' (2026-10-05). git archive writes lf too.
-* text=auto eol=lf
-# cmd.exe scripts: crlf in every checkout and git archive (lf-only batch files can lose labels)
-*.cmd text eol=crlf
-# fuzz regression inputs and the test data are bytes: never normalized
+tests/**/*.inc linguist-generated=true linguist-language=C
 tests/fuzz/regress/** -text
 tests/data/** -text
-
-# Receipts stay in the repository and out of source archives (git archive).
-docs/bench/raw/** export-ignore
-docs/release/rc/** export-ignore

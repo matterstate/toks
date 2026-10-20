@@ -19,7 +19,7 @@ OUT=build/o200k-e2e
 mkdir -p "$OUT"
 rm -f "$OUT"/e2e.*.log "$OUT"/gen.*.log
 BUILD_DIR=$OUT make -s -j8 lib > /dev/null
-clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Isrc/core -Isrc/platform \
+clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Inative/core -Inative/platform \
   -o "$OUT/e2e" tests/k3/o200k_e2e.c "$OUT/libtoks.a"
 GEN="uv run -q --python 3.12 --with tokenizers==0.23.2 python tests/k3/o200k_gen.py"
 export TOKENIZERS_PARALLELISM=false

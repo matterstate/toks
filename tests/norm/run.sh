@@ -25,7 +25,7 @@ arg=${2:-4}
 B=build/norm
 mkdir -p "$B"
 make -s BUILD_DIR="$B/lib" lib
-CFLAGS="-std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Isrc/core -Isrc/platform"
+CFLAGS="-std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Inative/core -Inative/platform"
 clang $CFLAGS -o "$B/nfc_check" tests/norm/nfc_check.c "$B/lib/libtoks.a"
 clang $CFLAGS -o "$B/nfc_bench" tests/norm/nfc_bench.c "$B/lib/libtoks.a"
 GEN="uv run tests/norm/gen.py"

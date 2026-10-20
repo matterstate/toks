@@ -1,5 +1,5 @@
 /*
- * test_k7.c: K7, the spm scan (layout.h; spm_c.c's c twin, src/asm/<isa>/k7_spm_<tier>.S): the tier's part against
+ * test_k7.c: K7, the spm scan (layout.h; spm_c.c's c twin, native/asm/<isa>/k7_spm_<tier>.S): the tier's part against
  * the twin on random text units over every tests/data/spm fixture and the pinned spm files (gemma 4, mistral v0.3,
  * phi-3 when present): ascii runs, CJK, Cyrillic, Devanagari (E0 leads), Hangul (ED), emoji (F0), U+2581, vocab
  * strings (spanned pairs) and invalid utf-8 (lone continuations, C0 C1, overlongs, surrogates, F5+, cut chars). Both

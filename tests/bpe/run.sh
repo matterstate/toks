@@ -15,7 +15,7 @@ tok=$1
 shift
 B=build/bpe-check
 BUILD_DIR=$B make -s -j8 lib >/dev/null
-clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Isrc/core -Isrc/platform \
+clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Inative/core -Inative/platform \
   -o $B/check tests/bpe/check.c $B/libtoks.a
 t=$B/$(basename "$tok")
 echo 0 > "$t.gen.exit"

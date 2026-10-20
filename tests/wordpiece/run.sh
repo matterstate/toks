@@ -18,6 +18,6 @@ else
   BD=build/wp-check
 fi
 BUILD_DIR=$BD make -s -j8 $BD/libtoks.a CSTRICT="-std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Wconversion -Wsign-conversion -Werror $SAN" >/dev/null
-clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror $SAN -Iinclude -Isrc/core -Isrc/platform \
+clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror $SAN -Iinclude -Inative/core -Inative/platform \
   -o $BD/check tests/wordpiece/check.c $BD/libtoks.a
 uv run --with tokenizers==0.23.2 python tests/wordpiece/gen.py "$tok" "$@" | $BD/check "$tok"

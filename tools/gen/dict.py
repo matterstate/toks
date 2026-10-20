@@ -3,7 +3,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["tokenizers==0.23.2"]
 # ///
-"""toks: the piece dictionary (src/gen/dict.c) of the byte-level bpe words table (kernels.md §6 "Static table").
+"""toks: the piece dictionary (native/gen/dict.c) of the byte-level bpe words table (kernels.md §6 "Static table").
 
 Pieces of 2..15 bytes that common text cuts and that are no single token of a byte-level bpe model: the words table
 answers a model token on first sight, while a word the model splits (" Bingley" = " Bing" + "ley") costs a K6 run on
@@ -114,7 +114,7 @@ def main():
     ap.add_argument("--code", nargs="+", required=True)
     ap.add_argument("-n", type=int, default=131072)
     ap.add_argument("--tsv")
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "..", "src", "gen", "dict.c"))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "..", "native", "gen", "dict.c"))
     a = ap.parse_args()
     jobs = [(t, name, specs) for t in a.tok for name, specs in (("prose", a.prose), ("code", a.code))]
     score, multi = collections.defaultdict(float), set()

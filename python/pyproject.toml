@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "toks"
 dynamic = ["version"]                       # TOKS_VERSION of include/toks.h (setup.py)
-description = "Actual Computer's tokenizer: exactly hf tokenizers 0.23.2's ids, as fast as the hardware allows"
+description = "Rust tokenizer with native SIMD kernels and Hugging Face-compatible APIs"
 readme = "README.md"
 license = "Apache-2.0"                     # SPDX expression (PEP 639); the texts are LICENSE, NOTICE and LICENSING.md
 license-files = ["LICENSE", "NOTICE", "LICENSING.md", "THIRD_PARTY_NOTICES.md"]   # setup.py copies them in from the repository root

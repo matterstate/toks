@@ -15,8 +15,8 @@
  *   ids      toks_wp_encode_c over the scan's pieces == hf encode(text).ids of the model alone
  * Exit 0 iff nothing differs. Counts on stdout.
  */
-#include "../../src/core/wp.h"
-#include "../../src/core/json.h"
+#include "../../native/core/wp.h"
+#include "../../native/core/json.h"
 #include "../common/wp_json.h"
 
 #include <inttypes.h>

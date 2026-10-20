@@ -14,7 +14,7 @@
 #if !defined(_WIN32)
 #  define _POSIX_C_SOURCE 200809L
 #endif
-#include "../../src/core/kernels.h"
+#include "../../native/core/kernels.h"
 #include "cpu.h"
 #include "guard.h"
 
@@ -33,7 +33,7 @@ static const char *TIER_NAME[] = { "auto", "scalar", "neon", "avx2", "avx512" };
 
 /* ================================================================ wiring */
 
-/* the dispatched kernels: source name (src/asm/<isa>/<name>.S), its flag, its tier */
+/* the dispatched kernels: source name (native/asm/<isa>/<name>.S), its flag, its tier */
 typedef struct { const char *name; int have; const char *flag; uint32_t tier; } wired;
 #define W(n, F, T) { n, F, #F, T }
 static const wired KERNELS[] = {

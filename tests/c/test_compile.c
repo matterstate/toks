@@ -489,7 +489,7 @@ static void fixture(const char *name, uint8_t *arena, uint64_t arena_len)
     free(data);
 }
 
-/* the normalizer: NFC / NFKC parse and set cfg.nfc's form (src/core/norm.h runs it), inside Sequences too (config.c
+/* the normalizer: NFC / NFKC parse and set cfg.nfc's form (native/core/norm.h runs it), inside Sequences too (config.c
  * flattens them as hf applies them; NFC then NFKC is NFKC); NFD / NFKD are refused by name. Variants of gpt2style.json,
  * the normalizer changed. */
 static void normalizer_flag(uint8_t *arena, uint64_t arena_len)

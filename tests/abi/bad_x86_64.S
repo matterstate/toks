@@ -1,5 +1,5 @@
 /* tests/abi/bad_x86_64.S: fixtures for tests/abi/teeth.c, uint64_t f(uint64_t, uint64_t) returning 7, each
- * breaking one rule of the abi (or none). One source for elf, mach-o and coff through src/asm/x86_64/asm.h. */
+ * breaking one rule of the abi (or none). One source for elf, mach-o and coff through native/asm/x86_64/asm.h. */
 #include "asm.h"
 
 FUNC abibad_none

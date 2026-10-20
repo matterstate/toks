@@ -1,5 +1,5 @@
 /*
- * test_vocab.c: the vocabulary lookups (include/toks.h toks_token_to_id, toks_id_flags; src/core/vocab.c) against
+ * test_vocab.c: the vocabulary lookups (include/toks.h toks_token_to_id, toks_id_flags; native/core/vocab.c) against
  * their rule, read again here from a sorted copy of every key (independent of vocab.c's index):
  *
  * 1. every id's string, and near it (one byte longer, one byte shorter, its last byte changed), gets exactly the

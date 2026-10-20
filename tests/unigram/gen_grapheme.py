@@ -81,12 +81,12 @@ def render(src: str) -> str:
 
 
 CATS = ["Any", "CR", "Control", "Extend", "Extended_Pictographic", "InCB_Consonant", "L", "LF", "LV", "LVT",
-        "Prepend", "Regional_Indicator", "SpacingMark", "T", "V", "ZWJ"]  # = TOKS_GC_* in src/core/unigram.h
-C_OUT = os.path.join(HERE, "..", "..", "src", "gen", "grapheme17.c")
+        "Prepend", "Regional_Indicator", "SpacingMark", "T", "V", "ZWJ"]  # = TOKS_GC_* in native/core/unigram.h
+C_OUT = os.path.join(HERE, "..", "..", "native", "gen", "grapheme17.c")
 
 
 def emit_c(table: str) -> None:
-    """src/gen/grapheme17.c: class byte per code point (cat | 0x10 InCB=Extend | 0x20 InCB=Linker), two-stage"""
+    """native/gen/grapheme17.c: class byte per code point (cat | 0x10 InCB=Extend | 0x20 InCB=Linker), two-stage"""
     cls = bytearray(0x110000)
     for line in table.splitlines():  # bounded by the table
         if line.startswith("#") or not line.strip():

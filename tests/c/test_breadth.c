@@ -7,7 +7,7 @@
  *     padding, Fixed / a multiple, Right / Left) loads, and
  *     encode in every mode with and without the post-processor, decode of the encodings and decode of every
  *     id alone equal hf's (cases.inc, written by tests/data/breadth/gen.py);
- *   - the \w table (src/gen/rx_word.c) is sorted, disjoint and agrees with fixed probes;
+ *   - the \w table (native/gen/rx_word.c) is sorted, disjoint and agrees with fixed probes;
  *   - toks's byte-input rule next to added tokens (SPEC §3.3): an ill-formed byte is neither \s nor \w,
  *     so lstrip / rstrip stop at it and single_word treats it as a boundary.
  * Run from the repository root (make test does).

@@ -4,8 +4,8 @@
  * Not part of `make test`; built by hand on a host of the tier's isa, against the library as shipped:
  *
  *   make -j lib
- *   clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Isrc/core \
- *     -Isrc/platform -Itests/common -DK3_SCAN=toks_k3_scan_cl100k_avx2 -o build/fuzz_k3_avx2 \
+ *   clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Inative/core \
+ *     -Inative/platform -Itests/common -DK3_SCAN=toks_k3_scan_cl100k_avx2 -o build/fuzz_k3_avx2 \
  *     tests/k3/fuzz_k3.c tests/common/guard.c tests/common/abicheck_x86_64.S build/linux-x86_64/libtoks.a
  *
  * With -DK3_O200K the template is o200k (docs/templates/o200k.md; the twin toks_k3_scan_o200k_c): its 16
@@ -32,10 +32,10 @@
  * every 8th call runs through the abi checker (callee-saved registers kept). Exit 1 on any failure; with
  * FUZZ_K3_DUMP=<path> a failing text over 400 bytes is written there whole.
  */
-#include "../../src/core/classes.h"
-#include "../../src/core/compile.h"
-#include "../../src/core/kernels.h"
-#include "../../src/core/layout.h"
+#include "../../native/core/classes.h"
+#include "../../native/core/compile.h"
+#include "../../native/core/kernels.h"
+#include "../../native/core/layout.h"
 #include "guard.h"
 
 #ifndef K3_SCAN

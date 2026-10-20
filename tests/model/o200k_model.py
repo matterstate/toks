@@ -258,15 +258,15 @@ KIMI_SETS = [
 ] + [("fold_" + ch, "(?i:%s)" % ch) for ch in "stmdrevl"]
 # \p{Han} as tiktoken resolves it: regex-syntax 0.8.11's Script=Han (unicode_tables/script.rs, Unicode 16.0.0; a
 # bare \p{Han} is the Script property there, unicode.rs canonical_binary, not Script_Extensions). The one copy is
-# src/gen/han_ranges.c (tools/gen/han.py, from tiktoken's own engine; classes.c builds TOKS_C_HAN from it), read
+# native/gen/han_ranges.c (tools/gen/han.py, from tiktoken's own engine; classes.c builds TOKS_C_HAN from it), read
 # here and asserted equal to the probe.
 def _read_han_ranges():
     import re
-    with open(os.path.join(REPO, "src", "gen", "han_ranges.c"), encoding="utf-8") as f:
+    with open(os.path.join(REPO, "native", "gen", "han_ranges.c"), encoding="utf-8") as f:
         src = f.read()
     rs = [(int(a, 16), int(b, 16)) for a, b in re.findall(r"\{ 0x([0-9A-F]+)u, 0x([0-9A-F]+)u \}", src)]
     if len(rs) != 22 or sum(b - a + 1 for a, b in rs) != 99030:
-        raise SystemExit("o200k_model: src/gen/han_ranges.c is not the 22-range, 99,030-code-point table")
+        raise SystemExit("o200k_model: native/gen/han_ranges.c is not the 22-range, 99,030-code-point table")
     return rs
 
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""tests/data/breadth/probe_flips.py PROBE_TSV [--coverage census/coverage.json]
+"""tests/data/breadth/probe_flips.py PROBE_TSV [--coverage tests/data/breadth/coverage.json]
 
-Compares a probe run (tests/data/breadth/probe_census.sh: tools/census/probe.c with this branch's library)
-with the probe column of census/coverage.json (master's library) for every census tokenizer.json, and prints
+Compares a probe run (tests/data/breadth/probe_census.sh: tools/ci/probe.c with this branch's library)
+with the probe column of tests/data/breadth/coverage.json (master's library) for every census tokenizer.json, and prints
 the ones whose outcome changed -- "loads", "loads once NFC lands (m1b)" or the refusal that now comes
 first -- with their (b) downloads. Runs anywhere (plain python, no hf).
 """
@@ -37,7 +37,7 @@ def old_outcome(p):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("tsv")
-    ap.add_argument("--coverage", default=os.path.join(HERE, "..", "..", "..", "census", "coverage.json"))
+    ap.add_argument("--coverage", default=os.path.join(HERE, "coverage.json"))
     a = ap.parse_args()
     rows = {}
     for line in open(a.tsv, encoding="utf-8"):

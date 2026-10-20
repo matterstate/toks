@@ -1,15 +1,17 @@
 # Third-party notices
 
-toks's C and assembly core (`src/`, `include/`) carries no third-party code. The only third-party material in
-this repository is data: the Unicode tables below, derived from the Unicode Character Database, partly through the
-generated tables of three Rust crates (below), and the piece dictionary (below), a list of short pieces counted in
-public text.
+The tokenizer implementation is in `src/`, with assembly and ABI declarations in
+`native/` and `include/`. The generated tables in `src/gen/` are Rust translations
+of the pinned native tables described below and retain their data attributions.
+Dependency code and licensing are recorded in `Cargo.lock` and the corresponding
+packages. The data notices below cover the Unicode tables and the piece dictionary,
+a list of short pieces counted in public text.
 
 ## Unicode Character Database
 
-The generated tables `src/gen/norm_nfc.{c,h}` (NFC / NFKC), `src/gen/bert_tables.{c,h}` (categories, case,
-whitespace), `src/gen/grapheme17.c` (extended grapheme clusters), `src/gen/ucd_flags.{c,h}` (per-code-point
-properties), `src/gen/rx_word.{c,h}` (`\w`), `src/gen/han_ranges.{c,h}` (Script=Han) and the test data
+The generated tables `native/gen/norm_nfc.{c,h}` (NFC / NFKC), `native/gen/bert_tables.{c,h}` (categories, case,
+whitespace), `native/gen/grapheme17.c` (extended grapheme clusters), `native/gen/ucd_flags.{c,h}` (per-code-point
+properties), `native/gen/rx_word.{c,h}` (`\w`), `native/gen/han_ranges.{c,h}` (Script=Han) and the test data
 `tests/data/unigram/grapheme17.txt`, `tests/data/wordpiece/unicode.json`, `tests/norm/nfc_golden.txt` and
 `tests/norm/nfkc_golden.txt` are derived from the Unicode Character Database (Unicode versions 8.0, 9.0, 16.0
 and 17.0), Copyright © 1991-2026 Unicode, Inc., and are distributed under the Unicode License v3, reproduced
@@ -62,11 +64,11 @@ authorization of the copyright holder.
 Some of the tables above are extracted from the generated `tables.rs` of the Rust crates hf tokenizers 0.23.2 runs
 on, so that toks matches its Unicode versions exactly (each generator pins its source by sha256):
 
-- `src/gen/norm_nfc.{c,h}` and `src/gen/bert_tables.{c,h}`: unicode-normalization-alignments 0.1.12 (Unicode 9.0.0;
+- `native/gen/norm_nfc.{c,h}` and `native/gen/bert_tables.{c,h}`: unicode-normalization-alignments 0.1.12 (Unicode 9.0.0;
   MIT or Apache-2.0)
-- `src/gen/bert_tables.{c,h}`: unicode_categories 0.1.1 (Unicode 8.0.0; MIT or Apache-2.0), and the Rust standard
+- `native/gen/bert_tables.{c,h}`: unicode_categories 0.1.1 (Unicode 8.0.0; MIT or Apache-2.0), and the Rust standard
   library's `char::to_lowercase` / `char::is_whitespace` (Unicode 17.0.0; MIT or Apache-2.0)
-- `src/gen/grapheme17.c` and `tests/data/unigram/grapheme17.txt`: unicode-segmentation 1.13.3 (Unicode 17.0.0; MIT or
+- `native/gen/grapheme17.c` and `tests/data/unigram/grapheme17.txt`: unicode-segmentation 1.13.3 (Unicode 17.0.0; MIT or
   Apache-2.0)
 
 They are used here under the MIT license:
@@ -91,10 +93,10 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 ## The piece dictionary
 
-`src/gen/dict.c` (written by `tools/gen/dict.py`) holds 131,072 pieces of 2..15 bytes, the commonest pieces that the
+`native/gen/dict.c` (written by `tools/gen/dict.py`) holds 131,072 pieces of 2..15 bytes, the commonest pieces that the
 pre-tokenizers of four reference models (gpt2, llama 3, o200k, qwen 3.8) cut from the public text below and that
 at least one of them encodes in 2..4 tokens, with their order of frequency. It holds no text of these works beyond
-those pieces; toks's loader gives a piece an entry valued by toks's own encoder (docs/kernels.md §6). Counted in:
+those pieces; toks's loader gives a piece an entry valued by toks's own encoder. Counted in:
 
 - prose: enwik8, the first 10^8 bytes of the English Wikipedia dump of 2006-03-03 (the Hutter Prize file,
   mattmahoney.net/dc/textdata.html), sha256 2b49720ec4d78c3c9fabaee6e4179a5e997302b3a70029f30f2d582218c024a8;

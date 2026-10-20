@@ -10,10 +10,10 @@
  */
 /* kernels.h -> core.h redeclares memcpy/memset/memcmp (freestanding core): it must come before
  * <string.h>, whose secure _chk macros would collide with the declarations. */
-#include "../../src/core/classes.h"
-#include "../../src/core/compile.h"
-#include "../../src/core/kernels.h"
-#include "../../src/core/layout.h"
+#include "../../native/core/classes.h"
+#include "../../native/core/compile.h"
+#include "../../native/core/kernels.h"
+#include "../../native/core/layout.h"
 #include "../common/guard.h"
 
 /* the tier under test: the c twin by default; for an asm tier, build this file by hand with

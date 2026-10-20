@@ -23,7 +23,7 @@
  *
  * Build against the library (the c twins at the library's flags), e.g. on a lab host:
  *   BUILD_DIR=build/bench make -s -j8 lib && clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra \
- *     -Werror -Iinclude -Isrc/core -Isrc/platform -Itests/common -o build/bench/bench_neon tests/bpe/bench_neon.c \
+ *     -Werror -Iinclude -Inative/core -Inative/platform -Itests/common -o build/bench/bench_neon tests/bpe/bench_neon.c \
  *     build/bench/libtoks.a
  *   taskset -c 3 build/bench/bench_neon pieces.bin
  *
@@ -54,9 +54,9 @@
  *        words table's two lines per cache miss among those (neon reads both), plus K6 on the misses
  */
 #define _POSIX_C_SOURCE 200809L
-#include "../../src/core/bpe.h"
+#include "../../native/core/bpe.h"
 #include "bpe_words.h"
-#include "../../src/core/kernels.h"
+#include "../../native/core/kernels.h"
 
 #include <inttypes.h>
 #include <stdio.h>

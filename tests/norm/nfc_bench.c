@@ -15,7 +15,7 @@
  */
 #define _POSIX_C_SOURCE 199309L
 #include "toks.h"
-#include "../../src/core/norm.h"
+#include "../../native/core/norm.h"
 
 #include <stdio.h>
 #include <stdlib.h>

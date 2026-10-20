@@ -29,3 +29,9 @@ correctness checks outside timed sections and report regressions too.
 
 Use a known-working Rust revision for performance comparisons. Update
 `include/toks.h` and its ABI version when changing the public C ABI.
+
+The root package follows Cargo's `src/`, `build.rs` and `tests/*.rs` layout.
+Keep current documentation under `docs/` and reviewed performance receipts under
+`benchmarks/results/`; local reports belong under ignored `build/`.
+Legacy design citations in inherited code comments refer to the historical tree
+at `13493f7`, rather than maintained documentation.

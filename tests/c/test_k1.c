@@ -15,7 +15,7 @@
  * tests/k1/bench_k1.c is the long differential fuzz and the benchmark (lab hosts).
  */
 #include "../k1/k1_tab.h"
-#include "../../src/platform/cpu.h"
+#include "../../native/platform/cpu.h"
 #include "../common/guard.h"
 
 #include <inttypes.h>

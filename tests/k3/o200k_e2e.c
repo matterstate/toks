@@ -11,9 +11,9 @@
  * bpe on the whole text). Per record: K3 o200k (cap TOKS_CHUNK_PIECES, the driver's chunking) then K5
  * over each chunk, ids concatenated, compared with hf's. Exit 0 iff all equal.
  */
-#include "../../src/core/bpe.h"
-#include "../../src/core/compile.h"
-#include "../../src/core/kernels.h"
+#include "../../native/core/bpe.h"
+#include "../../native/core/compile.h"
+#include "../../native/core/kernels.h"
 
 #include <inttypes.h>
 #include <stdio.h>

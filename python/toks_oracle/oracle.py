@@ -114,7 +114,7 @@ RUST_S = frozenset(
 )
 # hf's single_word test (ends_with_word / starts_with_word) is the rust regex crate's unicode \w:
 # [\p{Alphabetic}\p{M}\p{Nd}\p{Pc}\p{Join_Control}], 144667 code points as probed through hf 0.23.2
-# (tests/data/breadth/probe_hf.py word). src/gen/rx_word.c holds the probed ranges; python's isalnum()
+# (tests/data/breadth/probe_hf.py word). native/gen/rx_word.c holds the probed ranges; python's isalnum()
 # misses 17591 of them, so the oracle reads that table (lazily) instead of approximating it.
 _WORD_RANGES: Optional[List[Tuple[int, int]]] = None
 
@@ -124,11 +124,11 @@ def _word_ranges() -> List[Tuple[int, int]]:
     if _WORD_RANGES is None:
         import re
 
-        src = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "src", "gen", "rx_word.c")
+        src = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "native", "gen", "rx_word.c")
         with open(src, encoding="utf-8") as f:
             text = f.read()
         _WORD_RANGES = [(int(a, 16), int(b, 16)) for a, b in re.findall(r"\{0x([0-9A-F]+)u, 0x([0-9A-F]+)u\}", text)]
-        assert len(_WORD_RANGES) > 700, "src/gen/rx_word.c: the \\w table did not parse"
+        assert len(_WORD_RANGES) > 700, "native/gen/rx_word.c: the \\w table did not parse"
     return _WORD_RANGES
 
 

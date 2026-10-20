@@ -9,7 +9,7 @@ through hf tokenizers 0.23.2 itself (never through python's unicodedata or a reg
            RIGHTMOST_SPACE_AT_START), every scalar, both sides. --out writes the \\w ranges as a c table.
   numeric  rust char::is_numeric as hf's Digits pre-tokenizer applies it, every scalar, against oniguruma's
            \\p{N} as hf's Split sees it (the P13 digits-gpt2 analysis).
-  invert   for every pattern string in rust/src/core/config.rs's table: Split(Removed, invert=true) against
+  invert   for every pattern string in src/core/config.rs's table: Split(Removed, invert=true) against
            Split(Isolated) over every scalar in four contexts, then random strings (--n, --seed).
 
 Everything is printed; any disagreement with an expectation exits 1.
@@ -175,7 +175,7 @@ def probe_numeric():
 def config_patterns():
     import ast
 
-    with open(os.path.join(ROOT, "rust/src/core/config.rs"), encoding="utf-8") as file:
+    with open(os.path.join(ROOT, "src/core/config.rs"), encoding="utf-8") as file:
         source = file.read()
     table = source.split("pub static mut TOKS_PATTERNS:", 1)[1].split("\n];", 1)[0]
     literals = re.findall(r'regex: (b"(?:[^"\\]|\\.)*")', table)
@@ -191,7 +191,7 @@ ALPHA = ("abcXYZ éÉßſİı ÆÇ Ωω Жж αβ ٣ 汉字かカ한 ‿_' \"!?.
 def probe_invert(n, seed):
     bad = 0
     pats = config_patterns()
-    print(f"{len(pats)} patterns in rust/src/core/config.rs")
+    print(f"{len(pats)} patterns in src/core/config.rs")
     for pat in pats:
         iso = pre_tokenizers.Split(Regex(pat), "isolated", invert=False)
         rem = pre_tokenizers.Split(Regex(pat), "removed", invert=True)
@@ -218,7 +218,7 @@ def probe_invert(n, seed):
 
 
 def emit_word_c(wr, ws):
-    """src/gen/rx_word.{c,h}: the regex-crate \\w of hf's single_word as ranges (binary searched by segment.c)."""
+    """native/gen/rx_word.{c,h}: the regex-crate \\w of hf's single_word as ranges (binary searched by segment.c)."""
     import hashlib
     data = b"".join(lo.to_bytes(4, "little") + hi.to_bytes(4, "little") for lo, hi in wr)
     sha = hashlib.sha256(data).hexdigest()
@@ -234,27 +234,27 @@ def emit_word_c(wr, ws):
         f" * data (lo u32 LE || hi u32 LE per range) sha256: {sha}\n"
         " */\n")
     root = ROOT
-    with open(os.path.join(root, "src/gen/rx_word.h"), "w") as f:
+    with open(os.path.join(root, "native/gen/rx_word.h"), "w") as f:
         f.write(head)
         f.write("#ifndef TOKS_RX_WORD_H\n#define TOKS_RX_WORD_H\n\n#include <stdint.h>\n\n")
         f.write(f"#define TOKS_RX_WORD_N {len(wr)}u\n")
         f.write(f"#define TOKS_RX_WORD_SHA256 \"{sha}\"\n\n")
         f.write("/* sorted, disjoint, non-adjacent [lo, hi] ranges */\n")
         f.write("extern const uint32_t toks_rx_word[TOKS_RX_WORD_N][2];\n\n#endif /* TOKS_RX_WORD_H */\n")
-    with open(os.path.join(root, "src/gen/rx_word.c"), "w") as f:
+    with open(os.path.join(root, "native/gen/rx_word.c"), "w") as f:
         f.write(head)
         f.write("#include \"rx_word.h\"\n\nconst uint32_t toks_rx_word[TOKS_RX_WORD_N][2] = {\n")
         for i in range(0, len(wr), 4):
             f.write("    " + " ".join(f"{{0x{lo:05X}u, 0x{hi:05X}u}}," for lo, hi in wr[i:i + 4]) + "\n")
         f.write("};\n")
-    print(f"wrote src/gen/rx_word.{{c,h}}: {len(wr)} ranges, sha256 {sha}")
+    print(f"wrote native/gen/rx_word.{{c,h}}: {len(wr)} ranges, sha256 {sha}")
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("what", choices=("word", "numeric", "invert"))
     ap.add_argument("--out", default=None)
-    ap.add_argument("--emit", action="store_true", help="word: write src/gen/rx_word.{c,h}")
+    ap.add_argument("--emit", action="store_true", help="word: write native/gen/rx_word.{c,h}")
     ap.add_argument("--n", type=int, default=200000)
     ap.add_argument("--seed", type=int, default=1)
     a = ap.parse_args()

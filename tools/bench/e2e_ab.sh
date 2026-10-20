@@ -8,7 +8,7 @@
 # env: BUILD_DIR, TOKS_LIST, CORPORA, CHUNKS, REPS (5), ROUNDS (2), TOKS_TOKENIZER_DIR (~/.cache/toks/tokenizers),
 #      TOKS_KIMI_DIR, TOKS_BENCH_TEXT (build/text): the cells use common.sh (same corpora, same files)
 # prints per cell the pass and cold seconds of every run and B / A of the medians (> 1: B slower). Exactness is
-# a separate gate; this script only times. Use tools/rust-port/bench.py for a
+# a separate gate; this script only times. Use tools/bench/compare.py for a
 # paired canary with mandatory output comparison (docs/validation.md).
 set -e
 A=$1

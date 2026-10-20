@@ -4,8 +4,8 @@
  * the c twin at -O3, the asm tiers of the isa):
  *
  *   make -j lib
- *   clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Isrc/core \
- *     -Isrc/platform -DK3_SCAN=toks_k3_scan_cl100k_avx2 -o build/bench_k3_avx2 tests/k3/bench_k3.c \
+ *   clang -std=c17 -O2 -fno-strict-aliasing -fwrapv -Wall -Wextra -Werror -Iinclude -Inative/core \
+ *     -Inative/platform -DK3_SCAN=toks_k3_scan_cl100k_avx2 -o build/bench_k3_avx2 tests/k3/bench_k3.c \
  *     build/linux-x86_64/libtoks.a
  *
  *   bench_k3 file  R VARIANT FILE...    each FILE one segment
@@ -28,10 +28,10 @@
  * prints B/c and A/B too. /proc/loadavg at start and end (SPEC §12.8: pin with taskset, record load).
  */
 #define _POSIX_C_SOURCE 200809L                /* clock_gettime under -std=c17 */
-#include "../../src/core/classes.h"
-#include "../../src/core/compile.h"
-#include "../../src/core/kernels.h"
-#include "../../src/core/layout.h"
+#include "../../native/core/classes.h"
+#include "../../native/core/compile.h"
+#include "../../native/core/kernels.h"
+#include "../../native/core/layout.h"
 
 #ifndef K3_SCAN
 #error "build with -DK3_SCAN=toks_k3_scan_<tmpl>_<tier>"

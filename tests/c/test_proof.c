@@ -1,7 +1,7 @@
 /* tests/c/test_proof.c: regression tests for the defects a proof pass over the json reader found (J1, J2 below).
  * One block per finding, named by its id; each pins the fixed behaviour and runs the fixed code path
  * with the input's end flush against a guard page, so a reintroduced over-read faults here too. */
-#include "../../src/core/core.h"
+#include "../../native/core/core.h"
 #include "guard.h"
 #include <stdio.h>
 #include <stdlib.h>

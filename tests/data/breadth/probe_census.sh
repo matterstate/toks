@@ -1,8 +1,8 @@
 #!/bin/sh
-# tests/data/breadth/probe_census.sh: tools/census/probe.c (toks's own load path, cross-checked against
+# tests/data/breadth/probe_census.sh: tools/ci/probe.c (toks's own load path, cross-checked against
 # toks_load_mem_copy) over every tokenizer.json of the census cache with this branch's library, the way the
 # census probes (a file refused for NFC is probed again with only its normalizer removed). Writes
-# build/breadth/probe.tsv; tests/data/breadth/probe_flips.py compares it with census/coverage.json.
+# build/breadth/probe.tsv; tests/data/breadth/probe_flips.py compares it with tests/data/breadth/coverage.json.
 #   tools/remote.sh <host> 'sh tests/data/breadth/probe_census.sh'
 set -eu
 files=${CENSUS_FILES:-$HOME/.cache/toks/census/coverage/files}
@@ -10,7 +10,7 @@ isa=$(uname -m | sed 's/aarch64/arm64/')
 os=$([ "$(uname)" = Darwin ] && echo macos || echo linux)
 make -s -j8 lib >/dev/null
 mkdir -p build/breadth/nfc-off
-clang -std=c17 -O2 -Iinclude -Isrc/core -Isrc/platform tools/census/probe.c "build/$os-$isa/libtoks.a" \
+clang -std=c17 -O2 -Iinclude -Inative/core -Inative/platform tools/ci/probe.c "build/$os-$isa/libtoks.a" \
     -o build/breadth/census-probe
 : > build/breadth/probe.tsv
 for f in "$files"/sha256_*; do

@@ -6,8 +6,8 @@
 #ifndef TOKS_TEST_WP_JSON_H
 #define TOKS_TEST_WP_JSON_H
 
-#include "../../src/core/config.h"
-#include "../../src/core/wp.h"
+#include "../../native/core/config.h"
+#include "../../native/core/wp.h"
 
 static int64_t wp_from_json(const uint8_t *src, uint64_t len, toks_arena *ar, toks_wp_vocab *v, toks_wp_params *p,
                             toks_err *err)

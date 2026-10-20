@@ -38,7 +38,7 @@
 #include <string.h>
 #include <time.h>
 
-void toks_sha256(const uint8_t *data, uint64_t len, uint8_t out[32]);   /* src/core/alloc.c (internal) */
+void toks_sha256(const uint8_t *data, uint64_t len, uint8_t out[32]);   /* native/core/alloc.c (internal) */
 
 #define NSIDE 4
 #define NSTATE 4

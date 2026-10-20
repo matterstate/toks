@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""tests/generic/diff.py: the generic pre-tokenizer (src/core/gen.c) against hf tokenizers 0.23.2 (oniguruma).
+"""tests/generic/diff.py: the generic pre-tokenizer (native/core/gen.c) against hf tokenizers 0.23.2 (oniguruma).
 
     uv run --with tokenizers==0.23.2 python tests/generic/diff.py --driver build/toks_driver [--n 20000] [--seed 1]
         [--chain-from <tokenizer.json>] <tokenizer.json> ...

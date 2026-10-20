@@ -17,9 +17,9 @@
  */
 /* kernels.h -> core.h redeclares memcpy/memset/memcmp (freestanding core): it must come before
  * <string.h>, whose secure _chk macros would collide with the declarations. */
-#include "../../src/core/kernels.h"
-#include "../../src/core/layout.h"
-#include "../../src/core/compile.h"
+#include "../../native/core/kernels.h"
+#include "../../native/core/layout.h"
+#include "../../native/core/compile.h"
 
 #include <inttypes.h>
 #include <stdio.h>

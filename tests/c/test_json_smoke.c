@@ -1,6 +1,6 @@
 /* core.h first: it hand-declares memcpy/memset/memcmp for the freestanding core, which must precede
  * <string.h>'s fortify macros, and it pulls json.h + config.h in the order its prototypes need. */
-#include "../../src/core/core.h"
+#include "../../native/core/core.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

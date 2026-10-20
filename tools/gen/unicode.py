@@ -8,7 +8,7 @@ toks' scanner templates classify code points by data (SPEC 1.4).  This script
 probes the regex engine hf `tokenizers` 0.23.2 actually runs (oniguruma) through
 `pre_tokenizers.Split(Regex(...), behavior="removed")` over every unicode scalar
 value U+0000..U+10FFFF, and emits the two-level per-code-point flag table
-`src/gen/ucd_flags.{c,h}`:
+`native/gen/ucd_flags.{c,h}`:
 
   - one sweep per property (\\p{Lu} \\p{Ll} \\p{Lt} \\p{Lm} \\p{Lo} \\p{M} \\p{N}
     \\s \\p{P} \\p{S}) over batched strings of code points; a code point the regex matches is
@@ -32,11 +32,11 @@ Usage:
     uv run tools/gen/unicode.py
 
 Writes (deterministic output; checked in with the hashes this prints):
-    src/gen/ucd_flags.c
-    src/gen/ucd_flags.h
+    native/gen/ucd_flags.c
+    native/gen/ucd_flags.h
 
 The table is the foundation of the per-template class tables built at load time
-by src/core/classes.c (toks_classes_build).
+by native/core/classes.c (toks_classes_build).
 """
 
 import hashlib
@@ -50,7 +50,7 @@ from tokenizers import Regex, pre_tokenizers
 
 REPO = Path(__file__).resolve().parents[2]
 
-# flag bits (mirrored in src/gen/ucd_flags.h; single source of truth is here)
+# flag bits (mirrored in native/gen/ucd_flags.h; single source of truth is here)
 LU, LL, LT, LM, LO = 0x0001, 0x0002, 0x0004, 0x0008, 0x0010
 M, N, WS, FOLD_S = 0x0020, 0x0040, 0x0080, 0x0100
 P_, S_ = 0x0200, 0x0400           # \\p{P}, \\p{S} (the dsv3 template's punctuation; docs/templates/dsv3.md)
@@ -441,8 +441,8 @@ def main():
     c_text = C_SRC % dict(sha=sha, n_blocks=n_blocks,
                           stage1=fmt_u16(stage1), stage2=fmt_u16(stage2_vals))
 
-    h_path = REPO / "src/gen/ucd_flags.h"
-    c_path = REPO / "src/gen/ucd_flags.c"
+    h_path = REPO / "native/gen/ucd_flags.h"
+    c_path = REPO / "native/gen/ucd_flags.c"
     h_path.parent.mkdir(parents=True, exist_ok=True)
     h_path.write_text(h_text, encoding="utf-8", newline="\n")
     c_path.write_text(c_text, encoding="utf-8", newline="\n")

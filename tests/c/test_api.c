@@ -18,9 +18,9 @@
  * table against layout.h's bitwise definition; the byte-level alphabet against gpt-2's; one compiled file
  * (tests/data/compile/gpt2style.json): its normalized=true <|endoftext|> dropped by TOKS_SKIP_SPECIAL, batch and stream.
  */
-#include "../../src/core/kernels.h"
-#include "../../src/core/bpe.h"
-#include "../../src/core/compile.h"
+#include "../../native/core/kernels.h"
+#include "../../native/core/bpe.h"
+#include "../../native/core/compile.h"
 #include "classes.h"
 #include "guard.h"
 

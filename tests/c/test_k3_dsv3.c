@@ -13,11 +13,11 @@
  * this file is the fast gate.
  */
 /* kernels.h -> core.h redeclares memcpy/memset/memcmp (freestanding core): it must come before <string.h>. */
-#include "../../src/core/classes.h"
-#include "../../src/core/compile.h"
-#include "../../src/core/kernels.h"
-#include "../../src/core/layout.h"
-#include "../../src/gen/ucd_flags.h"
+#include "../../native/core/classes.h"
+#include "../../native/core/compile.h"
+#include "../../native/core/kernels.h"
+#include "../../native/core/layout.h"
+#include "../../native/gen/ucd_flags.h"
 #include "../common/guard.h"
 
 /* the tier under test: the c twin by default; for an asm tier, build this file with -DK3_SCAN=toks_k3_scan_dsv3_<tier> */
